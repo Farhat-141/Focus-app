@@ -5,15 +5,14 @@ window.onload = function() {
         document.getElementById('current-time').innerHTML = `Time: ${displayTime}`;
     }, 1000);
 };
-
-let boardEl = document.getElementById('board');
+let boardEl = document.querySelector('.board');
 let addEl = document.querySelector('.add');
 
 // Store duration between Add → Save
 let currentName = 'timer_name';
 let currentDuration = '';
-    const overlayEl = document.createElement('div');
-    const windowEl = document.createElement('div');
+const overlayEl = document.createElement('div');
+const windowEl = document.createElement('div');
 
 // Show the input board
 addEl.addEventListener('click', () => {
@@ -21,20 +20,72 @@ addEl.addEventListener('click', () => {
     windowEl.classList.add("board");
     windowEl.innerHTML=`
         <p>Add Timer</p>
-        <div contenteditable="true" class="time timing">00:00:00</div>
-        <input class="boardInput" type="text" placeholder="timer_name" maxlength="15" minlength="1">
-        <div class="boardBtns">
-            <button class="boardBtn saveBtn">Save</button>
-            <button class="boardBtn cancelBtn">Cancel</button>
-        </div>
+            <div class="time timing">00:00:00</div>
+            <input class="boardInput" type="text" placeholder="timer_name" maxlength="15" minlength="1">
+            <div class="boardBtns">
+                <div class="board-section">
+                    <button class="boardBtn ready-option">ready</button>
+                    <button class="boardBtn custom-option">custom</button>
+                </div>
+
+                <div class="board-options">
+                    <button class="board-option long">long 90 min</button>
+                    <button class="board-option pomodoro">pomodoro 25 min</button>
+                    <button class="board-option short">short 15 min</button>
+                </div>
+
+                <div class="custom-options">
+                    <div class="custom-time">
+                        <div contenteditable="true" class="clocking">00:00:00</div>
+                    </div>
+                </div>
+
+                <div class="board-section">
+                    <button class="boardBtn saveBtn">Save</button>
+                    <button class="boardBtn cancelBtn">Cancel</button>
+                </div>
+            </div>
     `;
-    
+
     document.body.appendChild(windowEl);
     document.body.appendChild(overlayEl);
     let saveEl = document.querySelector('.saveBtn');
     let cancelEl = document.querySelector('.cancelBtn');
     let boardInput = document.querySelector('.boardInput');
     let timingDisplay = document.querySelector('.timing');
+    let readyEl = document.querySelector('.ready-option');
+    let customEl = document.querySelector('.custom-option');
+    let boardOptions = document.querySelector('.board-options');
+    let customOptions = document.querySelector('.custom-options');
+    let longEl = document.querySelector('.long');
+    let pomodoroEl = document.querySelector('.pomodoro');
+    let shortEl = document.querySelector('.short');
+
+    readyEl.addEventListener('click',() => {
+        boardOptions.style.display = 'grid';
+        customOptions.style.display = 'none';
+    });
+
+    longEl.addEventListener('click',()=>{
+        timingDisplay.textContent = '01:30:00'; 
+    });
+    pomodoroEl.addEventListener('click',()=>{
+        timingDisplay.textContent = '00:25:00'; 
+    });
+    shortEl.addEventListener('click',()=>{
+        timingDisplay.textContent = '00:15:00'; 
+    });
+
+    customEl.addEventListener('click',()=> {
+        boardOptions.style.display = 'none';
+        customOptions.style.display = 'block';
+        
+        let clockingEl = document.querySelector('.clocking')
+
+        clockingEl.addEventListener('input',()=> {
+            timingDisplay.innerHTML = clockingEl.textContent;
+        });
+    })
 
 // Hide the input board
     cancelEl.addEventListener('click', () => {
@@ -45,6 +96,7 @@ addEl.addEventListener('click', () => {
 
 // Save and create new timer
     saveEl.addEventListener('click', () => {
+        let stoped = true;
         windowEl.remove();
         overlayEl.remove();
         currentName = boardInput.value;
@@ -60,8 +112,8 @@ addEl.addEventListener('click', () => {
             <div class="header">
                 <p>${currentName}</p>
                 <div class="headerBtns">
-                    <button class="edit">edit</button>
-                    <button class="full">full</button>
+                    <button class="headerBtn edit">edit</button>
+                    <button class="headerBtn full">full</button>
                 </div>
             </div>
             <div class="timer">
@@ -90,6 +142,7 @@ addEl.addEventListener('click', () => {
         let localTimerInterval = null;
 
         startBtn.addEventListener("click", () => {
+            stoped = false;
             startBtn.style.display = "none";
             stopBtn.style.display = "inline-block";
             resetBtn.style.display = "inline-block";
@@ -127,6 +180,7 @@ addEl.addEventListener('click', () => {
         });
 
         resetBtn.addEventListener("click", () => {
+            stoped = true;
             clearInterval(localTimerInterval);
             localTimerInterval = null;
             soundEl.pause();
@@ -139,58 +193,79 @@ addEl.addEventListener('click', () => {
         });
 
         stopBtn.addEventListener("click", () => {
+            stoped = true;
             clearInterval(localTimerInterval);
             localTimerInterval = null;
             soundEl.pause();
             startBtn.innerHTML = "Resume";
             startBtn.style.display = "inline-block";
             stopBtn.style.display = "none";
+
         });
 
         editBtn.addEventListener("click", () => {
-            overlayEl.classList.add("overlay");
-            windowEl.classList.add("board");
-            windowEl.innerHTML=`
-                <div class="Eheader">
-                    <p>Edit Timer</p>
-                    <button class="EheaderBtn">delete</button>
-                </div>
-                <div contenteditable="true" class="time timing">${timeEl.innerHTML}</div>
-                <input class="boardInput" type="text" placeholder="timer_name" maxlength="15" minlength="1" value="${currentName}">
-                <div class="boardBtns">
-                    <button class="boardBtn saveBtn">Save</button>
-                    <button class="boardBtn cancelBtn">Cancel</button>
-                </div>
-            `;
-            document.body.appendChild(windowEl);
-            document.body.appendChild(overlayEl);
-            let saveEl = document.querySelector('.saveBtn');
-            let cancelEl = document.querySelector('.cancelBtn');
-            let boardInput = document.querySelector('.boardInput');
-            let timingDisplay = document.querySelector('.timing');
-            let deleteEl = document.querySelector('.EheaderBtn');
+            if(stoped){
+                overlayEl.classList.add("overlay");
+                windowEl.classList.add("board");
+                windowEl.innerHTML=`
+                    <div class="Eheader">
+                        <p>Edit Timer</p>
+                        <button class="EheaderBtn">delete</button>
+                    </div>
+                    <div contenteditable="true" class="time timing">${timeEl.innerHTML}</div>
+                    <input class="boardInput" type="text" placeholder="timer_name" maxlength="15" minlength="1" value="${currentName}">
+                    <div class="boardBtns">
+                        <button class="boardBtn saveBtn">Save</button>
+                        <button class="boardBtn cancelBtn">Cancel</button>
+                    </div>
+                `;
+                document.body.appendChild(windowEl);
+                document.body.appendChild(overlayEl);
+                let saveEl = document.querySelector('.saveBtn');
+                let cancelEl = document.querySelector('.cancelBtn');
+                let boardInput = document.querySelector('.boardInput');
+                let timingDisplay = document.querySelector('.timing');
+                let deleteEl = document.querySelector('.EheaderBtn');
 
-            cancelEl.addEventListener('click', () => {
-                windowEl.remove();
-                overlayEl.remove();
-            });
+                cancelEl.addEventListener('click', () => {
+                    windowEl.remove();
+                    overlayEl.remove();
+                });
 
-            saveEl.addEventListener('click', () => {
-                currentName = boardInput.value;
-                currentDuration = timingDisplay.textContent;
-                clockEl.querySelector('.header p').textContent = currentName;
-                timeEl.innerHTML = currentDuration;
-                windowEl.remove();
-                overlayEl.remove();
-            });
-            deleteEl.addEventListener('click', () => {
-                clockEl.remove();
-                windowEl.remove();
-                overlayEl.remove();
-            });
+                saveEl.addEventListener('click', () => {
+                    currentName = boardInput.value;
+                    currentDuration = timingDisplay.textContent;
+                    clockEl.querySelector('.header p').textContent = currentName;
+                    timeEl.innerHTML = currentDuration;
+                    windowEl.remove();
+                    overlayEl.remove();
+                });
+                deleteEl.addEventListener('click', () => {
+                    clockEl.remove();
+                    windowEl.remove();
+                    overlayEl.remove();
+                });
+            }
+        });
+
+        let full = false;
+        
+        fullBtn.addEventListener("click", () => {
+            const layerEl = document.createElement('div');
+            if(!full){
+                layerEl.classList.add("layer");
+                document.body.append(layerEl);
+                clockEl.classList.add("fullscreen");
+                clockEl.classList.remove("clock");
+                fullBtn.textContent = 'fit'
+                full = true;
+            }else{
+                fullBtn.textContent = 'full'
+                clockEl.classList.remove("fullscreen");
+                clockEl.classList.add("clock");
+                document.querySelector(".layer").remove();
+                full = false;
+            }
         });
     });
-
 });
-
-

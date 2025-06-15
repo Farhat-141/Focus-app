@@ -1,29 +1,35 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(31, 77, 88);
-    height: 95vh;
+    height: 99vh;
+    position: relative;
+    margin: 0;
 }
 .container{
     background-color: rgb(0, 0, 0);
     border: 2px solid; 
-    padding: 5px;
+    padding: 5px 20px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    height: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-shadow: 0 0 15px darkslategray;
+    position: relative;
+    height: 100%;
 }
 .group{
     border: 2px solid;
     padding: 10px;
     border-radius: 10px;
-    height: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: left;
     gap: 15px;
     background-color: rgb(15, 58, 58);
+    align-items: start;
+    position: relative;
+    height: 100%;
 }
 .title{
     text-align: center;
@@ -76,10 +82,12 @@ control-btn{
 }
 .current-time{
     position: absolute;
-    right: 90px;
+    right: 0;
+    padding: 10px;
     font-weight: bold;
-    color: wheat;
+    color: rgb(255, 255, 255);
     text-decoration: underline;
+    font-size: larger;
 }
 .reset,.stop{
     display: none;
@@ -87,7 +95,7 @@ control-btn{
 .clock{
     background-color: darkgray;
     padding: 10px;
-    width: 200px;
+    width: fit-content;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -155,8 +163,45 @@ control-btn{
     margin: 15px;
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
+    gap: 15px;
 }
-.boardBtn{
+.board-section{
+    display: flex;
+    justify-content: space-evenly;
+}
+.board-options{
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+}
+.board-option{
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 5px 15px;
+    border-radius: 15px;
+}
+.custom-options{
+    display: none;
+}
+.custom-time{
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.custom-time-h, .custom-time-m, .custom-time-s{
+    width: 50px;
+}
+.header p{
+    font-weight: bold;
+}
+.board-option:hover{
+    background-color:darkslategray;
+}
+.boardBtn, .ready-option, .custom-option{
     font-size: large;
     background-color: transparent;
     color: white;
@@ -165,27 +210,36 @@ control-btn{
     padding: 5px 20px;
     cursor: pointer;
 }
+.ready-option:hover , .custom-option:hover{
+    background-color: rgb(124, 122, 122);
+ }
 .timing{
     background-color: aliceblue;
     color: black;
     padding: 10px 20px;
 }
+.headerBtn{
+    background-color: transparent;
+    border-radius: 15px;
+    padding: 5px 10px;
+    border: 2px solid;
+}
+.headerBtn:hover{
+    background-color: gray;
+}
 .boardBtn:hover{
     background-color: rgb(48, 48, 48);
     transition: 0.2s;
 }
-.container{
-    position: relative;
-}
 .functions{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin: 20px;
+    position: sticky;
+    bottom: 5px;
+    margin-left: auto;
+    width: fit-content;
     border: 1px solid;
     border-radius: 5px;
     padding: 5px 15px;
-    background-color: transparent;
+    background-color: darkslategrey;
     box-shadow: 0 0 3px white;
 }
 .add {
@@ -206,6 +260,9 @@ control-btn{
     justify-content: space-between;
     align-items: center;
 }
+.header p{
+    margin: 0.5em;
+}
 .Eheader{
     display: flex;
     flex-direction: row;
@@ -214,7 +271,7 @@ control-btn{
 }
 .EheaderBtn{
     color: white;
-    background-color: transparent;
+    background-color: rgb(163, 5, 5);
     border: none;
     margin: 5px;
     padding: 5px 15px;
@@ -222,4 +279,34 @@ control-btn{
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
+    transition: 0.2s;
+}
+.EheaderBtn:hover{
+    background-color: rgb(230, 45, 45);
+    transition: 0.2s;
+}
+.fullscreen{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(2.5);
+    z-index: 999;
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+    width: 450px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.layer{
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: all;
 }
