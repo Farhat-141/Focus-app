@@ -5,6 +5,7 @@ window.onload = function() {
         document.getElementById('current-time').innerHTML = `Time: ${displayTime}`;
     }, 1000);
 };
+
 let boardEl = document.querySelector('.board');
 let addEl = document.querySelector('.add');
 
@@ -176,7 +177,7 @@ addEl.addEventListener('click', () => {
 
                 timeEl.innerHTML = 
                     `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }, 1000);
+                }, 1000);
         });
 
         resetBtn.addEventListener("click", () => {

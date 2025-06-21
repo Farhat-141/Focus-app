@@ -1,35 +1,37 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(31, 77, 88);
-    height: 99vh;
+    width: 100%;
     position: relative;
     margin: 0;
+    overflow: hidden;
 }
 .container{
     background-color: rgb(0, 0, 0);
     border: 2px solid; 
-    padding: 5px 20px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     box-shadow: 0 0 15px darkslategray;
     position: relative;
-    height: 100%;
+    min-height: 95vh;
 }
 .group{
     border: 2px solid;
     padding: 10px;
     border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: left;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-rows: auto;
     gap: 15px;
     background-color: rgb(15, 58, 58);
-    align-items: start;
+    justify-content: start;
     position: relative;
-    height: 100%;
+    height: 88vh;
+    overflow-y: scroll;
+    scrollbar-width: thin; 
+    scrollbar-color: darkslategray transparent; 
 }
 .title{
     text-align: center;
@@ -95,13 +97,13 @@ control-btn{
 .clock{
     background-color: darkgray;
     padding: 10px;
-    width: fit-content;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     height: fit-content;
+    width: auto;
     transition: 0.2s;
 }
 .clock:hover{
@@ -233,14 +235,15 @@ control-btn{
 }
 .functions{
     position: sticky;
-    bottom: 5px;
+    bottom: 20px;
+    margin: 20px;
     margin-left: auto;
     width: fit-content;
-    border: 1px solid;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 5px 15px;
-    background-color: darkslategrey;
-    box-shadow: 0 0 3px white;
+    cursor: pointer;
+    box-shadow: 1px 5px 20px black;
+    background-color: darkslategray;
 }
 .add {
     border: 1px solid;
@@ -250,7 +253,7 @@ control-btn{
     transition: 0.2s;
 }
 .add:hover{
-    transform: translateY(-2px);
+    transform: translateY(-5px);
     transition: 0.2s;
 }
 .header{
