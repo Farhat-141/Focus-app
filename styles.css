@@ -187,6 +187,9 @@ control-btn{
 .custom-options{
     display: none;
 }
+.ready-option{
+    display: none;
+}
 .custom-time{
     display: flex;
     width: fit-content;

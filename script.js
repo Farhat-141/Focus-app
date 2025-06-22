@@ -8,8 +8,6 @@ window.onload = function() {
 
 let boardEl = document.querySelector('.board');
 let addEl = document.querySelector('.add');
-
-// Store duration between Add → Save
 let currentName = 'timer_name';
 let currentDuration = '';
 const overlayEl = document.createElement('div');
@@ -50,6 +48,7 @@ addEl.addEventListener('click', () => {
 
     document.body.appendChild(windowEl);
     document.body.appendChild(overlayEl);
+
     let saveEl = document.querySelector('.saveBtn');
     let cancelEl = document.querySelector('.cancelBtn');
     let boardInput = document.querySelector('.boardInput');
@@ -65,6 +64,8 @@ addEl.addEventListener('click', () => {
     readyEl.addEventListener('click',() => {
         boardOptions.style.display = 'grid';
         customOptions.style.display = 'none';
+        customEl.style.display = 'block';
+        readyEl.style.display = 'none';
     });
 
     longEl.addEventListener('click',()=>{
@@ -79,7 +80,8 @@ addEl.addEventListener('click', () => {
 
     customEl.addEventListener('click',()=> {
         boardOptions.style.display = 'none';
-        customOptions.style.display = 'block';
+        customEl.style.display = 'none';
+        readyEl.style.display = 'block';
         
         let clockingEl = document.querySelector('.clocking')
 
@@ -105,7 +107,6 @@ addEl.addEventListener('click', () => {
             currentName = 'timer_name';
         }
         currentDuration = timingDisplay.textContent;
-
 
         const clockEl = document.createElement('div');
         clockEl.className = 'clock';
