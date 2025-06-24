@@ -29,6 +29,7 @@ class Timer {
     this.remaining = this._parseDuration(durationStr);
     this.container = container;
     this.interval = null;
+    this.isfull = false;
     this._createDOM();
     this._bindEvents();
     this._updateDisplay();
@@ -50,16 +51,24 @@ class Timer {
     this.el = document.createElement('div');
     this.el.className = 'clock';
     this.el.innerHTML = `
-      <div class="header"><p>${this.name}</p></div>
-      <div class="timer"><div class="time">${this.originalDuration}</div></div>
-      <div class="control">
-        <button class="btn start">Start</button>
-        <button class="btn stop" style="display:none;">Stop</button>
-        <button class="btn reset" style="display:none;">Reset</button>
-      </div>
-      <audio class="alarm" loop>
-        <source src="Sound1.mp3" type="audio/mp3">
-      </audio>
+            <div class="header">
+                <p>${this.name}</p>
+                <div class="headerBtns">
+                    <button class="headerBtn edit">edit</button>
+                    <button class="headerBtn full">full</button>
+                </div>
+            </div>
+            <div class="timer">
+                <div class="time">${this.originalDuration}</div>
+            </div>
+            <div class="control">
+                <button class="btn reset" style="display:none;">Reset</button>
+                <button class="btn stop" style="display:none;">Stop</button>
+                <button class="btn start">Start</button>
+            </div>
+            <audio class="alarm" loop>
+                <source src="Sound1.mp3" type="audio/mp3">
+            </audio>
     `;
     this.container.appendChild(this.el);
 
@@ -68,12 +77,16 @@ class Timer {
     this.stopBtn  = this.el.querySelector('.stop');
     this.resetBtn = this.el.querySelector('.reset');
     this.audio    = this.el.querySelector('.alarm');
+    this.editBtn  = this.el.querySelector('.edit');
+    this.fullBtn  = this.el.querySelector('.full');
   }
 
   _bindEvents() {
     this.startBtn.addEventListener('click', () => this.start());
-    this.stopBtn .addEventListener('click', () => this.stop());
+    this.stopBtn. addEventListener('click', () => this.stop());
     this.resetBtn.addEventListener('click', () => this.reset());
+    this.editBtn. addEventListener('click',()=> this.edit());
+    this.fullBtn. addEventListener('click',()=> this.full());
   }
 
   _updateDisplay() {
@@ -85,10 +98,10 @@ class Timer {
     this.startBtn.style.display = 'none';
     this.stopBtn.style.display  = 'inline-block';
     this.resetBtn.style.display = 'inline-block';
-
+    
     this.interval = setInterval(() => {
       if (this.remaining <= 0) {
-        this.stop();
+        this.stopBtn.style.display  =  'none';
         this.audio.play();
         return;
       }
@@ -114,9 +127,76 @@ class Timer {
     this.audio.currentTime = 0;
     this._updateDisplay();
   }
+
+  edit(){
+    if (this.interval) return;
+      const overlayEl = document.createElement('div');
+      const windowEl  = document.createElement('div');
+      overlayEl.className = 'overlay';
+      windowEl.className  = 'board';
+      windowEl.innerHTML=`
+        <div class="Eheader">
+            <p>Edit Timer</p>
+            <button class="EheaderBtn deleteBtn">delete</button>
+        </div>
+        <div contenteditable="true" class="time timing">${this.timeEl.textContent}</div>
+        <input class="boardInput" type="text" placeholder="timer_name" maxlength="15" minlength="1" value="${this.name}">
+        <div class="boardBtns">
+            <button class="boardBtn saveBtn">Save</button>
+            <button class="boardBtn cancelBtn">Cancel</button>
+        </div>
+        `;
+
+      document.body.appendChild(windowEl);
+      document.body.appendChild(overlayEl);          
+  
+      const editSaveBtn   = windowEl.querySelector('.saveBtn');
+      const editCancelBtn = windowEl.querySelector('.cancelBtn');
+      const editDeleteBtn = windowEl.querySelector('.deleteBtn');
+
+      editSaveBtn.addEventListener('click',() => {
+        const newDuration   = windowEl.querySelector('.timing').textContent;
+        const newName        = windowEl.querySelector('.boardInput').value || 'timer_name';
+        this.remaining = this._parseDuration(newDuration);
+        this.originalDuration = newDuration;
+        this._updateDisplay();
+        this.el.querySelector('.header p').textContent = newName;
+        windowEl.remove();
+        overlayEl.remove();
+      });
+
+      editCancelBtn.addEventListener('click',()=>{
+        windowEl.remove();
+        overlayEl.remove();
+      });
+      
+      editDeleteBtn.addEventListener('click',()=>{
+        this.el.remove();
+        windowEl.remove();
+        overlayEl.remove();
+      });
+    }
+
+  full(){
+    if (!this.isfull) {
+      const layerEl = document.createElement('div');
+      layerEl.classList.add("layer");
+      document.body.append(layerEl);
+      this.el.classList.add("fullscreen");
+      this.el.classList.remove("clock");
+      this.fullBtn.textContent = 'fit';
+      this.isfull = true;
+    } else {
+      this.fullBtn.textContent = 'full';
+      this.el.classList.remove("fullscreen");
+      this.el.classList.add("clock");
+      const layer = document.querySelector(".layer");
+      if (layer) layer.remove();
+      this.isfull = false;
+    }
+  }
 }
 
-// 3) Wire everything up when the page loads
 window.addEventListener('DOMContentLoaded', () => {
   // initialize live clock
   new ClockDisplay('#current-time');
@@ -167,14 +247,18 @@ window.addEventListener('DOMContentLoaded', () => {
     const presetBtns    = windowEl.querySelectorAll('.board-option');
     const clockingEl    = windowEl.querySelector('.clocking');
 
-    // show/hide preset vs custom
     readyEl.addEventListener('click', () => {
       optsEl.style.display = 'grid';
       customOptsEl.style.display = 'none';
+      readyEl.style.display = 'none';
+      customEl.style.display = 'inline-block';
+
     });
     customEl.addEventListener('click', () => {
-      optsEl.style.display = 'none';
+      optsEl      .style.display = 'none';
+      customEl    .style.display = 'none';
       customOptsEl.style.display = 'block';
+      readyEl     .style.display = 'block';
     });
 
     // presets set timing
