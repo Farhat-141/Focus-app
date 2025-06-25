@@ -98,7 +98,7 @@ class Timer {
     this.startBtn.style.display = 'none';
     this.stopBtn.style.display  = 'inline-block';
     this.resetBtn.style.display = 'inline-block';
-    
+
     this.interval = setInterval(() => {
       if (this.remaining <= 0) {
         this.stopBtn.style.display  =  'none';
@@ -195,25 +195,31 @@ class Timer {
       this.isfull = false;
     }
   }
+  add(){
+    
+  }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  // initialize live clock
-  new ClockDisplay('#current-time');
+class TimerModal{
+  constructor(addSelector, groupSelector) {
+    this.addBtn    = document.querySelector(addSelector);
+    this.group     = document.querySelector(groupSelector);
+    this.overlayEl = document.createElement('div');
+    this.windowEl  = document.createElement('div');
+    this.windowEl.className  = 'board';
+    this._bindAdd();
+  }
 
-  // prepare modal elements
-  const addEl     = document.querySelector('.add');
-  const overlayEl = document.createElement('div');
-  const windowEl  = document.createElement('div');
-  overlayEl.className = 'overlay';
-  windowEl.className  = 'board';
+  _bindAdd() {
+    this.addBtn.addEventListener('click', () => this.show());
+  }
 
-  addEl.addEventListener('click', () => {
-    // build modal HTML
-    windowEl.innerHTML = `
+  show() {
+    // build modal HTML (same as before)
+    this.windowEl.innerHTML = `
       <p>Add Timer</p>
       <div class="time timing">00:00:00</div>
-      <input class="boardInput" type="text" placeholder="timer_name" maxlength="15" minlength="1">
+      <input class="boardInput" placeholder="timer_name" maxlength="15">
       <div class="board-section">
         <button class="boardBtn ready-option">ready</button>
         <button class="boardBtn custom-option">custom</button>
@@ -224,71 +230,64 @@ window.addEventListener('DOMContentLoaded', () => {
         <button class="board-option short">00:15:00</button>
       </div>
       <div class="custom-options" style="display:none;">
-        <div class="custom-time">
-          <div contenteditable="true" class="clocking">00:00:00</div>
-        </div>
+        <div contenteditable="true" class="clocking">00:00:00</div>
       </div>
       <div class="board-section">
         <button class="boardBtn saveBtn">Save</button>
         <button class="boardBtn cancelBtn">Cancel</button>
-      </div>
-    `;
-    document.body.append(overlayEl, windowEl);
+      </div>`;
+    document.body.append(this.overlayEl, this.windowEl);
+    this._bindModalEvents();
+  }
 
-    // cache modal elements
-    const timingDisplay = windowEl.querySelector('.timing');
-    const boardInput    = windowEl.querySelector('.boardInput');
-    const saveEl        = windowEl.querySelector('.saveBtn');
-    const cancelEl      = windowEl.querySelector('.cancelBtn');
-    const readyEl       = windowEl.querySelector('.ready-option');
-    const customEl      = windowEl.querySelector('.custom-option');
-    const optsEl        = windowEl.querySelector('.board-options');
-    const customOptsEl  = windowEl.querySelector('.custom-options');
-    const presetBtns    = windowEl.querySelectorAll('.board-option');
-    const clockingEl    = windowEl.querySelector('.clocking');
+  _bindModalEvents() {
+    const td     = this.windowEl.querySelector('.timing');
+    const inp    = this.windowEl.querySelector('.boardInput');
+    const save   = this.windowEl.querySelector('.saveBtn');
+    const cancel = this.windowEl.querySelector('.cancelBtn');
+    const ready  = this.windowEl.querySelector('.ready-option');
+    const custom = this.windowEl.querySelector('.custom-option');
+    const opts   = this.windowEl.querySelector('.board-options');
+    const cOpts  = this.windowEl.querySelector('.custom-options');
+    const presets = this.windowEl.querySelectorAll('.board-option');
+    const clkEl   = this.windowEl.querySelector('.clocking');
 
-    readyEl.addEventListener('click', () => {
-      optsEl.style.display = 'grid';
-      customOptsEl.style.display = 'none';
-      readyEl.style.display = 'none';
-      customEl.style.display = 'inline-block';
-
+    ready.addEventListener('click', () => {
+      opts.style.display = 'grid';
+      cOpts.style.display = 'none';
+      custom.style.display = 'block';
+      ready.style.display = 'none';
     });
-    customEl.addEventListener('click', () => {
-      optsEl      .style.display = 'none';
-      customEl    .style.display = 'none';
-      customOptsEl.style.display = 'block';
-      readyEl     .style.display = 'block';
+    custom.addEventListener('click', () => {
+      opts.style.display = 'none';
+      custom.style.display = 'none';
+      ready.style.display = 'block';
+      cOpts.style.display = 'block';
     });
+    presets.forEach(b => b.addEventListener('click', () => td.textContent = b.textContent));
+    clkEl.addEventListener('input', () => td.textContent = clkEl.textContent);
 
-    // presets set timing
-    presetBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        timingDisplay.textContent = btn.textContent;
-      });
+    cancel.addEventListener('click', () => this._hide());
+    save.addEventListener('click', () => {
+      const name     = inp.value.trim() || 'timer_name';
+      const duration = td.textContent;
+      
+      
+
+      new Timer(name, duration, this.group);
+      this._hide();
     });
+  }
 
-    // custom input updates timing
-    clockingEl.addEventListener('input', () => {
-      timingDisplay.textContent = clockingEl.textContent;
-    });
+  _hide() {
+    this.windowEl.remove();
+    this.overlayEl.remove();
+  }
+}
 
-    // cancel: just close modal
-    cancelEl.addEventListener('click', () => {
-      overlayEl.remove();
-      windowEl.remove();
-    });
 
-    // save: create a new Timer
-    saveEl.addEventListener('click', () => {
-      overlayEl.remove();
-      windowEl.remove();
-
-      const name     = boardInput.value.trim() || 'timer_name';
-      const duration = timingDisplay.textContent;
-      const group    = document.querySelector('.group');
-
-      new Timer(name, duration, group);
-    });
-  });
+window.addEventListener('DOMContentLoaded', () => {
+  new ClockDisplay('#current-time');
+  new TimerModal('.add', '.group');
+  
 });

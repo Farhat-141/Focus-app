@@ -94,6 +94,9 @@ control-btn{
 .reset,.stop{
     display: none;
 }
+.clocking{
+    text-align: center;
+}
 .clock{
     background-color: darkgray;
     padding: 10px;
