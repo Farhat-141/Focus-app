@@ -277,6 +277,7 @@ class TimerModal{
       ready.style.display = 'block';
       cOpts.style.display = 'block';
     });
+
     presets.forEach(b => b.addEventListener('click', () => td.textContent = b.textContent));
     clkEl.addEventListener('input', () => td.textContent = clkEl.textContent);
 
@@ -314,13 +315,78 @@ class TimerModal{
   }
 }
 
+class TimerSelect {
+  constructor(selector, groupSelector) {
+    this.clearBtn = document.querySelector(selector);
+    this.group = document.querySelector(groupSelector);
+    this.selectionActive = false; // ✅ add a state flag
+    this._bindClear();
+  }
+
+  _bindClear() {
+    this.clearBtn.addEventListener('click', () => {
+      if (!this.selectionActive) {
+        this.selecting();
+      } else {
+        this.restore();
+      }
+    });
+  }
+
+  selecting() {
+    const timerEls = this.group.querySelectorAll('.clock');
+
+    this.clearBtn.src = "check-icon.png";
+    this.clearBtn.className = "confirm"; // ✅ correct way to assign class
+    this.selectionActive = true;         // ✅ set state to true
+
+    timerEls.forEach((el) => {
+      el.classList.add('selectionAffect');
+
+      // ✅ Use `onclick` instead of `addEventListener`
+      // This avoids stacking multiple click handlers
+      el.onclick = () => {
+        el.remove();
+      };
+    });
+  }
+
+  restore() {
+    const timerEls = this.group.querySelectorAll('.clock');
+
+    timerEls.forEach(el => {
+      el.classList.remove('selectionAffect');
+      el.onclick = null; // ✅ remove the delete-on-click behavior
+    });
+
+    this.clearBtn.src = "clear-icon.png";
+    this.clearBtn.className = "clear";
+    this.selectionActive = false; // ✅ reset the flag
+  }
+}
+
+
 
 window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); // using time function
   new TimerModal('.add', '.group'); //showing a clock setting
-  const savedTimers = JSON.parse(localStorage.getItem('saved'));
-  
-  savedTimers.forEach(el => {
+  new TimerSelect('.clear','.group'); // selecting clocks to clear)
+
+  /*
+  document.querySelector('.clear').addEventListener('click', () => {
+    const answer = prompt('Are you sure you want to clear all saved timers? Type "yes" to confirm');
+    if (answer && answer.toLowerCase() === 'yes') {
+      localStorage.removeItem('saved');
+      document.querySelector('.group').innerHTML = '';
+    } else {
+      alert('Clear operation cancelled');
+    }
+  });
+   */
+
+  const savedTimers = JSON.parse(localStorage.getItem('saved'));// getting saved timers
+
+  savedTimers.forEach(el => {// creating a timer for each saved timer
     new Timer(el.name,el.duration,document.querySelector('.group'),el.id)
   });
 

@@ -5,7 +5,6 @@ body{
     position: relative;
     margin: 0;
     overflow: hidden;
-    
 }
 .container{
     background-color: rgb(0, 0, 0);
@@ -17,6 +16,13 @@ body{
     box-shadow: 0 0 15px darkslategray;
     position: relative;
     min-height: 95vh;
+}
+.logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 .group{
     border: 2px solid;
@@ -37,7 +43,7 @@ body{
 .title{
     text-align: center;
     border-bottom: 2px solid;
-    width: 100%;
+    width: fit-content;
     color: white;
 }
 .time{
@@ -162,7 +168,7 @@ control-btn{
     border: none;
 }
 .boardInput::placeholder{
-    color: inherit;
+    color: initial;
 }
 .boardInput:focus{
     background-color: rgb(0, 0, 0);
@@ -244,27 +250,49 @@ control-btn{
     transition: 0.2s;
 }
 .functions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 150px;
+    gap: 10px;
     position: sticky;
     bottom: 20px;
     margin: 20px;
     margin-left: auto;
-    width: fit-content;
     border-radius: 10px;
-    padding: 5px 15px;
+    padding: 10px 25px;
     cursor: pointer;
-    box-shadow: 1px 5px 20px black;
+    box-shadow: 1px 5px 15px black;
     background-color: darkslategray;
 }
-.add {
-    border: 1px solid;
+.add, .clear ,.confirm{
     border-radius: 50%;
     width: 45px;
     aspect-ratio: 1/1;
     transition: 0.2s;
+    box-shadow: 0 0 10px black;
+    cursor: pointer;
+    
 }
-.add:hover{
-    transform: translateY(-5px);
+.clear, .confirm{
+    padding: 10px;
+    aspect-ratio: 1/1;
+    width: 25px;
+    background-color: white;
+    box-shadow: 0 0 10px darkred;
+    border: none;
+    cursor: pointer;
+}
+.clear:hover{
+    transform: translateY(-2px);
+    background-color:  rgb(255, 0, 0);
+    box-shadow: 0 0 15px ;
     transition: 0.2s;
+}
+.add:hover, .confirm:hover{
+    background: rgb(0, 191, 255);
+    transform: translateY(-2px);
+
 }
 .header{
     width: 100%;
@@ -322,4 +350,48 @@ control-btn{
     height: 100%;
     z-index: 0;
     pointer-events: all;
+}
+.selectionAffect{
+    transform: scale(0.95);
+    opacity: 0.75;
+    position: relative;
+}
+.selectionAffect:hover{
+    transform: scale(0.975);
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.95);
+
+}
+.ClockSelect input[type="checkbox"] {
+    opacity: 0;
+}
+.ClockSelect{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    margin: -5px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    display: none;
+    z-index: 1;
+}
+.custom-checkbox {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    margin: -2px;
+    position: relative;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.ClockSelect:checked + .custom-checkbox {
+    box-shadow: 0 0 5px rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 0.4);
+    z-index: 2;
 }

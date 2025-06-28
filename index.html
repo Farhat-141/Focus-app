@@ -11,13 +11,41 @@
 <body>    
     <div class="container">
         <div class= "current-time" id="current-time"></div>
-        <h1 class="title">Focus Pomodoro</h1>
+        <div class="logo">
+            <img width="40px" src="clock-icon.jpg" alt="">
+            <h1 class="title">Focus Pomodoro</h1>
+        </div>
         <div class="group">
             <!-- this where element is added inside-->
+            <div class="clock selectionAffect">
+                <!-- nice idea maybe later -->
+                <input type="checkbox"  class="ClockSelect" id="ClockSelect">
+                <label for="ClockSelect" class="custom-checkbox"></label>
+                <div class="header">
+                    <p>Timer</p>
+                    <div class="headerBtns">
+                        <button class="headerBtn edit">edit</button>
+                        <button class="headerBtn full">full</button>
+                    </div>
+                </div>
+                <div class="timer">
+                    <div class="time">00:25:00</div>
+                </div>
+                <div class="control">
+                    <button class="btn reset">Reset</button>
+                    <button class="btn stop">Stop</button>
+                    <button class="btn start">Start</button>
+                </div>
+                <audio class="alarm" loop="">
+                    <source src="Sound1.mp3" type="audio/mp3">
+                </audio>
+            </div>
         </div>
 
         <div class="functions"> <!--for adding-->
-                <img class="add" id="add" src="add-icon.jpg" alt=""></button>
+                <img class="add" id="add" src="add-icon.png" alt="">
+                <hr>
+                <img class="clear" id="clear" src="clear-icon.png" alt="">
         </div>
     </div>
 
