@@ -319,7 +319,7 @@ class TimerSelect {
   constructor(selector, groupSelector) {
     this.clearBtn = document.querySelector(selector);
     this.group = document.querySelector(groupSelector);
-    this.selectionActive = false; // ✅ add a state flag
+    this.selectionActive = false; 
     this._bindClear();
   }
 
@@ -327,6 +327,7 @@ class TimerSelect {
     this.clearBtn.addEventListener('click', () => {
       if (!this.selectionActive) {
         this.selecting();
+        
       } else {
         this.restore();
       }
@@ -337,18 +338,22 @@ class TimerSelect {
     const timerEls = this.group.querySelectorAll('.clock');
 
     this.clearBtn.src = "check-icon.png";
-    this.clearBtn.className = "confirm"; // ✅ correct way to assign class
-    this.selectionActive = true;         // ✅ set state to true
+    this.clearBtn.className = "confirm"; 
+    this.selectionActive = true;         
 
     timerEls.forEach((el) => {
       el.classList.add('selectionAffect');
 
-      // ✅ Use `onclick` instead of `addEventListener`
-      // This avoids stacking multiple click handlers
+
       el.onclick = () => {
+        const answer = confirm('Are you sure you want to delete this timer?');
+      if (answer) {
         el.remove();
+      } else {
+        alert('Clear operation cancelled');
+      }
       };
-    });
+      });
   }
 
   restore() {
@@ -371,18 +376,6 @@ window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); // using time function
   new TimerModal('.add', '.group'); //showing a clock setting
   new TimerSelect('.clear','.group'); // selecting clocks to clear)
-
-  /*
-  document.querySelector('.clear').addEventListener('click', () => {
-    const answer = prompt('Are you sure you want to clear all saved timers? Type "yes" to confirm');
-    if (answer && answer.toLowerCase() === 'yes') {
-      localStorage.removeItem('saved');
-      document.querySelector('.group').innerHTML = '';
-    } else {
-      alert('Clear operation cancelled');
-    }
-  });
-   */
 
   const savedTimers = JSON.parse(localStorage.getItem('saved'));// getting saved timers
 
