@@ -51,6 +51,7 @@ class Timer {
   _createDOM() {
     this.el = document.createElement('div');
     this.el.className = 'clock';
+    this.el.dataset.id = this.id; // Set the timer id for selection/deletion
     this.el.innerHTML = `
             <div class="header">
                 <p>${this.name}</p>
@@ -344,42 +345,49 @@ class TimerSelect {
     timerEls.forEach((el) => {
       el.classList.add('selectionAffect');
 
+      // Remove any previous click handlers to avoid stacking
+      el.onclick = null;
 
-      el.onclick = () => {
+      el.addEventListener('click', function handler(e) {
+        e.stopPropagation();
         const answer = confirm('Are you sure you want to delete this timer?');
-      if (answer) {
-        el.remove();
-      } else {
-        alert('Clear operation cancelled');
-      }
-      };
-      });
+        if (answer) {
+            let timerId = el.dataset.id;
+            let saved = JSON.parse(localStorage.getItem('saved') || '[]');
+            saved = saved.filter(item => String(item.id) !== String(timerId));
+            localStorage.setItem('saved', JSON.stringify(saved));
+          el.remove();
+        } else {
+          alert('Clear operation cancelled');
+        }
+      }, { once: true });
+    });
   }
-
+  
   restore() {
     const timerEls = this.group.querySelectorAll('.clock');
 
     timerEls.forEach(el => {
       el.classList.remove('selectionAffect');
-      el.onclick = null; // ✅ remove the delete-on-click behavior
+      el.onclick = null; 
     });
 
     this.clearBtn.src = "clear-icon.png";
     this.clearBtn.className = "clear";
-    this.selectionActive = false; // ✅ reset the flag
+    this.selectionActive = false; 
   }
 }
 
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  new ClockDisplay('#current-time'); // using time function
-  new TimerModal('.add', '.group'); //showing a clock setting
-  new TimerSelect('.clear','.group'); // selecting clocks to clear)
+  new ClockDisplay('#current-time'); 
+  new TimerModal('.add', '.group'); 
+  new TimerSelect('.clear','.group'); 
 
-  const savedTimers = JSON.parse(localStorage.getItem('saved'));// getting saved timers
+  const savedTimers = JSON.parse(localStorage.getItem('saved'));
 
-  savedTimers.forEach(el => {// creating a timer for each saved timer
+  savedTimers.forEach(el => {
     new Timer(el.name,el.duration,document.querySelector('.group'),el.id)
   });
 
