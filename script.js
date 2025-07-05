@@ -321,6 +321,7 @@ class TimerSelect {
     this.clearBtn = document.querySelector(selector);
     this.group = document.querySelector(groupSelector);
     this.selectionActive = false; 
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this._bindClear();
   }
 
@@ -335,41 +336,45 @@ class TimerSelect {
     });
   }
 
+  handleDeleteClick(e) {
+    const el = e.currentTarget;
+    const answer = confirm('Are you sure you want to delete this timer?');
+    if (answer) {
+      let timerId = el.dataset.id;
+      let saved = JSON.parse(localStorage.getItem('saved') || '[]');
+      saved = saved.filter(item => String(item.id) !== String(timerId));
+      localStorage.setItem('saved', JSON.stringify(saved));
+      el.remove();
+    } else {
+      alert('Clear operation cancelled');
+    }
+  }
+
   selecting() {
     const timerEls = this.group.querySelectorAll('.clock');
-
     this.clearBtn.src = "check-icon.png";
     this.clearBtn.className = "confirm"; 
     this.selectionActive = true;         
 
     timerEls.forEach((el) => {
       el.classList.add('selectionAffect');
-
-      // Remove any previous click handlers to avoid stacking
-      el.onclick = null;
-
-      el.addEventListener('click', function handler(e) {
-        e.stopPropagation();
-        const answer = confirm('Are you sure you want to delete this timer?');
-        if (answer) {
-            let timerId = el.dataset.id;
-            let saved = JSON.parse(localStorage.getItem('saved') || '[]');
-            saved = saved.filter(item => String(item.id) !== String(timerId));
-            localStorage.setItem('saved', JSON.stringify(saved));
-          el.remove();
-        } else {
-          alert('Clear operation cancelled');
-        }
-      }, { once: true });
+      const cover = document.createElement('div');
+      cover.className = 'selectionAffectCover';
+      el.appendChild(cover);
+      el.removeEventListener('click', this.handleDeleteClick); // Avoid stacking
+      el.addEventListener('click', this.handleDeleteClick);
     });
   }
+
+
   
   restore() {
     const timerEls = this.group.querySelectorAll('.clock');
-
-    timerEls.forEach(el => {
+    timerEls.forEach((el) => {
       el.classList.remove('selectionAffect');
-      el.onclick = null; 
+      const cover = el.querySelector('.selectionAffectCover');
+      if (cover) cover.remove();
+      el.removeEventListener('click', this.handleDeleteClick);
     });
 
     this.clearBtn.src = "clear-icon.png";
@@ -386,7 +391,6 @@ window.addEventListener('DOMContentLoaded', () => {
   new TimerSelect('.clear','.group'); 
 
   const savedTimers = JSON.parse(localStorage.getItem('saved'));
-
   savedTimers.forEach(el => {
     new Timer(el.name,el.duration,document.querySelector('.group'),el.id)
   });
