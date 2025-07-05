@@ -51,36 +51,48 @@ class Timer {
   _createDOM() {
     this.el = document.createElement('div');
     this.el.className = 'clock';
-    this.el.dataset.id = this.id; // Set the timer id for selection/deletion
+    this.el.dataset.id = this.id;
     this.el.innerHTML = `
-            <div class="header">
-                <p>${this.name}</p>
-                <div class="headerBtns">
-                    <button class="headerBtn edit">edit</button>
-                    <button class="headerBtn full">full</button>
-                </div>
-            </div>
-            <div class="timer">
-                <div class="time">${this.originalDuration}</div>
-            </div>
-            <div class="control">
-                <button class="btn reset" style="display:none;">Reset</button>
-                <button class="btn stop" style="display:none;">Stop</button>
-                <button class="btn start">Start</button>
-            </div>
-            <audio class="alarm" loop>
-                <source src="Sound1.mp3" type="audio/mp3">
-            </audio>
+      <div class="header">
+        <p>${this.name}</p>
+        <div class="headerBtns">
+          <button class="headerBtn edit">edit</button>
+          <button class="headerBtn full">full</button>
+        </div>
+      </div>
+      <div class="timer">
+        <svg class="progress-circle" viewBox="0 0 36 36">
+          <path class="circle-bg"
+            d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+          <path class="circle-bar"
+            stroke-dasharray="0, 100"
+            d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+          <text x="18" y="20.35" class="circle-label">${this.originalDuration}</text>
+        </svg>
+      </div>
+      <div class="control">
+        <button class="btn reset" style="display:none;">Reset</button>
+        <button class="btn stop" style="display:none;">Stop</button>
+        <button class="btn start">Start</button>
+      </div>
+      <audio class="alarm" loop>
+        <source src="Sound1.mp3" type="audio/mp3">
+      </audio>
     `;
     this.container.appendChild(this.el);
 
-    this.timeEl   = this.el.querySelector('.time');
+    this.timeEl   = this.el.querySelector('.circle-label');
     this.startBtn = this.el.querySelector('.start');
     this.stopBtn  = this.el.querySelector('.stop');
     this.resetBtn = this.el.querySelector('.reset');
     this.audio    = this.el.querySelector('.alarm');
     this.editBtn  = this.el.querySelector('.edit');
     this.fullBtn  = this.el.querySelector('.full');
+    this.progressBar = this.el.querySelector('.circle-bar');
   }
 
   _bindEvents() {
@@ -92,7 +104,13 @@ class Timer {
   }
 
   _updateDisplay() {
-    this.timeEl.textContent = this._formatTime(this.remaining);
+    const formatted = this._formatTime(this.remaining);
+    this.timeEl.textContent = formatted;
+
+    if (this.progressBar) {
+      const percent = 100 * (this.remaining / this._parseDuration(this.originalDuration));
+      this.progressBar.setAttribute('stroke-dasharray', `${percent}, 100`);
+    }
   }
 
   start() {
