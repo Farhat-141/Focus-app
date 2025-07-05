@@ -365,8 +365,6 @@ class TimerSelect {
       el.addEventListener('click', this.handleDeleteClick);
     });
   }
-
-
   
   restore() {
     const timerEls = this.group.querySelectorAll('.clock');
@@ -383,8 +381,6 @@ class TimerSelect {
   }
 }
 
-
-
 window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
   new TimerModal('.add', '.group'); 
@@ -394,5 +390,4 @@ window.addEventListener('DOMContentLoaded', () => {
   savedTimers.forEach(el => {
     new Timer(el.name,el.duration,document.querySelector('.group'),el.id)
   });
-
 });
