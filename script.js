@@ -21,6 +21,100 @@ class ClockDisplay {
   }
 }
 
+class ThemeController {
+constructor(themeSelector, container) {
+    this.themeSelector = document.querySelector(themeSelector);
+    this.container = document.querySelector(container);
+    this.currentTheme = 'default';
+    this.init();
+}
+
+init() {
+    // Add click event listeners to all theme options
+    this.themeSelector.querySelectorAll('li').forEach(themeOption => {
+        themeOption.addEventListener('click', (e) => {
+            this.changeTheme(e.target.id);
+        });
+    });
+
+    // Load saved theme from localStorage
+    this.loadSavedTheme();
+}
+
+changeTheme(themeName) {
+    // Remove all existing theme classes
+    this.container.className = '';
+    
+    // Add new theme class (except for default)
+    if (themeName !== 'default') {
+        this.container.classList.add(`theme-${themeName}`);
+    }
+
+    // Update active state in UI
+    this.updateActiveState(themeName);
+    
+    // Save theme preference
+    this.saveTheme(themeName);
+    
+    // Update current theme
+    this.currentTheme = themeName;
+
+    // Trigger custom event for theme change
+    this.container.dispatchEvent(new CustomEvent('themeChanged', {
+        detail: { theme: themeName }
+    }));
+}
+
+updateActiveState(activeTheme) {
+    // Remove active class from all items
+    this.themeSelector.querySelectorAll('li').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    // Add active class to selected item
+    const activeItem = this.themeSelector.querySelector(`#${activeTheme}`);
+    if (activeItem) {
+        activeItem.classList.add('active');
+    }
+}
+
+saveTheme(themeName) {
+    try {
+        localStorage.setItem('selectedTheme', themeName);
+    } catch (error) {
+        console.warn('Could not save theme preference:', error);
+    }
+}
+
+loadSavedTheme() {
+    try {
+        const savedTheme = localStorage.getItem('selectedTheme');
+        if (savedTheme && this.themeSelector.querySelector(`#${savedTheme}`)) {
+            this.changeTheme(savedTheme);
+        }
+    } catch (error) {
+        console.warn('Could not load saved theme:', error);
+    }
+}
+
+getCurrentTheme() {
+    return this.currentTheme;
+}
+
+getAvailableThemes() {
+    return Array.from(this.themeSelector.querySelectorAll('li')).map(li => li.id);
+}
+}
+
+// Initialize the theme controller
+const themeController = new ThemeController('#theme', 'body');
+
+// Example of listening to theme changes
+document.body.addEventListener('themeChanged', (e) => {
+  console.log(`Theme changed to: ${e.detail.theme}`);
+
+});
+
 // 2) Timer: encapsulates one countdown instance
 class Timer {
   constructor(name, durationStr, container, id) {
