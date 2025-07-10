@@ -1,7 +1,7 @@
 :root {
   /* Primary Brand Colors */
-  --main-color: #00ab67;
-  --accent-color: #00c975;
+  --main-color: #000000;
+  --accent-color: #7cc900;
   --text-color: #ffffff;
   --background-color: #f8fffe;
   
@@ -48,6 +48,7 @@
     bottom: 0;
     left: 15px;
     background: var(--theme-bg);
+    color: var(--text-color);
     border-radius: 12px;
     padding: 15px;
     box-shadow: 0 4px 20px var(--shadow-color);
@@ -128,7 +129,7 @@ body.theme-minimal {
 body.theme-fancy {
   --main-color:        #667eea;
   --accent-color:      #764ba2;
-  --text-color:        #ffffff;
+  --text-color:        #000000;
   --background-color:  #1a1a2e;
   --secondary-bg:      #16213e;
   --hover-color:       #0f3460;
@@ -141,7 +142,7 @@ body.theme-fancy {
   --danger-color:      #ff6b6b;
   --danger-hover:      #ff5252;
   --board-bg:          #16213e;
-  --clock-bg:          #f33737d7;
+  --clock-bg:          #ffffff;
   --input-bg:          #ffffff;
   --input-focus-bg:    #0f3460;
   --input-focus-text:  #ffffff;
@@ -154,7 +155,7 @@ body.theme-fancy {
   --checkbox-bg:       #ff6b6b60;
   --progress-bg:       #16213e;
   --progress-bar:      #764ba2;
-  --progress-text:     #ffffff;
+  --progress-text:     #000000;
   --fullscreen-bg:     #1a1a2e;
   --layer-bg:          #0f3460;
   --darkred-shadow:    #8b0000;
@@ -165,7 +166,7 @@ body.theme-fancy {
 body.theme-scifi {
   --main-color:        #286b6b;
   --accent-color:      #00ff88;
-  --text-color:        #ffffff;
+  --text-color:        #a72b2b;
   --background-color:  #000000;
   --secondary-bg:      #0d1117;
   --hover-color:       #161b22;
@@ -500,7 +501,7 @@ control-btn {
     padding: 10px 25px;
     cursor: pointer;
     box-shadow: 1px 5px 15px var(--button-bg);
-    background-color: var(--secondary-bg);
+    background-color: var(--clock-bg);
 }
 
 .add, .clear, .confirm {
@@ -678,5 +679,4 @@ control-btn {
     fill: var(--progress-text);
     font-size: 0.3em;
     text-anchor: middle;
-    dominant-baseline: central;
 }

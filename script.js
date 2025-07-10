@@ -20,6 +20,7 @@ class ClockDisplay {
     clearInterval(this._interval);
   }
 }
+
 // 2) Timer: encapsulates one countdown instance
 class Timer {
   constructor(name, durationStr, container, id) {
@@ -418,4 +419,6 @@ window.addEventListener('DOMContentLoaded', () => {
   savedTimers.forEach(el => {
     new Timer(el.name,el.duration,document.querySelector('.group'),el.id)
   });
+  
+
 });
