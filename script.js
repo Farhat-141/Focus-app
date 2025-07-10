@@ -399,6 +399,24 @@ class TimerSelect {
   }
 }
 
+if (window.innerWidth <= 700) {
+  const themeLabel = document.getElementById('theme-label');
+  const themePanel = document.getElementById('theme');
+  const themeArea = document.getElementById('theme-area');
+
+  themeLabel.addEventListener('mouseenter', () => {
+    themePanel.style.transform = 'translateX(0px)';
+    themeLabel.style.borderRadius = '0 0 12px 12px';
+    themeLabel.style.transition = '0.5s';
+  });
+
+  themeArea.addEventListener('mouseleave', () => {
+    themePanel.style.transform = 'translateX(-150px)';
+    themeLabel.style.borderRadius = '12px';
+    themeLabel.style.transition = '0.5s';
+  });
+}
+
 document.querySelectorAll('#theme li').forEach(option => {
   option.addEventListener('click', () => {
     document.body.className = `theme-${option.id}`;

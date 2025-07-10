@@ -11,15 +11,6 @@
 <body>    
     <div class="container">
         <div class= "current-time" id="current-time"></div>
-    <ul class="theme" id="theme">
-        <div class="theme-label">Themes:</div>
-        <li id="default" class="active">Default</li>
-        <li id="minimal">Minimal</li>
-        <li id="fancy">Fancy</li>
-        <li id="scifi">Sci-fi</li>
-        <li>custom</li>
-    </ul>
-
         <div class="logo">
             <img width="40px" src="clock-icon.jpg" alt="">
             <h1 class="title">Focus Pomodoro</h1>
@@ -51,12 +42,25 @@
               -->
         </div>
   
+        <div class="actions"> 
+            <div id="theme-area">
+                <div class="theme-label" id="theme-label">Themes</div>
+                <div class="theme" id="theme">
+                    <li class="themeChoice" id="default" class="active">Default</li>
+                    <li class="themeChoice" id="minimal">Minimal</li>
+                    <li class="themeChoice" id="fancy">Fancy</li>
+                    <li class="themeChoice" id="scifi">Sci-fi</li>
+                    <li class="themeChoice">custom</li>
+                </div>
+            </div>
 
-        <div class="functions"> <!--for adding-->
-                <img class="add" id="add" src="add-icon.png" alt="">
-                <hr>
-                <img class="clear" id="clear" src="clear-icon.png" alt="">
+            <div class="functions"> <!--for adding-->
+                    <img class="add" id="add" src="add-icon.png" alt="">
+                    <hr>
+                    <img class="clear" id="clear" src="clear-icon.png" alt="">
+            </div>
         </div>
+
     </div>
 
     <script src="script.js"></script>

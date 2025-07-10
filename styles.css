@@ -1,7 +1,7 @@
 :root {
   /* Primary Brand Colors */
   --main-color: #000000;
-  --accent-color: #7cc900;
+  --accent-color: #00e6cc;
   --text-color: #ffffff;
   --background-color: #f8fffe;
   
@@ -42,18 +42,25 @@
   --darkred-shadow: #8b0000;
   --white-color: #ffffff;
 }
-
-.theme {
-    position: fixed;
+.actions{
+    position: absolute;
     bottom: 0;
-    left: 15px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.theme {
     background: var(--theme-bg);
     color: var(--text-color);
-    border-radius: 12px;
+    border-radius: 0 12px 12px 0;
     padding: 15px;
     box-shadow: 0 4px 20px var(--shadow-color);
     list-style: none;
-    z-index: 1000;
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
     display: flex;
@@ -66,8 +73,18 @@
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    background: var(--theme-bg);
+    color: var(--text-color);
+    border-radius: 12px 0 0 12px;
+    padding: 15px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    list-style: none;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
-
 .theme li{
     border: 1px solid var(--checkbox-shadow);
     background-color: var(--clock-bg);
@@ -493,10 +510,6 @@ control-btn {
     justify-content: space-between;
     width: 150px;
     gap: 10px;
-    position: sticky;
-    bottom: 20px;
-    margin: 20px;
-    margin-left: auto;
     border-radius: 10px;
     padding: 10px 25px;
     cursor: pointer;
@@ -679,4 +692,28 @@ control-btn {
     fill: var(--progress-text);
     font-size: 0.3em;
     text-anchor: middle;
+}
+#theme-area{
+    display: flex;
+}
+
+@media (max-width:700px){
+    #theme-area{
+        flex-direction: column;
+    }
+    .actions{
+        align-items: end;
+    }
+    .theme{
+        transition: 0.5s;
+        flex-direction: column;
+        transform: translateX(-150px);
+        border-radius: 12px 12px 0 0;
+    }
+    .theme-label{
+        border-radius: 12px;
+        order: 2;
+        color: white;
+        cursor: pointer;
+    }
 }
