@@ -50,7 +50,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    z-index: 1000;
+    z-index: 99;
     padding: 10px;
     box-sizing: border-box;
 }
@@ -697,7 +697,7 @@ control-btn {
     display: flex;
 }
 
-@media (max-width:700px){
+@media (max-width:768px){
     #theme-area{
         flex-direction: column;
     }

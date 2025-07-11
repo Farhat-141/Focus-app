@@ -13,7 +13,7 @@ class ClockDisplay {
 
   update() {
     const now = new Date().toLocaleTimeString();
-    this.el.textContent = `Time: ${now}`;
+    this.el.textContent = `${now}`;
   }
 
   stop() {
@@ -399,7 +399,9 @@ class TimerSelect {
   }
 }
 
-if (window.innerWidth <= 700) {
+
+
+if (window.innerWidth < 768) {
   const themeLabel = document.getElementById('theme-label');
   const themePanel = document.getElementById('theme');
   const themeArea = document.getElementById('theme-area');
@@ -416,6 +418,43 @@ if (window.innerWidth <= 700) {
     themeLabel.style.transition = '0.5s';
   });
 }
+
+function handleResize() {
+    const themeLabel = document.getElementById('theme-label');
+    const themePanel = document.getElementById('theme');
+    const themeArea = document.getElementById('theme-area');
+  
+if (window.innerWidth < 768) {
+  const themeLabel = document.getElementById('theme-label');
+  const themePanel = document.getElementById('theme');
+  const themeArea = document.getElementById('theme-area');
+
+  themeLabel.addEventListener('mouseenter', () => {
+    themePanel.style.transform = 'translateX(0px)';
+    themeLabel.style.borderRadius = '0 0 12px 12px';
+    themeLabel.style.transition = '0.5s';
+  });
+
+  themeArea.addEventListener('mouseleave', () => {
+    themePanel.style.transform = 'translateX(-150px)';
+    themeLabel.style.borderRadius = '12px';
+    themeLabel.style.transition = '0.5s';
+  });
+}
+ if (window.innerWidth > 768) {
+    themePanel.style.transform = 'translateX(0px)';
+    themeLabel.style.borderRadius = '12px 0 0 12px';
+    themeLabel.style.transition = '0.5s';
+    themeArea.addEventListener('mouseleave', () => {
+      themePanel.style.transform = 'translateX(0px)';
+      themeLabel.style.borderRadius = '12px 0 0 12px';
+    });
+  }
+}
+
+window.addEventListener("resize", handleResize);
+handleResize();
+
 
 document.querySelectorAll('#theme li').forEach(option => {
   option.addEventListener('click', () => {
