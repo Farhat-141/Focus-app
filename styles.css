@@ -42,7 +42,6 @@
   --darkred-shadow: #8b0000;
   --white-color: #ffffff;
 }
-
 .theme {
     background: var(--theme-bg);
     color: var(--text-color);
@@ -79,7 +78,6 @@
     background-color: var(--hover-color);
     transition: 0.2s;
 }
-
 .theme li{
     border: 1px solid var(--checkbox-shadow);
     background-color: var(--clock-bg);
@@ -141,7 +139,7 @@ body.theme-minimal {
 body.theme-fancy {
   --main-color:        #667eea;
   --accent-color:      #764ba2;
-  --text-color:        #000000;
+  --text-color:        #1a1a2e;
   --background-color:  #1a1a2e;
   --secondary-bg:      #16213e;
   --hover-color:       #0f3460;
@@ -178,7 +176,7 @@ body.theme-fancy {
 body.theme-scifi {
   --main-color:        #286b6b;
   --accent-color:      #00ff88;
-  --text-color:        #a72b2b;
+  --text-color:        #00ff88;
   --background-color:  #000000;
   --secondary-bg:      #0d1117;
   --hover-color:       #161b22;
