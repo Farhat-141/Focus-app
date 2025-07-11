@@ -512,7 +512,7 @@ control-btn {
     position: fixed;
     bottom: 0;
     right: 0;
-    margin: 10px;
+    margin: 15px;
     z-index: 999;
 }
 
@@ -588,16 +588,18 @@ control-btn {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(2.5);
-    z-index: 999;
-    background-color: var(--fullscreen-bg);
+    transform: translate(-50%, -50%) scale(0.9);
+    height: 80%;
+    z-index: 9999;
+    background-color: var(--clock-bg);
     padding: 5px;
-    width: 35%;
-    border-radius: 5px;
+    width: 100%;
+    border-radius: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid var(--border-color);
 }
 
 .layer {
@@ -607,7 +609,7 @@ control-btn {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 999;
     pointer-events: all;
 }
 
@@ -698,7 +700,7 @@ control-btn {
     position: fixed;
     bottom: 0;
     left: 0;
-    margin: 8px;
+    margin: 15px;
     z-index: 999;
 }
 

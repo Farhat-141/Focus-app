@@ -419,12 +419,13 @@ if (window.innerWidth < 768) {
   });
 }
 
-function handleResize() {
+function handleResize() {  
     const themeLabel = document.getElementById('theme-label');
     const themePanel = document.getElementById('theme');
     const themeArea = document.getElementById('theme-area');
   
 if (window.innerWidth < 768) {
+  themeLabel.removeEventListener('click', themeToggle);
   themeLabel.addEventListener('mouseenter', () => {
     themePanel.style.transform = 'translateX(0px)';
     themeLabel.style.borderRadius = '0 0 12px 12px';
@@ -446,8 +447,11 @@ if (window.innerWidth < 768) {
       themeLabel.style.borderRadius = '12px 0 0 12px';
     });
     let opened = true;
-    themeLabel.addEventListener('click',()=>{
-    if (opened) {
+
+    themeLabel.addEventListener('click',themeToggle);
+
+    function themeToggle(){
+      if (opened) {
       themePanel.style.display = 'none';
       opened = false;
       themeLabel.style.borderRadius = '12px';
@@ -455,7 +459,7 @@ if (window.innerWidth < 768) {
       themePanel.style.display = 'flex';
       opened = true;
     }
-    });
+    }
   }
 }
 
