@@ -42,23 +42,12 @@
   --darkred-shadow: #8b0000;
   --white-color: #ffffff;
 }
-.actions{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    z-index: 99;
-    padding: 10px;
-    box-sizing: border-box;
-}
+
 .theme {
     background: var(--theme-bg);
     color: var(--text-color);
     border-radius: 0 12px 12px 0;
-    padding: 15px;
+    padding: 5px 10px;
     box-shadow: 0 4px 20px var(--shadow-color);
     list-style: none;
     backdrop-filter: blur(10px);
@@ -76,7 +65,7 @@
     background: var(--theme-bg);
     color: var(--text-color);
     border-radius: 12px 0 0 12px;
-    padding: 15px;
+    padding:  15px;
     box-shadow: 0 4px 20px var(--shadow-color);
     list-style: none;
     backdrop-filter: blur(10px);
@@ -84,7 +73,13 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
+.theme-label:hover {
+    background-color: var(--hover-color);
+    transition: 0.2s;
+}
+
 .theme li{
     border: 1px solid var(--checkbox-shadow);
     background-color: var(--clock-bg);
@@ -222,7 +217,6 @@ body {
     width: 100%;
     position: relative;
     margin: 0;
-    overflow: hidden;
 }
 
 .container {
@@ -515,6 +509,11 @@ control-btn {
     cursor: pointer;
     box-shadow: 1px 5px 15px var(--button-bg);
     background-color: var(--clock-bg);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+    z-index: 999;
 }
 
 .add, .clear, .confirm {
@@ -693,8 +692,14 @@ control-btn {
     font-size: 0.3em;
     text-anchor: middle;
 }
-#theme-area{
+
+.theme-area{
     display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 8px;
+    z-index: 999;
 }
 
 @media (max-width:768px){

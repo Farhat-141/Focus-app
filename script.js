@@ -425,10 +425,6 @@ function handleResize() {
     const themeArea = document.getElementById('theme-area');
   
 if (window.innerWidth < 768) {
-  const themeLabel = document.getElementById('theme-label');
-  const themePanel = document.getElementById('theme');
-  const themeArea = document.getElementById('theme-area');
-
   themeLabel.addEventListener('mouseenter', () => {
     themePanel.style.transform = 'translateX(0px)';
     themeLabel.style.borderRadius = '0 0 12px 12px';
@@ -448,6 +444,17 @@ if (window.innerWidth < 768) {
     themeArea.addEventListener('mouseleave', () => {
       themePanel.style.transform = 'translateX(0px)';
       themeLabel.style.borderRadius = '12px 0 0 12px';
+    });
+    let opened = true;
+    themeLabel.addEventListener('click',()=>{
+    if (opened) {
+      themePanel.style.display = 'none';
+      opened = false;
+      themeLabel.style.borderRadius = '12px';
+    }else{
+      themePanel.style.display = 'flex';
+      opened = true;
+    }
     });
   }
 }
