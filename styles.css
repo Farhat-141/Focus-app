@@ -6,7 +6,7 @@
   --background-color: #f8fffe;
   
   /* Secondary & UI Colors */
-  --secondary-bg: #eef7ff;
+  --secondary-bg: #3ca0fd;
   --hover-color: #00fafa;
   --button-bg: #1a1a1a;
   --button-hover: #333333;
@@ -500,11 +500,12 @@ control-btn {
     justify-content: space-between;
     width: 150px;
     gap: 10px;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 10px 25px;
     cursor: pointer;
     box-shadow: 1px 5px 15px var(--button-bg);
-    background-color: var(--theme-bg);
+    background-color: var(--progress-text);
     backdrop-filter: blur(10px);
     position: fixed;
     bottom: 0;
@@ -698,6 +699,7 @@ control-btn {
     left: 0;
     margin: 15px;
     z-index: 999;
+    padding:10px 0;
 }
 
 @media (max-width:768px){
@@ -778,4 +780,31 @@ control-btn {
 #scifi:hover {
     background-color: #1a1a1a;
     box-shadow: 0 0 12px #00fff7;
+}
+.instruction-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.instruction {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-color);
+    width: 100%;
+}
+.instruction h2 {
+    margin: 10px 0;
+    font-size: 28px;
+}
+.instruction p {
+    font-size: 18px;
+    margin: 5px 0;
 }

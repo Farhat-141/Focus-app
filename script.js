@@ -20,6 +20,9 @@ class ClockDisplay {
   }
 }
 
+// Global registry to track timer instances
+const timerRegistry = new Map();
+
 // 2) Timer: encapsulates one countdown instance
 class Timer {
   constructor(name, durationStr, container, id) {
@@ -33,6 +36,9 @@ class Timer {
     this._createDOM();
     this._bindEvents();
     this._updateDisplay();
+    
+    // Register this timer instance
+    timerRegistry.set(this.id, this);
   }
 
   _parseDuration(str) {
@@ -147,6 +153,20 @@ class Timer {
     this._updateDisplay();
   }
 
+  destroy() {
+    this.stop();
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+    }
+    if (this.el) {
+      this.el.remove();
+      this.el = null;
+    }
+    // Remove from registry
+    timerRegistry.delete(this.id);
+  }
+
   edit(){
     if (this.interval) return;
       const overlayEl = document.createElement('div');
@@ -203,10 +223,11 @@ class Timer {
         saved = saved.filter(item => item.id !== this.id);
         localStorage.setItem('saved', JSON.stringify(saved));
 
-        this.el.remove();
+        // Properly destroy the timer instance
+        this.destroy();
         windowEl.remove();
         overlayEl.remove();
-        
+        instruction();
       });
     }
 
@@ -322,9 +343,10 @@ class TimerModal{
       savedTimers.push(element);
       localStorage.setItem('saved', JSON.stringify(savedTimers));
 
-      new Timer(name, duration, this.group);
+      new Timer(name, duration, this.group, id);
+      instruction();
       this._hide();
-});
+    });
   }
 
   _hide() {
@@ -361,7 +383,15 @@ class TimerSelect {
       let saved = JSON.parse(localStorage.getItem('saved') || '[]');
       saved = saved.filter(item => String(item.id) !== String(timerId));
       localStorage.setItem('saved', JSON.stringify(saved));
-      el.remove();
+
+      // Get the timer instance and properly destroy it
+      const timerInstance = timerRegistry.get(Number(timerId));
+      if (timerInstance) {
+        timerInstance.destroy();
+      }
+      
+      instruction();
+
     } else {
       alert('Clear operation cancelled');
     }
@@ -473,19 +503,30 @@ document.querySelectorAll('#theme li').forEach(option => {
   });
 });
 
-window.addEventListener('DOMContentLoaded', () => {
+
+function instruction(){
+  const instructionEl = document.querySelector('.instruction');
+  const element = document.querySelector('.group');
+  if (element.querySelectorAll('.clock').length === 0) {
+    instructionEl.style.display = 'flex';
+  }
+  else {
+    instructionEl.style.display = 'none';
+  }
+}
+
+
+  window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
   new TimerModal('.add', '.group'); 
-  new TimerSelect('.clear','.group'); 
-
+  new TimerSelect('.clear','.group');   
   const saved = localStorage.getItem('selectedTheme');
   if (saved) {
     document.body.className = `theme-${saved}`;
   }
-  const savedTimers = JSON.parse(localStorage.getItem('saved'));
+  const savedTimers = JSON.parse(localStorage.getItem('saved') || '[]');
   savedTimers.forEach(el => {
     new Timer(el.name,el.duration,document.querySelector('.group'),el.id)
   });
-  
-
+  instruction();
 });
