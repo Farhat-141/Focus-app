@@ -1,4 +1,3 @@
-// 1) ClockDisplay: keeps the current time updated
 class ClockDisplay {
   constructor(selector) {
     this.el = document.querySelector(selector);

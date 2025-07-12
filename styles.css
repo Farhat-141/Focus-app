@@ -1,43 +1,43 @@
 :root {
   /* Primary Brand Colors */
-  --main-color: #000000;
-  --accent-color: #00e6cc;
+  --main-color: #1A255A;
+  --accent-color: #000103;
   --text-color: #ffffff;
   --background-color: #f8fffe;
   
   /* Secondary & UI Colors */
-  --secondary-bg: #e8f5f0;
-  --hover-color: #2c5f5f;
+  --secondary-bg: #eef7ff;
+  --hover-color: #00fafa;
   --button-bg: #1a1a1a;
   --button-hover: #333333;
   
   /* Action Colors */
   --reset-color: #dc3545;
-  --error-color: #dc354580;
-  --confirm-color: #28a745;
-  --success-color: #28a74580;
+  --error-color: #ff3348;
+  --confirm-color: #00f7ff;
+  --success-color: #2898a780;
   --danger-color: #dc3545;
   --danger-hover: #c82333;
   
   /* Component Specific */
-  --board-bg: #ffffff;
-  --clock-bg: #00e6cc;
+  --board-bg: #00D0FF;
+  --clock-bg: #00D0FF;
   --input-bg: #ffffff;
   --input-focus-bg: #1a1a1a;
   --input-focus-text: #ffffff;
-  --header-hover: #4a6741;
+  --header-hover: #3b7883;
   --overlay-bg: rgba(0, 0, 0, 0.6);
   --shadow-color: #00ab6740;
-  --border-color: #00ab6760;
+  --border-color: #1A255A;
   
   /* Interactive Elements */
   --selection-hover: #ff4757;
   --checkbox-shadow: #dc3545;
   --checkbox-bg: #dc354560;
-  --progress-bg: #e9ecef;
-  --progress-bar: #00ab67;
+  --progress-bg: #196abb;
+  --progress-bar: #fdfdfd;
   --progress-text: #495057;
-  --fullscreen-bg: #ffffff;
+  --fullscreen-bg: #f3f3f3;
   --layer-bg: #000000;
   --darkred-shadow: #8b0000;
   --white-color: #ffffff;
@@ -108,7 +108,7 @@ body.theme-minimal {
   --reset-color:       #dc3545;   /* Destructive actions (e.g. “Delete”) */
   --danger-color:      #dc3545;   /* Error messages, destructive buttons */
   --danger-hover:      #bb2d3b;   /* Hover on destructive buttons */
-  --error-color:       #dc354580;/* Error alert background (semi‑transparent) */
+  --error-color:       #dc3546;/* Error alert background (semi‑transparent) */
 
   --board-bg:         #ffffff;    /* Modal/dialog background */
   --clock-bg:         #e9ecef;    /* Clock or info card backgrounds */
@@ -134,7 +134,6 @@ body.theme-minimal {
   --darkred-shadow:   #8b0000;    /* Strong shadow for error/highlight */
   --white-color:      #ffffff;    /* Pure white utility */
 }
-
 /* === Vibrant Gradient Theme === */
 body.theme-fancy {
   --main-color:        #667eea;
@@ -146,7 +145,7 @@ body.theme-fancy {
   --button-bg:         #0f3460;
   --button-hover:      #533483;
   --reset-color:       #ff6b6b;
-  --error-color:       #ff6b6b80;
+  --error-color:       #ff6b6bec;
   --confirm-color:     #4ecdc4;
   --success-color:     #4ecdc480;
   --danger-color:      #ff6b6b;
@@ -171,11 +170,10 @@ body.theme-fancy {
   --darkred-shadow:    #8b0000;
   --white-color:       #ffffff;
 }
-
 /* === Cyberpunk Neon Theme === */
 body.theme-scifi {
   --main-color:        #286b6b;
-  --accent-color:      #00ff88;
+  --accent-color:      #11618f;
   --text-color:        #00ff88;
   --background-color:  #000000;
   --secondary-bg:      #0d1117;
@@ -183,7 +181,7 @@ body.theme-scifi {
   --button-bg:         #161b22;
   --button-hover:      #21262d;
   --reset-color:       #ff073a;
-  --error-color:       #ff073a80;
+  --error-color:       #ff0739e5;
   --confirm-color:     #00d4aa;
   --success-color:     #00d4aa80;
   --danger-color:      #ff073a;
@@ -506,12 +504,13 @@ control-btn {
     padding: 10px 25px;
     cursor: pointer;
     box-shadow: 1px 5px 15px var(--button-bg);
-    background-color: var(--clock-bg);
+    background-color: var(--theme-bg);
+    backdrop-filter: blur(10px);
     position: fixed;
     bottom: 0;
     right: 0;
     margin: 15px;
-    z-index: 999;
+    z-index: 999;  
 }
 
 .add, .clear, .confirm {
@@ -556,7 +555,6 @@ control-btn {
 .header p {
     margin: 0.5em;
 }
-
 .Eheader {
     display: flex;
     flex-direction: row;
@@ -705,6 +703,7 @@ control-btn {
 @media (max-width:768px){
     #theme-area{
         flex-direction: column;
+        
     }
     .actions{
         align-items: end;
@@ -714,11 +713,69 @@ control-btn {
         flex-direction: column;
         transform: translateX(-150px);
         border-radius: 12px 12px 0 0;
+        padding: 15px;
     }
     .theme-label{
         border-radius: 12px;
         order: 2;
         color: white;
         cursor: pointer;
+        padding: 15px;
     }
+    .functions{
+        width: 100px;
+        gap: 5px;
+        padding: 10px 15px;
+    }
+    .add, .clear, .confirm {
+        border-radius: 50%;
+        width: 40px;
+        aspect-ratio: 1/1;
+        transition: 0.2s;
+        box-shadow: 0 0 10px var(--button-bg);
+        cursor: pointer;
+    }
+    .clear, .confirm {
+        padding: 10px;
+        aspect-ratio: 1/1;
+        width: 20px;
+        background-color: var(--white-color);
+        box-shadow: 0 0 10px var(--darkred-shadow);
+        border: none;
+        cursor: pointer;
+    }
+    .fullscreen{
+        height: 50%;
+        width: 100%;
+    }
+
+
+}
+
+#minimal {
+    background-color: #f4f4f4;
+    color: #111;
+    border-color: #ccc;
+}
+#minimal:hover {
+    background-color: #e0e0e0;
+}
+#fancy {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #000000;
+    border-color: #eab1c0;
+    box-shadow: 0 0 8px rgba(255, 192, 203, 0.5);
+}
+#fancy:hover {
+    background: linear-gradient(135deg, #fad0c4, #ff9a9e);
+}
+#scifi {
+    background-color: #0f0f0f;
+    color: #9bfc6d;
+    border-color: #00fff7;
+    box-shadow: 0 0 8px #00fff7;
+}
+#scifi:hover {
+    background-color: #1a1a1a;
+    box-shadow: 0 0 12px #00fff7;
 }
