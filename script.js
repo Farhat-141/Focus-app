@@ -270,7 +270,7 @@ class TimerModal{
     // build modal HTML (same as before)
     this.windowEl.innerHTML = `
       <p>Add Timer</p>
-      <div class="time timing">00:00:00</div>
+      <div contenteditable="true" class="time timing">00:00:00</div>
       <input class="boardInput" placeholder="timer_name" maxlength="15">
       <div class="board-section">
         <button class="boardBtn ready-option">ready</button>
