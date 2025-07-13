@@ -705,7 +705,6 @@ control-btn {
 @media (max-width:768px){
     #theme-area{
         flex-direction: column;
-        
     }
     .actions{
         align-items: end;
@@ -749,6 +748,10 @@ control-btn {
     .fullscreen{
         height: 50%;
         width: 100%;
+    }
+    .container{
+        overflow: hidden;
+        height: 100%;
     }
 
 
