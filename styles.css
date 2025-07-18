@@ -1,46 +1,160 @@
 :root {
   /* Primary Brand Colors */
-  --main-color: #1A255A;
-  --accent-color: #000103;
-  --text-color: #ffffff;
-  --background-color: #f8fffe;
+  --background-color: white;
+  --text-color: black;
+  --accent-color:gray;
   
   /* Secondary & UI Colors */
-  --secondary-bg: #3ca0fd;
-  --hover-color: #00fafa;
-  --button-bg: #1a1a1a;
-  --button-hover: #333333;
+  --secondary-bg: #00e1ff;
   
   /* Action Colors */
-  --reset-color: #dc3545;
-  --error-color: #ff3348;
+  --reset-color: #ff0019cb;
+  --reset-color-hover: #ff0019;
+  --start-color: #00f7ff;
   --confirm-color: #00f7ff;
   --success-color: #2898a780;
   --danger-color: #dc3545;
   --danger-hover: #c82333;
   
   /* Component Specific */
-  --board-bg: #00D0FF;
-  --clock-bg: #00D0FF;
+  --board-bg: #00c9f7;
+  --clock-bg: #025891;
+  --clock-text-color: #ffffff;
   --input-bg: #ffffff;
-  --input-focus-bg: #1a1a1a;
-  --input-focus-text: #ffffff;
+  --input-focus-bg: #ffffff;
+  --input-focus-text: #000000;
   --header-hover: #3b7883;
   --overlay-bg: rgba(0, 0, 0, 0.6);
-  --shadow-color: #00ab6740;
+  --shadow-color: #888888;
   --border-color: #1A255A;
+  --button-background-color: white;
+  --button-hover: lightgray;
+  --button-text-color: black;
   
   /* Interactive Elements */
-  --selection-hover: #ff4757;
-  --checkbox-shadow: #dc3545;
-  --checkbox-bg: #dc354560;
-  --progress-bg: #196abb;
-  --progress-bar: #fdfdfd;
+  --progress-bg: #ffffff;
+  --progress-bar: #00e1ff;
   --progress-text: #495057;
-  --fullscreen-bg: #f3f3f3;
   --layer-bg: #000000;
   --darkred-shadow: #8b0000;
   --white-color: #ffffff;
+  --black-color: #000000;
+}
+
+body.theme-minimal {
+  --background-color: white;
+  --text-color: black;
+  --accent-color:gray;
+  
+  /* Secondary & UI Colors */
+  --secondary-bg: #ffffff;
+  
+  /* Action Colors */
+  --reset-color: #ff0019cb;
+  --reset-color-hover: #ff0019;
+  --start-color: #00f7ff;
+  --confirm-color: #00f7ff;
+  --success-color: #2898a780;
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+  
+  /* Component Specific */
+  --board-bg: #00c9f7;
+  --clock-bg: #000000;
+  --clock-text-color: #ffffff;
+  --input-bg: #ffffff;
+  --input-focus-bg: #ffffff;
+  --input-focus-text: #000000;
+  --header-hover: #3b7883;
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+  --shadow-color: #888888;
+  --border-color: #1A255A;
+  --button-background-color: white;
+  --button-hover: lightgray;
+  --button-text-color: black;
+  
+  /* Interactive Elements */
+  --progress-bg: #ffffff;
+  --progress-bar: #8d8d8d85;
+  --progress-text: #495057;
+  --layer-bg: #000000;
+  --darkred-shadow: #8b0000;
+  --white-color: #ffffff;
+  --black-color: #000000;
+
+}
+
+/* === Vibrant Gradient Theme === */
+body.theme-fancy {
+  --main-color:        #667eea;
+  --accent-color:      #764ba2;
+  --text-color:        #1a1a2e;
+  --background-color:  #1a1a2e;
+  --secondary-bg:      #16213e;
+  --hover-color:       #0f3460;
+  --button-bg:         #0f3460;
+  --button-hover:      #533483;
+  --reset-color:       #ff6b6b;
+  --error-color:       #ff6b6bec;
+  --confirm-color:     #4ecdc4;
+  --success-color:     #4ecdc480;
+  --danger-color:      #ff6b6b;
+  --danger-hover:      #ff5252;
+  --board-bg:          #16213e;
+  --clock-bg:          #ffffff;
+  --input-bg:          #ffffff;
+  --input-focus-bg:    #0f3460;
+  --input-focus-text:  #ffffff;
+  --header-hover:      #533483;
+  --overlay-bg:        rgba(26, 26, 46, 0.8);
+  --shadow-color:      #667eea60;
+  --border-color:      #667eea80;
+  --selection-hover:   #ff6b6b;
+  --checkbox-shadow:   #ff6b6b;
+  --checkbox-bg:       #ff6b6b60;
+  --progress-bg:       #16213e;
+  --progress-bar:      #764ba2;
+  --progress-text:     #000000;
+  --fullscreen-bg:     #1a1a2e;
+  --layer-bg:          #0f3460;
+  --darkred-shadow:    #8b0000;
+  --white-color:       #ffffff;
+}
+/* === Cyberpunk Neon Theme === */
+body.theme-scifi {
+  --main-color:        #286b6b;
+  --accent-color:      #11618f;
+  --text-color:        #00ff88;
+  --background-color:  #000000;
+  --secondary-bg:      #0d1117;
+  --hover-color:       #161b22;
+  --button-bg:         #00ff88;
+  --button-hover:      #21262d;
+  --reset-color:       #ff073a;
+  --error-color:       #ff0739e5;
+  --confirm-color:     #00d4aa;
+  --success-color:     #00d4aa80;
+  --danger-color:      #ff073a;
+  --danger-hover:      #ff3860;
+  --board-bg:          #000307;
+  --clock-bg:          #286b6b;
+  --input-bg:          #161b22;
+  --input-focus-bg:    #000000;
+  --input-focus-text:  #00ffff;
+  --header-hover:      #00ff88;
+  --overlay-bg:        rgba(0, 0, 0, 0.8);
+  --shadow-color:      #00ff8860;
+  --border-color:      #00ffff80;
+  --selection-hover:   #ff073a;
+  --checkbox-shadow:   #ff073a;
+  --checkbox-bg:       #ff073a60;
+  --progress-bg:       #161b22;
+  --progress-bar:      #00ff88;
+  --progress-text:     #00ffff;
+  --fullscreen-bg:     #000000;
+  --layer-bg:          #0a0a0a;
+  --darkred-shadow:    #8b0000;
+  --white-color:       #00ffff;
 }
 .theme {
     background: var(--theme-bg);
@@ -88,135 +202,19 @@
 .theme li:hover{
     background-color: var(--progress-text);
 }
-body.theme-minimal {
-  --main-color:        #f8f9fa;   /* Primary background surfaces & panels */
-  --background-color:  #ffffff;   /* Page background */
-  --secondary-bg:      #f1f3f4;   /* Secondary panels, hover backgrounds */
-  --border-color:      #dee2e6;   /* Dividers, input borders */
-  --shadow-color:      #6c757d40; /* Soft shadows for raised elements */
-  --text-color:        #212529;   /* Primary body text (high contrast) */
-
-  --accent-color:      #6c757d;   /* Secondary interactive elements (links) */
-  --hover-color:       #495057;   /* Hover states on links/buttons */
-
-  --button-bg:         #495057;   /* Primary buttons */
-  --button-hover:      #343a40;   /* Button hover */
-
-  --confirm-color:     #0d6efd;   /* Success/confirm actions (e.g. “Save”) */
-  --success-color:     #0d6efd80;/* Background for success alerts (transparent) */
-
-  --reset-color:       #dc3545;   /* Destructive actions (e.g. “Delete”) */
-  --danger-color:      #dc3545;   /* Error messages, destructive buttons */
-  --danger-hover:      #bb2d3b;   /* Hover on destructive buttons */
-  --error-color:       #dc3546;/* Error alert background (semi‑transparent) */
-
-  --board-bg:         #ffffff;    /* Modal/dialog background */
-  --clock-bg:         #e9ecef;    /* Clock or info card backgrounds */
-
-  --input-bg:         #ffffff;    /* Forms and input fields */
-  --input-focus-bg:   #495057;    /* Input focus background for clarity */
-  --input-focus-text: #ffffff;    /* Input text color when focused */
-
-  --header-hover:     #6c757d;    /* Hover on header controls */
-  --overlay-bg:       rgba(0, 0, 0, 0.4); /* Backdrop for modals */
-  --selection-hover:  #dc3545;    /* Press/active state for selectable items */
-
-  --checkbox-bg:      #dc354560; /* Checkbox selected background */
-  --checkbox-shadow:  #dc3545;    /* Checkbox focus/checked ring */
-
-  --progress-bg:      #dee2e6;    /* Progress track */
-  --progress-bar:     #6c757d;    /* Progress fill */
-  --progress-text:    #212529;    /* Text inside progress */
-
-  --fullscreen-bg:    #ffffff;    /* Fullscreen overlay background */
-  --layer-bg:         #495057;    /* In-app layers (side panels) */
-
-  --darkred-shadow:   #8b0000;    /* Strong shadow for error/highlight */
-  --white-color:      #ffffff;    /* Pure white utility */
-}
-/* === Vibrant Gradient Theme === */
-body.theme-fancy {
-  --main-color:        #667eea;
-  --accent-color:      #764ba2;
-  --text-color:        #1a1a2e;
-  --background-color:  #1a1a2e;
-  --secondary-bg:      #16213e;
-  --hover-color:       #0f3460;
-  --button-bg:         #0f3460;
-  --button-hover:      #533483;
-  --reset-color:       #ff6b6b;
-  --error-color:       #ff6b6bec;
-  --confirm-color:     #4ecdc4;
-  --success-color:     #4ecdc480;
-  --danger-color:      #ff6b6b;
-  --danger-hover:      #ff5252;
-  --board-bg:          #16213e;
-  --clock-bg:          #ffffff;
-  --input-bg:          #ffffff;
-  --input-focus-bg:    #0f3460;
-  --input-focus-text:  #ffffff;
-  --header-hover:      #533483;
-  --overlay-bg:        rgba(26, 26, 46, 0.8);
-  --shadow-color:      #667eea60;
-  --border-color:      #667eea80;
-  --selection-hover:   #ff6b6b;
-  --checkbox-shadow:   #ff6b6b;
-  --checkbox-bg:       #ff6b6b60;
-  --progress-bg:       #16213e;
-  --progress-bar:      #764ba2;
-  --progress-text:     #000000;
-  --fullscreen-bg:     #1a1a2e;
-  --layer-bg:          #0f3460;
-  --darkred-shadow:    #8b0000;
-  --white-color:       #ffffff;
-}
-/* === Cyberpunk Neon Theme === */
-body.theme-scifi {
-  --main-color:        #286b6b;
-  --accent-color:      #11618f;
-  --text-color:        #00ff88;
-  --background-color:  #000000;
-  --secondary-bg:      #0d1117;
-  --hover-color:       #161b22;
-  --button-bg:         #161b22;
-  --button-hover:      #21262d;
-  --reset-color:       #ff073a;
-  --error-color:       #ff0739e5;
-  --confirm-color:     #00d4aa;
-  --success-color:     #00d4aa80;
-  --danger-color:      #ff073a;
-  --danger-hover:      #ff3860;
-  --board-bg:          #0d1117;
-  --clock-bg:          #286b6b;
-  --input-bg:          #161b22;
-  --input-focus-bg:    #000000;
-  --input-focus-text:  #00ffff;
-  --header-hover:      #00ff88;
-  --overlay-bg:        rgba(0, 0, 0, 0.8);
-  --shadow-color:      #00ff8860;
-  --border-color:      #00ffff80;
-  --selection-hover:   #ff073a;
-  --checkbox-shadow:   #ff073a;
-  --checkbox-bg:       #ff073a60;
-  --progress-bg:       #161b22;
-  --progress-bar:      #00ff88;
-  --progress-text:     #00ffff;
-  --fullscreen-bg:     #000000;
-  --layer-bg:          #0a0a0a;
-  --darkred-shadow:    #8b0000;
-  --white-color:       #00ffff;
-}
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--background-color);
+    color: var(--text-color);
     width: 100%;
     position: relative;
     margin: 0;
 }
 
 .container {
-    background-color: var(--main-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
     border: 2px solid var(--border-color);
     border-radius: 5px;
     display: flex;
@@ -226,19 +224,23 @@ body {
     position: relative;
     min-height: 95vh;
 }
-
 .logo {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10px;
 }
-
-.group {
+.main{
+    display: flex;
+}
+.sections{
+    width: 100%;
+    background-color: var(--secondary-bg);
     border: 2px solid var(--border-color);
-    padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
+}
+.timer-section {
+    padding: 20px 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: auto;
@@ -251,14 +253,12 @@ body {
     scrollbar-width: thin;
     scrollbar-color: var(--shadow-color) transparent;
 }
-
 .title {
     text-align: center;
     border-bottom: 2px solid var(--border-color);
     width: fit-content;
     color: var(--text-color);
 }
-
 .time {
     border-radius: 5px;
     padding: 5px;
@@ -269,7 +269,6 @@ body {
     letter-spacing: 0.5cap;
     text-decoration: underline;
 }
-
 .timer {
     display: flex;
     padding: 5px;
@@ -278,15 +277,9 @@ body {
     height: 100%;
     aspect-ratio: 1/1;
 }
-
-control-btn {
-    display: flex;
-    flex-direction: row;
-}
-
 .btn {
-    color: var(--text-color);
-    background-color: var(--button-bg);
+    color: var(--button-text-color);
+    background-color: var(--button-background-color);
     border: none;
     margin: 5px;
     padding: 5px 15px;
@@ -305,15 +298,15 @@ control-btn {
 }
 
 .reset:hover {
-    background-color: var(--error-color);
+    background-color: var(--reset-color-hover);
 }
 
 .current-time {
     position: absolute;
     right: 0;
-    padding: 10px;
+    margin: 32px 10px;
     font-weight: bold;
-    color: var(--text-color);
+    color: var(--accent-color);
     text-decoration: underline;
     font-size: large;
 }
@@ -328,6 +321,7 @@ control-btn {
 
 .clock {
     background-color: var(--clock-bg);
+    color: var(--clock-text-color);
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -351,10 +345,9 @@ control-btn {
     width: 100%;
     height: 100%;
     background: var(--overlay-bg);
-    z-index: 999;
+    z-index: 1000;
     pointer-events: all;
 }
-
 .board {
     position: absolute;
     top: 50%;
@@ -363,7 +356,7 @@ control-btn {
     display: flex;
     flex-direction: column;
     width: 350px;
-    background-color: var(--accent-color);
+    background-color: var(--clock-bg);
     gap: 10px;
     padding: 10px 25px;
     border-radius: 10px;
@@ -371,7 +364,6 @@ control-btn {
     z-index: 9999;
     font-size: x-large;
 }
-
 .window {
     background-color: var(--button-bg);
     position: fixed;
@@ -385,7 +377,6 @@ control-btn {
     border: none;
     border-radius: 25px;
 }
-
 .boardInput {
     margin: 10px 20px;
     border-radius: 5px;
@@ -393,16 +384,10 @@ control-btn {
     background-color: var(--input-bg);
     border: none;
 }
-
-.boardInput::placeholder {
-    color: initial;
-}
-
 .boardInput:focus {
     background-color: var(--input-focus-bg);
     color: var(--input-focus-text);
 }
-
 .boardBtns {
     margin: 15px;
     display: flex;
@@ -423,15 +408,21 @@ control-btn {
 }
 
 .board-option {
-    background-color: transparent;
+    background-color: var(--background-color);
     color: var(--text-color);
-    border: 2px solid var(--text-color);
+    border: 2px solid;
     padding: 5px 15px;
     border-radius: 15px;
+    cursor: pointer;
 }
 
-.custom-options {
+.board-option:hover{
+    background-color: transparent;
+}
+
+.custom-timer {
     display: none;
+    text-align: center;
 }
 
 .ready-option {
@@ -454,13 +445,9 @@ control-btn {
     font-weight: bold;
 }
 
-.board-option:hover {
-    background-color: var(--hover-color);
-}
-
 .boardBtn, .ready-option, .custom-option {
     font-size: large;
-    background-color: transparent;
+    background-color: var(--button-background-color);
     color: var(--text-color);
     border: 1px solid var(--text-color);
     border-radius: 15px;
@@ -473,24 +460,22 @@ control-btn {
 }
 
 .timing {
-    background-color: var(--board-bg);
-    color: var(--button-bg);
+    color: var(--clock-text-color);
+    background-color: var(--black-color);
     padding: 10px 20px;
 }
 
 .headerBtn {
-    background-color: transparent;
+    background-color: var(--button-background-color);
     border-radius: 15px;
     padding: 5px 10px;
     border: 2px solid var(--border-color);
 }
-
 .headerBtn:hover {
-    background-color: var(--header-hover);
+    background-color: var(--button-hover);
 }
-
 .boardBtn:hover {
-    background-color: var(--hover-color);
+    background-color: var(--button-hover);
     transition: 0.2s;
 }
 
@@ -498,14 +483,12 @@ control-btn {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 150px;
-    gap: 10px;
-    border: 1px solid var(--border-color);
+    width: 125px;
     border-radius: 10px;
-    padding: 10px 25px;
+    padding: 10px;
     cursor: pointer;
-    box-shadow: 1px 5px 15px var(--button-bg);
-    background-color: var(--progress-text);
+    box-shadow: 1px 5px 15px var(--border-color);
+    background-color: var(--secondary-bg);
     backdrop-filter: blur(10px);
     position: fixed;
     bottom: 0;
@@ -513,16 +496,13 @@ control-btn {
     margin: 15px;
     z-index: 999;  
 }
-
 .add, .clear, .confirm {
     border-radius: 50%;
     width: 45px;
     aspect-ratio: 1/1;
     transition: 0.2s;
-    box-shadow: 0 0 10px var(--button-bg);
     cursor: pointer;
 }
-
 .clear, .confirm {
     padding: 10px;
     aspect-ratio: 1/1;
@@ -535,17 +515,18 @@ control-btn {
 
 .clear:hover {
     transform: translateY(-2px);
-    background-color: var(--error-color);
+    background-color: var(--reset-color-hover);
     box-shadow: 0 0 15px;
     transition: 0.2s;
 }
 
 .add:hover, .confirm:hover {
     background: var(--confirm-color);
+    box-shadow: 0 0 10px;
     transform: translateY(-2px);
 }
 
-.header {
+.header{
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -553,9 +534,10 @@ control-btn {
     align-items: center;
 }
 
-.header p {
+.header p{
     margin: 0.5em;
 }
+
 .Eheader {
     display: flex;
     flex-direction: row;
@@ -582,16 +564,16 @@ control-btn {
 }
 
 .fullscreen {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.9);
     height: 80%;
-    z-index: 9999;
+    z-index: 999;
     background-color: var(--clock-bg);
     padding: 5px;
     width: 100%;
-    border-radius: 30px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -606,7 +588,7 @@ control-btn {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 999;
+    z-index: 998;
     pointer-events: all;
 }
 
@@ -687,38 +669,30 @@ control-btn {
 }
 
 .circle-label {
-    fill: var(--progress-text);
+    fill: var(--clock-text-color);
     font-size: 0.3em;
     text-anchor: middle;
 }
-
 .theme-area{
     display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     margin: 15px;
     z-index: 999;
     padding:10px 0;
 }
 
 @media (max-width:768px){
-    #theme-area{
-        flex-direction: column;
-    }
+
     .actions{
         align-items: end;
     }
     .theme{
         transition: 0.5s;
-        flex-direction: column;
-        transform: translateX(-150px);
-        border-radius: 12px 12px 0 0;
+        flex-wrap: wrap;
+        border-radius: 12px;
         padding: 15px;
     }
     .theme-label{
         border-radius: 12px;
-        order: 2;
         color: white;
         cursor: pointer;
         padding: 15px;
@@ -753,8 +727,6 @@ control-btn {
         overflow: hidden;
         height: 100%;
     }
-
-
 }
 
 #minimal {
@@ -802,6 +774,7 @@ control-btn {
     text-align: center;
     color: var(--text-color);
     width: 100%;
+    text-shadow: 0 0 5px var(--accent-color);
 }
 .instruction h2 {
     margin: 10px 0;
@@ -810,4 +783,130 @@ control-btn {
 .instruction p {
     font-size: 18px;
     margin: 5px 0;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+  z-index: 999;
+}
+.board {
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: slideFadeIn 0.3s forwards;
+  z-index: 1000;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.side-bar{
+    margin: 0;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--secondary-bg);
+    padding: 15px;
+}
+.side-bar-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.side-bar-list-item{
+    width: 100%;
+    text-align: start;
+    border: 5px solid transparent;
+    border-radius: 5px;
+    border-bottom: 5px solid transparent;
+    text-transform: capitalize;
+    display: flex;
+    gap: 5px;
+    padding: 0;
+}
+.side-bar-list-item-p{
+    padding: 0;
+    margin: 0;
+}
+.side-bar-list-item:hover{
+    background-color: var(--confirm-color);
+    cursor: pointer;
+}
+.side-bar-list-item:active{
+    border-left: 5px solid var(--accent-color);
+}
+.toggle-menu{
+    display: none;
+}
+.toggle-menu-icon{
+    width: 30px;
+    cursor: pointer;
+    transition: 0.25s;
+    border-radius: 50%;
+}
+.toggle-menu-icon:hover{
+    background-color: var(--progress-bg);
+    transition: 0.25s;
+}
+@media (max-width:768px) {
+    .toggle-menu{
+        display: block;
+        transition: 0.5s;
+    }
+    .side-bar{
+        align-items: center;
+    }
+    .side-bar-list-item-p{
+        display: none;
+    }
+    .side-bar-list-item img{
+        display: block;
+    }
+    .side-bar{
+        width: fit-content;
+        padding: 5px;
+    }
+    .side-bar-list-item{
+        width: fit-content;
+        padding: 0;
+    }
+}
+.user-list{
+    list-style: none;
+    padding: 0;
+}
+.setting{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+.setting-section{
+    height: 88vh;
+    display: none;
+    align-items: baseline;
+}
+.empty{
+    display: none;
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer App</title>
+    <title>Timer App </title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="clock-icon.jpg">
 </head>
@@ -14,55 +14,63 @@
         <div class="logo">
             <h1 class="title">Focus Pomodoro</h1>
         </div>
-        <div class="group">
-            <div class="instruction">
-                <img class="instruction-img" src="clock-icon.jpg" alt="timer">
-                <h2>You Don't Have any Timers.</h2>
-                <p>select "+" below to add a new timer.</p>
-            </div>
-            <!-- this where element is added inside
-            <div class="clock selectionAffect">
-                <input type="checkbox"  class="ClockSelect" id="ClockSelect">
-                <label for="ClockSelect" class="custom-checkbox"></label>
-                <div class="header">
-                    <p>Timer</p>
-                    <div class="headerBtns">
-                        <button class="headerBtn edit">edit</button>
-                        <button class="headerBtn full">full</button>
-                    </div>
+        <article class="main">
+            <nav class="side-bar">
+                <div class= "toggle-menu">
+                    <img class= "toggle-menu-icon" src="menu-icon.png" alt="toggle">
                 </div>
-                <div class="timer">
-                    <div class="time">00:25:00</div>
-                </div>
-                <div class="control">
-                    <button class="btn reset">Reset</button>
-                    <button class="btn stop">Stop</button>
-                    <button class="btn start">Start</button>
-                </div>
-                <audio class="alarm" loop="">
-                    <source src="Sound1.mp3" type="audio/mp3">
-                </audio>
-            </div>
-              -->
-            <div class="theme-area" id="theme-area">
-                <div class="theme-label" id="theme-label">Themes</div>
-                <div class="theme" id="theme">
-                    <li class="themeChoice" id="default" class="active">Default</li>
-                    <li class="themeChoice" id="minimal">Minimal</li>
-                    <li class="themeChoice" id="fancy">Fancy</li>
-                    <li class="themeChoice" id="scifi">Sci-fi</li>
-                    <li class="themeChoice">custom</li>
-                </div>
-            </div>
+                <ul class="side-bar-list">
+                    <li class="side-bar-list-item" id="timer-section">
+                        <img width="30px" src="clock-icon.jpg" alt="">
+                        <p class="side-bar-list-item-p" >timer</p>
+                    </li>
+                    <li class="side-bar-list-item">
+                        <img width="30px" src="check-icon.png" alt="">
+                        <p class="side-bar-list-item-p">progress</p>
+                    </li>
+                    <li class="side-bar-list-item">
+                        <img width="30px" src="add-icon.png" alt="">
+                        <p class="side-bar-list-item-p">tracker</p>
+                    </li>
+                </ul>
+                <ul class="user-list">
+                    <li class="setting side side-bar-list-item" id="setting-section">
+                        <img width="30px" src="setting-icon.png" alt="setting icon">
+                        <p class="side-bar-list-item-p">setting</p>
+                    </li>
+                </ul>
+            </nav>
 
-            <div class="functions"> <!--for adding-->
-                    <img class="add" id="add" src="add-icon.png" alt="">
-                    <hr>
-                    <img class="clear" id="clear" src="clear-icon.png" alt="">
+            <div class="sections">
+                <section class="timer-section">
+                    <div class="instruction">
+                        <img class="instruction-img" src="clock-icon.jpg" alt="timer">
+                        <h2>You Don't Have any Timers.</h2>
+                        <p>select " + " below to add a new timer.</p>
+                    </div>
+                    <div class="functions"> <!--for adding-->
+                        <img class="add" id="add" src="add-icon.png" alt="">
+                        <hr>
+                        <img class="clear" id="clear" src="clear-icon.png" alt="">
+                    </div>
+                </section>
+
+                <section class="setting-section">
+                    <div class="theme-area" id="theme-area">
+                        <div class="theme-label" id="theme-label">Themes</div>
+                        <div class="theme" id="theme">
+                            <li class="themeChoice" id="default" class="active">Default</li>
+                            <li class="themeChoice" id="minimal">Minimal</li>
+                            <li class="themeChoice" id="fancy">Fancy</li>
+                            <li class="themeChoice" id="scifi">Sci-fi</li>
+                            <li class="themeChoice">custom</li>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </div>
-  
+        </article>
     </div>
+
 
     <script src="script.js"></script>
 </body>

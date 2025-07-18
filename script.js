@@ -4,17 +4,14 @@ class ClockDisplay {
     if (!this.el) throw new Error(`No element matches "${selector}"`);
     this.start();
   }
-
   start() {
     this.update();
     this._interval = setInterval(() => this.update(), 1000);
   }
-
   update() {
     const now = new Date().toLocaleTimeString();
     this.el.textContent = `${now}`;
   }
-
   stop() {
     clearInterval(this._interval);
   }
@@ -36,7 +33,6 @@ class Timer {
     this._createDOM();
     this._bindEvents();
     this._updateDisplay();
-    
     // Register this timer instance
     timerRegistry.set(this.id, this);
   }
@@ -173,18 +169,71 @@ class Timer {
       const windowEl  = document.createElement('div');
       overlayEl.className = 'overlay';
       windowEl.className  = 'board';
+
+      const [hh, mm, ss] = this.timeEl.textContent.split(':');
+
       windowEl.innerHTML=`
         <div class="Eheader">
             <p>Edit Timer</p>
             <button class="EheaderBtn deleteBtn">delete</button>
         </div>
-        <div contenteditable="true" class="time timing">${this.timeEl.textContent}</div>
+        <div class="time timing">
+          <span class="time-part" contenteditable="true">${hh}</span>:
+          <span class="time-part" contenteditable="true">${mm}</span>:
+          <span class="time-part" contenteditable="true">${ss}</span>
+        </div>
         <input class="boardInput" type="text" placeholder="timer_name" maxlength="15" minlength="1" value="${this.name}">
         <div class="boardBtns">
             <button class="boardBtn saveBtn">Save</button>
             <button class="boardBtn cancelBtn">Cancel</button>
         </div>
         `;
+
+      document.body.append(this.overlayEl, this.windowEl);
+
+      const timeParts = windowEl.querySelectorAll('.time-part');
+
+    timeParts.forEach(span => {
+      span.addEventListener('keydown', (e) => {
+        const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+        if (
+          !e.ctrlKey &&
+          !e.metaKey &&
+          !allowedKeys.includes(e.key) &&
+          !/^\d$/.test(e.key)
+        ) {
+          e.preventDefault();
+        }
+      });
+
+      span.addEventListener('input', () => {
+        let text = span.textContent.replace(/\D/g, '');
+
+        // Shift left if more than 2 digits
+        if (text.length > 2) {
+          text = text.slice(-2); // keep last 2 digits
+        }
+
+        span.textContent = text;
+
+        // Move caret to end
+        const range = document.createRange();
+        range.selectNodeContents(span);
+        range.collapse(false);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      });
+
+      span.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const data = (e.clipboardData || window.clipboardData).getData('text');
+        const digits = data.replace(/\D/g, '').slice(-2); // keep last 2 digits
+        span.textContent = digits;
+      });
+    });
+
+
 
       document.body.appendChild(windowEl);
       document.body.appendChild(overlayEl);          
@@ -263,32 +312,88 @@ class TimerModal{
   }
 
   _bindAdd() {
-    this.addBtn.addEventListener('click', () => this.show());
-  }
+    this.addBtn.addEventListener('click', () => this.show());+
+    document.body.addEventListener('keypress', (e) => {
+      if (e.key === '+') {
+        this.show(); 
+      }
+    });
+}
 
   show() {
     // build modal HTML (same as before)
     this.windowEl.innerHTML = `
       <p>Add Timer</p>
-      <div contenteditable="true" class="time timing">00:00:00</div>
+      <div class="time timing">
+        <span class="time-part" contenteditable="true">00</span>:
+        <span class="time-part" contenteditable="true">00</span>:
+        <span class="time-part" contenteditable="true">00</span>
+      </div>
       <input class="boardInput" placeholder="timer_name" maxlength="15">
       <div class="board-section">
         <button class="boardBtn ready-option">ready</button>
         <button class="boardBtn custom-option">custom</button>
       </div>
       <div class="board-options">
-        <button class="board-option long">01:30:00</button>
-        <button class="board-option pomodoro">00:25:00</button>
-        <button class="board-option short">00:15:00</button>
+        <button class="board-option long">01: 30: 00</button>
+        <button class="board-option pomodoro">00: 25: 00</button>
+        <button class="board-option short">00: 15: 00</button>
       </div>
-      <div class="custom-options" style="display:none;">
-        <div contenteditable="true" class="clocking">00:00:00</div>
+      <div class="custom-timer" style="display:none;">
+        <span class="time-part" contenteditable="true">00</span>:
+        <span class="time-part" contenteditable="true">00</span>:
+        <span class="time-part" contenteditable="true">00</span>
       </div>
       <div class="board-section">
         <button class="boardBtn saveBtn">Save</button>
         <button class="boardBtn cancelBtn">Cancel</button>
       </div>`;
     document.body.append(this.overlayEl, this.windowEl);
+    
+    
+const timeParts = this.windowEl.querySelectorAll('.time-part');
+
+    timeParts.forEach(span => {
+      span.addEventListener('keydown', (e) => {
+        const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+        if (
+          !e.ctrlKey &&
+          !e.metaKey &&
+          !allowedKeys.includes(e.key) &&
+          !/^\d$/.test(e.key)
+        ) {
+          e.preventDefault();
+        }
+      });
+
+      span.addEventListener('input', () => {
+        let text = span.textContent.replace(/\D/g, '');
+
+        // Shift left if more than 2 digits
+        if (text.length > 2) {
+          text = text.slice(-2); // keep last 2 digits
+        }
+
+        span.textContent = text;
+
+        // Move caret to end
+        const range = document.createRange();
+        range.selectNodeContents(span);
+        range.collapse(false);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      });
+
+      span.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const data = (e.clipboardData || window.clipboardData).getData('text');
+        const digits = data.replace(/\D/g, '').slice(-2); // keep last 2 digits
+        span.textContent = digits;
+      });
+    });
+    
+    
     this._bindModalEvents();
   }
 
@@ -300,9 +405,9 @@ class TimerModal{
     const ready  = this.windowEl.querySelector('.ready-option');
     const custom = this.windowEl.querySelector('.custom-option');
     const opts   = this.windowEl.querySelector('.board-options');
-    const cOpts  = this.windowEl.querySelector('.custom-options');
+    const cOpts  = this.windowEl.querySelector('.custom-timer');
     const presets = this.windowEl.querySelectorAll('.board-option');
-    const clkEl   = this.windowEl.querySelector('.clocking');
+    const clkEl   = this.windowEl.querySelector('.custom-timer');
 
     ready.addEventListener('click', () => {
       opts.style.display = 'grid';
@@ -318,7 +423,11 @@ class TimerModal{
     });
 
     presets.forEach(b => b.addEventListener('click', () => td.textContent = b.textContent));
-    clkEl.addEventListener('input', () => td.textContent = clkEl.textContent);
+
+    clkEl.addEventListener('input', () => {
+      const [hh, mm ,ss] = clkEl.textContent.split(':') 
+      td.textContent = `${hh}: ${mm} :${ss}`;
+    });
 
     cancel.addEventListener('click', () => this._hide());
 
@@ -365,15 +474,27 @@ class TimerSelect {
   }
 
   _bindClear() {
-    this.clearBtn.addEventListener('click', () => {
-      if (!this.selectionActive) {
-        this.selecting();
-        
-      } else {
-        this.restore();
-      }
-    });
+  // Click event on the button
+  this.clearBtn.addEventListener('click', (e) => {
+    this._handleClear();
+  });
+
+  // Global keydown event for 'Delete' key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Delete') {
+      this._handleClear();
+    }
+  });
+}
+
+_handleClear() {
+  if (!this.selectionActive) {
+    this.selecting();
+  } else {
+    this.restore();
   }
+}
+
 
   handleDeleteClick(e) {
     const el = e.currentTarget;
@@ -429,7 +550,7 @@ class TimerSelect {
 }
 
 
-
+/*
 if (window.innerWidth < 768) {
   const themeLabel = document.getElementById('theme-label');
   const themePanel = document.getElementById('theme');
@@ -447,7 +568,6 @@ if (window.innerWidth < 768) {
     themeLabel.style.transition = '0.5s';
   });
 }
-
 function handleResize() {  
     const themeLabel = document.getElementById('theme-label');
     const themePanel = document.getElementById('theme');
@@ -491,10 +611,9 @@ if (window.innerWidth < 768) {
     }
   }
 }
-
 window.addEventListener("resize", handleResize);
 handleResize();
-
+*/
 
 document.querySelectorAll('#theme li').forEach(option => {
   option.addEventListener('click', () => {
@@ -503,10 +622,27 @@ document.querySelectorAll('#theme li').forEach(option => {
   });
 });
 
+document.querySelectorAll('.side-bar-list-item').forEach(option => {
+  option.addEventListener('click', () => {
+    const name = `.${option.id}`;
+    if(document.querySelector(name)){
+    clearDisplay();  
+    document.querySelector(name).classList.remove('empty');
+    document.querySelector(name).style.display = 'grid';
+    }
+  });
+});
+
+function clearDisplay(){
+  document.querySelectorAll('.sections section').forEach(option => {
+    option.classList.add('empty');
+    option.style.display = 'none'
+  });
+};
 
 function instruction(){
   const instructionEl = document.querySelector('.instruction');
-  const element = document.querySelector('.group');
+  const element = document.querySelector('.timer-section');
   if (element.querySelectorAll('.clock').length === 0) {
     instructionEl.style.display = 'flex';
   }
@@ -515,18 +651,44 @@ function instruction(){
   }
 }
 
+class sideBar{
+  constructor(){
+    this.toggle = document.querySelector('.toggle-menu');
+    this.group = document.querySelectorAll('.side-bar-list-item p');
+    this.statue = false;
+    this.trigger();
+  }
+  trigger(){
+    this.toggle.addEventListener('click',()=>{
+      if(this.statue == false){
+        this.statue = true;
+        this.group.forEach(el=>{
+          el.style.display = 'block';
+        })
+      }else{
+        this.statue = false;
+        this.group.forEach(el=>{
+          el.style.display = 'none';
+        })
+      }
+    });
+  }
+}
 
-  window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
-  new TimerModal('.add', '.group'); 
-  new TimerSelect('.clear','.group');   
+  new TimerModal('.add', '.timer-section'); 
+  new TimerSelect('.clear','.timer-section');   
+  new sideBar();
+  
   const saved = localStorage.getItem('selectedTheme');
   if (saved) {
     document.body.className = `theme-${saved}`;
   }
+
   const savedTimers = JSON.parse(localStorage.getItem('saved') || '[]');
   savedTimers.forEach(el => {
-    new Timer(el.name,el.duration,document.querySelector('.group'),el.id)
+    new Timer(el.name,el.duration,document.querySelector('.timer-section'),el.id)
   });
   instruction();
 });
