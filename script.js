@@ -522,7 +522,14 @@ _handleClear() {
     const timerEls = this.group.querySelectorAll('.clock');
     this.clearBtn.src = "check-icon.png";
     this.clearBtn.className = "confirm"; 
-    this.selectionActive = true;         
+    this.selectionActive = true;        
+    const selectingOverlay = document.createElement('div');
+    selectingOverlay.className = 'selectingOverlay';
+    document.querySelector('.main').append(selectingOverlay);
+    
+    const functionsOverlay = document.createElement('div');
+    functionsOverlay.className = 'functionsOverlay';
+    document.querySelector('.functions').append(functionsOverlay);
 
     timerEls.forEach((el) => {
       el.classList.add('selectionAffect');
@@ -546,6 +553,8 @@ _handleClear() {
     this.clearBtn.src = "clear-icon.png";
     this.clearBtn.className = "clear";
     this.selectionActive = false; 
+    document.body.querySelector('.selectingOverlay').remove();
+    document.querySelector('.functionsOverlay').remove();
   }
 }
 

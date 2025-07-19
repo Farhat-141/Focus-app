@@ -331,6 +331,7 @@ body {
     height: fit-content;
     width: auto;
     transition: 0.2s;
+    z-index: 100;
 }
 
 .clock:hover {
@@ -494,7 +495,7 @@ body {
     bottom: 0;
     right: 0;
     margin: 15px;
-    z-index: 999;  
+    z-index: 100;  
 }
 .add, .clear, .confirm {
     border-radius: 50%;
@@ -511,6 +512,7 @@ body {
     box-shadow: 0 0 10px var(--darkred-shadow);
     border: none;
     cursor: pointer;
+    z-index: 999;
 }
 
 .clear:hover {
@@ -518,6 +520,7 @@ body {
     background-color: var(--reset-color-hover);
     box-shadow: 0 0 15px;
     transition: 0.2s;
+    z-index: 999;
 }
 
 .add:hover, .confirm:hover {
@@ -909,4 +912,24 @@ body {
 }
 .empty{
     display: none;
+}
+.selectingOverlay{
+    background-color: #00000013;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 98;
+    pointer-events: all;
+}
+.functionsOverlay{
+    background-color: #00000013;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: all;
 }
