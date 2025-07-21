@@ -907,7 +907,6 @@ body {
 }
 .setting-section{
     height: 88vh;
-    display: none;
     align-items: baseline;
 }
 .empty{
@@ -932,4 +931,15 @@ body {
     height: 100%;
     z-index: 2;
     pointer-events: all;
+}
+section{
+    height: 88vh;
+    display: none;
+}
+.progress-h1{
+    margin: 25px;
+    font-size: 60px;
+    height: fit-content;
+    width: fit-content;
+    font-weight: bold;
 }

@@ -19,8 +19,8 @@ class ClockDisplay {
 
 // Global registry to track timer instances
 const timerRegistry = new Map();
+// total musure by second
 
-// 2) Timer: encapsulates one countdown instance
 class Timer {
   constructor(name, durationStr, container, id) {
     this.id = id || Date.now();
@@ -28,6 +28,7 @@ class Timer {
     this.originalDuration = durationStr;
     this.remaining = this._parseDuration(durationStr);
     this.container = container;
+    this.total = 1.5;
     this.interval = null;
     this.isfull = false;
     this._createDOM();
@@ -106,7 +107,7 @@ class Timer {
 
   _updateDisplay() {
     const formatted = this._formatTime(this.remaining);
-    this.timeEl.textContent = formatted;
+    this.timeEl.textContent = formatted;    
 
     if (this.progressBar) {
       const percent = 100 * (this.remaining / this._parseDuration(this.originalDuration));
@@ -127,6 +128,8 @@ class Timer {
         return;
       }
       this.remaining--;
+      this.total++;
+      document.getElementById('res').textContent = (this.total/60).toPrecision(2);
       this._updateDisplay();
     }, 1000);
   }
@@ -689,7 +692,8 @@ window.addEventListener('DOMContentLoaded', () => {
   new TimerModal('.add', '.timer-section'); 
   new TimerSelect('.clear','.timer-section');   
   new sideBar();
-  
+
+
   const saved = localStorage.getItem('selectedTheme');
   if (saved) {
     document.body.className = `theme-${saved}`;
