@@ -1,160 +1,509 @@
-:root {
-  /* Primary Brand Colors */
-  --background-color: white;
-  --text-color: black;
-  --accent-color:gray;
-  
-  /* Secondary & UI Colors */
-  --secondary-bg: #00e1ff;
-  
-  /* Action Colors */
-  --reset-color: #ff0019cb;
-  --reset-color-hover: #ff0019;
-  --start-color: #00f7ff;
-  --confirm-color: #00f7ff;
-  --success-color: #2898a780;
-  --danger-color: #dc3545;
-  --danger-hover: #c82333;
-  
-  /* Component Specific */
-  --board-bg: #00c9f7;
-  --clock-bg: #025891;
-  --clock-text-color: #ffffff;
+:root{
+  /* Semantic layout + text */
+  --background-color: #f7fbff;    /* extremely light, slightly-cool base */
+  --secondary-bg: #ffffff;
+  --text-color: #0f1724;          /* strong readable text */
+  --muted-text: #6b7280;
+
+  /* Accent (blue system) - use shades for states */
+  --accent-50:  #ebf4ff;
+  --accent-100: #dbeafe;
+  --accent-300: #93c5fd;
+  --accent-500: #2563eb; /* main accent (kept similar) */
+  --accent-600: #1e40af; /* stronger for hover/active */
+  --accent-700: #17307a;
+  --accent-color: var(--accent-500);
+
+  /* Actions */
+  --start-50:  #ecfdf5;
+  --start-300: #6ee7b7;
+  --start-color: #10b981;  /* main start (emerald) */
+  --start-700: #0f766e;
+
+  /* Danger / reset */
+  --reset-50:  #fff1f2;
+  --reset-300: #fca5a5;
+  --reset-color: #ef4444;    /* primary danger */
+  --reset-color-hover: #dc2626;
+  --danger-color: var(--reset-color);
+  --danger-hover: var(--reset-color-hover);
+
+  /* Success (subtle transparent) */
+  --success-color: #10b98180;
+
+  /* UI surfaces & chrome */
+  --board-bg: #eef6ff;       /* light blue wash for boards */
+  --clock-bg: #ffffff;       /* clock face */
+  --clock-text-color: var(--text-color);
+
   --input-bg: #ffffff;
-  --input-focus-bg: #ffffff;
-  --input-focus-text: #000000;
-  --header-hover: #3b7883;
-  --overlay-bg: rgba(0, 0, 0, 0.6);
-  --shadow-color: #888888;
-  --border-color: #1A255A;
-  --button-background-color: white;
-  --button-hover: lightgray;
-  --button-text-color: black;
-  
-  /* Interactive Elements */
-  --progress-bg: #ffffff;
-  --progress-bar: #00e1ff;
-  --progress-text: #495057;
-  --layer-bg: #000000;
-  --darkred-shadow: #8b0000;
+  --input-focus-bg: #f3f6fb;
+  --input-focus-text: var(--text-color);
+
+  --border-color: #e6eef8;
+  --button-background-color: #ffffff;
+  --button-hover: #f3f6fb;
+  --button-text-color: var(--text-color);
+
+  /* progress */
+  --progress-bg: #eaf2ff;
+  --progress-bar: linear-gradient(90deg, var(--accent-300), var(--accent-500));
+  --progress-text: var(--text-color);
+
+  /* overlays / shadows */
+  --overlay-bg: rgba(2,6,23,0.6);
+  --layer-bg: rgba(2,6,23,0.92);
+  --shadow-color: 0 8px 22px rgba(2,6,23,0.12);
+  --darkred-shadow: #7f1d1d;
+
+  /* helpers */
+  --white-color: #ffffff;
+  --black-color: #000000;
+}
+
+
+body.theme-minimal {
+  --background-color: #ffffff;
+  --secondary-bg: #f8fafc;
+  --text-color: #334155;
+  --muted-text: #6b7280;
+
+  /* subtle neutral accent scale */
+  --accent-50:  #f6f7f9;
+  --accent-100: #eef2f6;
+  --accent-300: #c7cdd6;
+  --accent-500: #64748b; /* calm, neutral accent */
+  --accent-600: #475569;
+  --accent-color: var(--accent-500);
+
+  --start-color: #16a34a;  /* bright but used sparingly */
+  --reset-color: #ef4444;
+  --reset-color-hover: #dc2626;
+
+  --board-bg: #fbfdff;
+  --clock-bg: #ffffff;
+  --clock-text-color: var(--text-color);
+
+  --input-bg: #ffffff;
+  --input-focus-bg: #f8fafc;
+  --border-color: #eef2f6;
+  --button-hover: #f8fafc;
+
+  --progress-bg: #f1f5f9;
+  --progress-bar: linear-gradient(90deg, #c7cdd6, var(--accent-500));
+
+  --overlay-bg: rgba(2,6,23,0.60);
+  --shadow-color: 0 6px 20px rgba(2,6,23,0.06);
+}
+
+body.theme-fancy {
+  --background-color: linear-gradient(135deg,#fff7fd,#eef8ff);
+  --secondary-bg: #fffefe;
+  --text-color: #0f1724;
+  --muted-text: #6b7280;
+
+  /* lavender / pink pastel system */
+  --accent-50:  #f8f0ff;
+  --accent-100: #f1e6ff;
+  --accent-300: #c4b5fd;
+  --accent-500: #7c3aed; /* main fancy accent */
+  --accent-600: #5b21b6;
+  --accent-color: var(--accent-500);
+
+  --start-color: #34d399;  /* mint for confirm */
+  --reset-color: #fb7185;
+  --reset-color-hover: #f43f5e;
+
+  --board-bg: #fbfbff;
+  --clock-bg: #ffffff;
+  --input-focus-bg: #f7f3ff;
+  --border-color: #efe8ff;
+
+  --progress-bg: #f7f6ff;
+  --progress-bar: linear-gradient(90deg,#a78bfa,var(--accent-500));
+
+  --overlay-bg: rgba(15,23,42,0.75);
+  --shadow-color: 0 10px 30px rgba(124,58,237,0.10);
+}
+
+body.theme-scifi {
+  --background-color: #071029;  /* deep navy/near-black */
+  --secondary-bg: #07182b;
+  --text-color: #e6f7ff;
+  --muted-text: #9fb9c9;
+
+  /* neon cyan system */
+  --accent-50:  #e6fbff;
+  --accent-100: #cff8ff;
+  --accent-300: #7dd3fc;
+  --accent-500: #06b6d4;  /* neon-cyan base (slightly cooler than before) */
+  --accent-600: #0891b2;
+  --accent-color: var(--accent-500);
+
+  /* complementary neon */
+  --accent-2-500: #7c3aed; /* purple neon for emphasis */
+  --start-color: #06b6d4;
+  --reset-color: #fb7185;
+
+  --board-bg: #07182b;
+  --clock-bg: linear-gradient(180deg,#05202b,#08313f);
+  --input-bg: #0b2230;
+  --input-focus-bg: #06232e;
+  --border-color: rgba(6,182,212,0.12);
+
+  --progress-bg: #07202b;
+  --progress-bar: linear-gradient(90deg,var(--accent-300),var(--accent-500));
+  --progress-text: #e6f7ff;
+
+  --overlay-bg: rgba(2,6,23,0.92);
+  --shadow-color: 0 12px 30px rgba(6,182,212,0.14);
+}
+
+body.theme-custom {
+  --background-color: #ffffff;
+  --text-color: #2d3748;
+  --accent-color: #805ad5;
+  --secondary-bg: #f7fafc;
+  --reset-color: #e53e3e;
+  --reset-color-hover: #c53030;
+  --start-color: #38a169;
+  --confirm-color: #38a169;
+  --success-color: #38a16980;
+  --danger-color: #e53e3e;
+  --danger-hover: #c53030;
+  --board-bg: #e9d8fd;
+  --clock-bg: #ffffff;
+  --clock-text-color: #2d3748;
+  --input-bg: #ffffff;
+  --input-focus-bg: #e9d8fd;
+  --input-focus-text: #2d3748;
+  --header-hover: #9f7aea;
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --border-color: #d6bcfa;
+  --button-background-color: #ffffff;
+  --button-hover: #e9d8fd;
+  --button-text-color: #2d3748;
+  --progress-bg: #e2e8f0;
+  --progress-bar: #805ad5;
+  --progress-text: #2d3748;
+  --layer-bg: rgba(0, 0, 0, 0.9);
+  --darkred-shadow: #742a2a;
+  --white-color: #ffffff;
+  --black-color: #000000;
+}
+:root {
+  /* Enhanced Default Theme - Clean Professional Blue */
+  --background-color: #f8fafc;
+  --text-color: #1e293b;
+  --accent-color: #3b82f6;
+  --secondary-bg: #ffffff;
+  --reset-color: #ef4444;
+  --reset-color-hover: #dc2626;
+  --start-color: #10b981;
+  --confirm-color: #10b981;
+  --success-color: #10b98180;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  --board-bg: #f1f5f9;
+  --clock-bg: #ffffff;
+  --clock-text-color: #1e293b;
+  --input-bg: #ffffff;
+  --input-focus-bg: #f1f5f9;
+  --input-focus-text: #1e293b;
+  --header-hover: #3b82f6;
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --shadow-color: rgba(59, 130, 246, 0.15);
+  --border-color: #e2e8f0;
+  --button-background-color: #ffffff;
+  --button-hover: #f1f5f9;
+  --button-text-color: #1e293b;
+  --progress-bg: #e5e7eb;
+  --progress-bar: #3b82f6;
+  --progress-text: #1e293b;
+  --layer-bg: rgba(0, 0, 0, 0.9);
+  --darkred-shadow: #7f1d1d;
   --white-color: #ffffff;
   --black-color: #000000;
 }
 
 body.theme-minimal {
-  --background-color: white;
-  --text-color: black;
-  --accent-color:gray;
-  
-  /* Secondary & UI Colors */
+  /* Enhanced Minimal Theme - Warm Monochrome */
+  --background-color: #fefefe;
+  --text-color: #374151;
+  --accent-color: #6b7280;
   --secondary-bg: #ffffff;
-  
-  /* Action Colors */
-  --reset-color: #ff0019cb;
-  --reset-color-hover: #ff0019;
-  --start-color: #00f7ff;
-  --confirm-color: #00f7ff;
-  --success-color: #2898a780;
-  --danger-color: #dc3545;
-  --danger-hover: #c82333;
-  
-  /* Component Specific */
-  --board-bg: #00c9f7;
-  --clock-bg: #000000;
-  --clock-text-color: #ffffff;
+  --reset-color: #f87171;
+  --reset-color-hover: #ef4444;
+  --start-color: #34d399;
+  --confirm-color: #34d399;
+  --success-color: #34d39980;
+  --danger-color: #f87171;
+  --danger-hover: #ef4444;
+  --board-bg: #f9fafb;
+  --clock-bg: #ffffff;
+  --clock-text-color: #374151;
   --input-bg: #ffffff;
-  --input-focus-bg: #ffffff;
-  --input-focus-text: #000000;
-  --header-hover: #3b7883;
-  --overlay-bg: rgba(0, 0, 0, 0.6);
-  --shadow-color: #888888;
-  --border-color: #1A255A;
-  --button-background-color: white;
-  --button-hover: lightgray;
-  --button-text-color: black;
-  
-  /* Interactive Elements */
-  --progress-bg: #ffffff;
-  --progress-bar: #8d8d8d85;
-  --progress-text: #495057;
-  --layer-bg: #000000;
-  --darkred-shadow: #8b0000;
+  --input-focus-bg: #f3f4f6;
+  --input-focus-text: #374151;
+  --header-hover: #9ca3af;
+  --overlay-bg: rgba(55, 65, 81, 0.6);
+  --shadow-color: rgba(107, 114, 128, 0.1);
+  --border-color: #e5e7eb;
+  --button-background-color: #ffffff;
+  --button-hover: #f3f4f6;
+  --button-text-color: #374151;
+  --progress-bg: #e5e7eb;
+  --progress-bar: #6b7280;
+  --progress-text: #374151;
+  --layer-bg: rgba(17, 24, 39, 0.85);
+  --darkred-shadow: #991b1b;
   --white-color: #ffffff;
   --black-color: #000000;
-
 }
 
-/* === Vibrant Gradient Theme === */
 body.theme-fancy {
-  --main-color:        #667eea;
-  --accent-color:      #764ba2;
-  --text-color:        #1a1a2e;
-  --background-color:  #1a1a2e;
-  --secondary-bg:      #16213e;
-  --hover-color:       #0f3460;
-  --button-bg:         #0f3460;
-  --button-hover:      #533483;
-  --reset-color:       #ff6b6b;
-  --error-color:       #ff6b6bec;
-  --confirm-color:     #4ecdc4;
-  --success-color:     #4ecdc480;
-  --danger-color:      #ff6b6b;
-  --danger-hover:      #ff5252;
-  --board-bg:          #16213e;
-  --clock-bg:          #ffffff;
-  --input-bg:          #ffffff;
-  --input-focus-bg:    #0f3460;
-  --input-focus-text:  #ffffff;
-  --header-hover:      #533483;
-  --overlay-bg:        rgba(26, 26, 46, 0.8);
-  --shadow-color:      #667eea60;
-  --border-color:      #667eea80;
-  --selection-hover:   #ff6b6b;
-  --checkbox-shadow:   #ff6b6b;
-  --checkbox-bg:       #ff6b6b60;
-  --progress-bg:       #16213e;
-  --progress-bar:      #764ba2;
-  --progress-text:     #000000;
-  --fullscreen-bg:     #1a1a2e;
-  --layer-bg:          #0f3460;
-  --darkred-shadow:    #8b0000;
-  --white-color:       #ffffff;
+  /* Enhanced Fancy Theme - Sunset Gradient Paradise */
+  --background-color: linear-gradient(135deg, #fef3c7 0%, #fde68a 25%, #fed7aa 50%, #fecaca 75%, #fbb6ce 100%);
+  --text-color: #92400e;
+  --accent-color: #f59e0b;
+  --secondary-bg: rgba(255, 255, 255, 0.9);
+  --reset-color: #f472b6;
+  --reset-color-hover: #ec4899;
+  --start-color: #34d399;
+  --confirm-color: #34d399;
+  --success-color: #34d39980;
+  --danger-color: #f472b6;
+  --danger-hover: #ec4899;
+  --board-bg: rgba(254, 243, 199, 0.95);
+  --clock-bg: rgba(255, 255, 255, 0.95);
+  --clock-text-color: #92400e;
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --input-focus-bg: rgba(254, 243, 199, 0.8);
+  --input-focus-text: #92400e;
+  --header-hover: #f59e0b;
+  --overlay-bg: rgba(146, 64, 14, 0.7);
+  --shadow-color: rgba(245, 158, 11, 0.3);
+  --border-color: rgba(245, 158, 11, 0.3);
+  --button-background-color: rgba(255, 255, 255, 0.9);
+  --button-hover: rgba(254, 243, 199, 0.8);
+  --button-text-color: #92400e;
+  --progress-bg: rgba(229, 231, 235, 0.8);
+  --progress-bar: #f59e0b;
+  --progress-text: #92400e;
+  --layer-bg: rgba(146, 64, 14, 0.9);
+  --darkred-shadow: #be185d;
+  --white-color: #ffffff;
+  --black-color: #92400e;
 }
-/* === Cyberpunk Neon Theme === */
+
 body.theme-scifi {
-  --main-color:        #286b6b;
-  --accent-color:      #11618f;
-  --text-color:        #00ff88;
-  --background-color:  #000000;
-  --secondary-bg:      #0d1117;
-  --hover-color:       #161b22;
-  --button-bg:         #00ff88;
-  --button-hover:      #21262d;
-  --reset-color:       #ff073a;
-  --error-color:       #ff0739e5;
-  --confirm-color:     #00d4aa;
-  --success-color:     #00d4aa80;
-  --danger-color:      #ff073a;
-  --danger-hover:      #ff3860;
-  --board-bg:          #000307;
-  --clock-bg:          #286b6b;
-  --input-bg:          #161b22;
-  --input-focus-bg:    #000000;
-  --input-focus-text:  #00ffff;
-  --header-hover:      #00ff88;
-  --overlay-bg:        rgba(0, 0, 0, 0.8);
-  --shadow-color:      #00ff8860;
-  --border-color:      #00ffff80;
-  --selection-hover:   #ff073a;
-  --checkbox-shadow:   #ff073a;
-  --checkbox-bg:       #ff073a60;
-  --progress-bg:       #161b22;
-  --progress-bar:      #00ff88;
-  --progress-text:     #00ffff;
-  --fullscreen-bg:     #000000;
-  --layer-bg:          #0a0a0a;
-  --darkred-shadow:    #8b0000;
-  --white-color:       #00ffff;
+  /* Enhanced Sci-Fi Theme - Cyberpunk Neon */
+  --background-color: #0f0f23;
+  --text-color: #00ff88;
+  --accent-color: #00bcd4;
+  --secondary-bg: #1a1a2e;
+  --reset-color: #ff0080;
+  --reset-color-hover: #e6007a;
+  --start-color: #00ff88;
+  --confirm-color: #00ff88;
+  --success-color: #00ff8880;
+  --danger-color: #ff0080;
+  --danger-hover: #e6007a;
+  --board-bg: #16213e;
+  --clock-bg: #0e3460;
+  --clock-text-color: #00ff88;
+  --input-bg: #1a1a2e;
+  --input-focus-bg: #16213e;
+  --input-focus-text: #00ff88;
+  --header-hover: #00bcd4;
+  --overlay-bg: rgba(15, 15, 35, 0.85);
+  --shadow-color: rgba(0, 255, 136, 0.4);
+  --border-color: rgba(0, 188, 212, 0.5);
+  --button-background-color: #1a1a2e;
+  --button-hover: #16213e;
+  --button-text-color: #00ff88;
+  --progress-bg: #374151;
+  --progress-bar: #00bcd4;
+  --progress-text: #00ff88;
+  --layer-bg: rgba(15, 15, 35, 0.95);
+  --darkred-shadow: #ff0080;
+  --white-color: #00ff88;
+  --black-color: #0f0f23;
+}
+
+body.theme-custom {
+  /* Enhanced Custom Theme - Purple Dreams */
+  --background-color: #faf5ff;
+  --text-color: #581c87;
+  --accent-color: #8b5cf6;
+  --secondary-bg: #ffffff;
+  --reset-color: #f43f5e;
+  --reset-color-hover: #e11d48;
+  --start-color: #06d6a0;
+  --confirm-color: #06d6a0;
+  --success-color: #06d6a080;
+  --danger-color: #f43f5e;
+  --danger-hover: #e11d48;
+  --board-bg: #f3e8ff;
+  --clock-bg: #ffffff;
+  --clock-text-color: #581c87;
+  --input-bg: #ffffff;
+  --input-focus-bg: #f3e8ff;
+  --input-focus-text: #581c87;
+  --header-hover: #8b5cf6;
+  --overlay-bg: rgba(88, 28, 135, 0.7);
+  --shadow-color: rgba(139, 92, 246, 0.2);
+  --border-color: #e9d5ff;
+  --button-background-color: #ffffff;
+  --button-hover: #f3e8ff;
+  --button-text-color: #581c87;
+  --progress-bg: #e5e7eb;
+  --progress-bar: #8b5cf6;
+  --progress-text: #581c87;
+  --layer-bg: rgba(88, 28, 135, 0.9);
+  --darkred-shadow: #be185d;
+  --white-color: #ffffff;
+  --black-color: #000000;
+}
+
+/* Enhanced theme preview buttons */
+#default {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  color: #1e293b;
+  border: 2px solid #3b82f6;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+#default:hover {
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+  transform: translateY(-2px);
+}
+
+#minimal {
+  background: linear-gradient(135deg, #ffffff, #f3f4f6);
+  color: #374151;
+  border: 2px solid #6b7280;
+  box-shadow: 0 2px 8px rgba(107, 114, 128, 0.2);
+}
+#minimal:hover {
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  transform: translateY(-2px);
+}
+
+#fancy {
+  background: linear-gradient(135deg, #fef3c7, #fed7aa, #fecaca);
+  color: #92400e;
+  border: 2px solid #f59e0b;
+  box-shadow: 0 2px 12px rgba(245, 158, 11, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+#fancy::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s;
+  opacity: 0;
+}
+#fancy:hover::before {
+  opacity: 1;
+  transform: rotate(45deg) translate(50%, 50%);
+}
+#fancy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.6);
+}
+
+#scifi {
+  background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+  color: #00ff88;
+  border: 2px solid #00bcd4;
+  box-shadow: 0 0 15px #00bcd4, inset 0 0 15px rgba(0, 188, 212, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+#scifi::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.4), transparent);
+  transition: left 0.6s;
+}
+#scifi:hover::after {
+  left: 100%;
+}
+#scifi:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px #00bcd4, inset 0 0 25px rgba(0, 188, 212, 0.2);
+  color: #00bcd4;
+}
+
+/* Additional enhancements for better visual appeal */
+.theme li {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme li::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.theme li:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Glassmorphism effect for boards */
+.board {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced glow effects for sci-fi theme */
+body.theme-scifi .clock {
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.3);
+  border: 1px solid rgba(0, 188, 212, 0.5);
+}
+
+body.theme-scifi .clock:hover {
+  box-shadow: 0 0 30px rgba(0, 188, 212, 0.5);
+}
+
+/* Enhanced gradient animation for fancy theme */
+body.theme-fancy {
+  background: linear-gradient(-45deg, #fef3c7, #fde68a, #fed7aa, #fecaca, #fbb6ce);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 .theme {
     background: var(--theme-bg);
@@ -186,7 +535,6 @@ body.theme-scifi {
     display: flex;
     align-items: center;
     gap: 10px;
-    cursor: pointer;
 }
 .theme-label:hover {
     background-color: var(--hover-color);
@@ -211,8 +559,8 @@ body {
     position: relative;
     margin: 0;
 }
-
 .container {
+    padding: 10px;
     background-color: var(--background-color);
     color: var(--text-color);
     border: 2px solid var(--border-color);
@@ -222,7 +570,6 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     box-shadow: 0 0 15px var(--shadow-color);
     position: relative;
-    min-height: 95vh;
 }
 .logo {
     display: flex;
@@ -232,15 +579,14 @@ body {
 }
 .main{
     display: flex;
+    gap: 5px;
 }
 .sections{
     width: 100%;
     background-color: var(--secondary-bg);
-    border: 2px solid var(--border-color);
-    border-radius: 5px;
+    border-radius: 15px;
 }
 .timer-section {
-    padding: 20px 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: auto;
@@ -248,7 +594,6 @@ body {
     background-color: var(--secondary-bg);
     justify-content: start;
     position: relative;
-    height: 88vh;
     overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: var(--shadow-color) transparent;
@@ -321,6 +666,7 @@ body {
 
 .clock {
     background-color: var(--clock-bg);
+    border: 1px solid;
     color: var(--clock-text-color);
     padding: 10px;
     border-radius: 10px;
@@ -471,10 +817,13 @@ body {
     border-radius: 15px;
     padding: 5px 10px;
     border: 2px solid var(--border-color);
+    color: var(--text-color);
 }
+
 .headerBtn:hover {
     background-color: var(--button-hover);
 }
+
 .boardBtn:hover {
     background-color: var(--button-hover);
     transition: 0.2s;
@@ -485,7 +834,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     width: 125px;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px;
     cursor: pointer;
     box-shadow: 1px 5px 15px var(--border-color);
@@ -494,15 +843,18 @@ body {
     position: fixed;
     bottom: 0;
     right: 0;
-    margin: 15px;
-    z-index: 100;  
+    margin: 30px 20px;
+    z-index: 110;  
+    border: 1px solid;
 }
+
 .add, .clear, .confirm {
     border-radius: 50%;
     width: 45px;
     aspect-ratio: 1/1;
     transition: 0.2s;
     cursor: pointer;
+    background-color: var(--white-color);
 }
 .clear, .confirm {
     padding: 10px;
@@ -684,7 +1036,6 @@ body {
 }
 
 @media (max-width:768px){
-
     .actions{
         align-items: end;
     }
@@ -784,6 +1135,9 @@ body {
     font-size: 28px;
 }
 .instruction p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     font-size: 18px;
     margin: 5px 0;
 }
@@ -817,8 +1171,7 @@ body {
 }
 .side-bar{
     margin: 0;
-    border: 2px solid;
-    border-radius: 5px;
+    border-radius: 15px;
     padding: 5px;
     box-sizing: border-box;
     width: 300px;
@@ -906,7 +1259,6 @@ body {
     gap: 5px;
 }
 .setting-section{
-    height: 88vh;
     align-items: baseline;
 }
 .empty{
@@ -932,14 +1284,26 @@ body {
     z-index: 2;
     pointer-events: all;
 }
-section{
-    height: 88vh;
-    display: none;
-}
 .progress-h1{
     margin: 25px;
     font-size: 60px;
     height: fit-content;
     width: fit-content;
     font-weight: bold;
+}
+/* Add these to your styles.css */
+section {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin: 15px;
+    max-height: 85vh;
+}
+section.active {
+    display: grid;
+    min-height: 85vh;
+    opacity: 1;
+}
+.side-bar-list-item.active {
+  background-color: var(--accent-color);
+  border-left: 5px solid var(--confirm-color);
 }

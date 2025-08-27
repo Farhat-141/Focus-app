@@ -1,3 +1,4 @@
+
 class ClockDisplay {
   constructor(selector) {
     this.el = document.querySelector(selector);
@@ -626,7 +627,6 @@ if (window.innerWidth < 768) {
 window.addEventListener("resize", handleResize);
 handleResize();
 */
-
 document.querySelectorAll('#theme li').forEach(option => {
   option.addEventListener('click', () => {
     document.body.className = `theme-${option.id}`;
@@ -634,29 +634,35 @@ document.querySelectorAll('#theme li').forEach(option => {
   });
 });
 
+function showSection(sectionId) {
+  document.querySelectorAll('.sections section').forEach(section => {
+    if(section.id !== sectionId){
+      section.style.display = 'none';
+    }else{
+      section.style.display = 'grid';
+    }
+    section.classList.toggle('active', section.id === sectionId);
+  });
+}
+
+function setActiveItem(itemId) {
+  document.querySelectorAll('.side-bar-list-item').forEach(item => {
+    item.classList.toggle('active', item.id === itemId);
+  });
+}
+
 document.querySelectorAll('.side-bar-list-item').forEach(option => {
   option.addEventListener('click', () => {
-    const name = `.${option.id}`;
-    if(document.querySelector(name)){
-    clearDisplay();  
-    document.querySelector(name).classList.remove('empty');
-    document.querySelector(name).style.display = 'grid';
-    }
+    showSection(option.id);
+    setActiveItem(option.id);
   });
 });
-
-function clearDisplay(){
-  document.querySelectorAll('.sections section').forEach(option => {
-    option.classList.add('empty');
-    option.style.display = 'none'
-  });
-};
 
 function instruction(){
   const instructionEl = document.querySelector('.instruction');
   const element = document.querySelector('.timer-section');
   if (element.querySelectorAll('.clock').length === 0) {
-    instructionEl.style.display = 'flex';
+    instructionEl.style.display = 'grid';
   }
   else {
     instructionEl.style.display = 'none';
@@ -687,12 +693,12 @@ class sideBar{
   }
 }
 
+
 window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
   new TimerModal('.add', '.timer-section'); 
   new TimerSelect('.clear','.timer-section');   
   new sideBar();
-
 
   const saved = localStorage.getItem('selectedTheme');
   if (saved) {
@@ -704,4 +710,8 @@ window.addEventListener('DOMContentLoaded', () => {
     new Timer(el.name,el.duration,document.querySelector('.timer-section'),el.id)
   });
   instruction();
+
+  // Set initial active section (default to timer)
+  showSection('timer');
+  setActiveItem('timer');
 });

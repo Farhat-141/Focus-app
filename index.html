@@ -11,16 +11,18 @@
 <body>    
     <div class="container">
         <div class= "current-time" id="current-time"></div>
+
         <div class="logo">
             <h1 class="title">Focus Pomodoro</h1>
         </div>
+
         <article class="main">
             <nav class="side-bar">
                 <ul class="side-bar-list">
                     <div class= "toggle-menu">
                         <img class= "toggle-menu-icon" src="menu-icon.png" alt="toggle">
                     </div>
-                    <li class="side-bar-list-item" id="timer-section">
+                    <li class="side-bar-list-item" id="timer">
                         <img width="30px" src="clock-icon.jpg" alt="">
                         <p class="side-bar-list-item-p" >timer</p>
                     </li>
@@ -28,13 +30,13 @@
                         <img width="30px" src="check-icon.png" alt="">
                         <p class="side-bar-list-item-p">progress</p>
                     </li>
-                    <li class="side-bar-list-item">
+                    <li class="side-bar-list-item" id="tracker">
                         <img width="30px" src="add-icon.png" alt="">
                         <p class="side-bar-list-item-p">tracker</p>
                     </li>
                 </ul>
                 <ul class="user-list">
-                    <li class="setting side side-bar-list-item" id="setting-section">
+                    <li class="setting side side-bar-list-item" id="setting">
                         <img width="30px" src="setting-icon.png" alt="setting icon">
                         <p class="side-bar-list-item-p">setting</p>
                     </li>
@@ -42,11 +44,11 @@
             </nav>
 
             <div class="sections">
-                <section class="timer-section">
+                <section id="timer" class="timer-section">
                     <div class="instruction">
                         <img class="instruction-img" src="clock-icon.jpg" alt="timer">
                         <h2>You Don't Have any Timers.</h2>
-                        <p>select " + " below to add a new timer.</p>
+                        <p>select <img width="30px" src="add-icon.png" alt=""> below to add a new timer.</p>
                     </div>
                     <div class="functions"> <!--for adding-->
                         <img class="add" id="add" src="add-icon.png" alt="">
@@ -55,13 +57,19 @@
                     </div>
                 </section>
 
-                <section class="progress">
+                <section id="progress" class="progress">
                     <div>
                         <h1 class="progress-h1"> Total minute : <span id="res">0</span></h1>
                     </div>
                 </section>
 
-                <section class="setting-section">
+                <section id="tracker" class="tracker-section">
+                    <div>
+                        <p>tracker tracker</p>
+                    </div>
+                </section>
+
+                <section id="setting" class="setting-section">
                     <div class="theme-area" id="theme-area">
                         <div class="theme-label" id="theme-label">Themes</div>
                         <div class="theme" id="theme">
