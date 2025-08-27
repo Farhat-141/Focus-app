@@ -1,9 +1,9 @@
 :root {
   /* Enhanced Default Theme - Clean Professional Blue */
-  --background-color: #ffffff;
-  --text-color: #1e293b;
-  --accent-color: #4dd0e1;
-  --secondary-bg: #4ccfe1be;
+  --background-color: #006280;
+  --text-color: #171d27;
+  --accent-color: hsl(187, 71%, 59%);
+  --secondary-bg: #4cd0e1;
   --reset-color: #ef4444;
   --reset-color-hover: #dc2626;
   --start-color: #10b981;
@@ -12,7 +12,7 @@
   --danger-color: #ef4444;
   --danger-hover: #dc2626;
   --board-bg: #f1f5f980;
-  --clock-bg: #ffffff;
+  --clock-bg: #ffffff8c;
   --clock-text-color: #1e293b;
   --input-bg: #ffffff;
   --input-focus-bg: #f1f5f9;
@@ -35,10 +35,10 @@
 
 body.theme-minimal {
   /* Enhanced Minimal Theme - Warm Monochrome */
-  --background-color: #f0f4f8;
-  --text-color: #374151;
+  --background-color: #ffffff;
+  --text-color: #000000;
   --accent-color: #6b7280;
-  --secondary-bg: #dde4e7;
+  --secondary-bg: rgb(201, 201, 201);
   --reset-color: #f87171;
   --reset-color-hover: #ef4444;
   --start-color: #34d399;
@@ -47,7 +47,7 @@ body.theme-minimal {
   --danger-color: #f87171;
   --danger-hover: #ef4444;
   --board-bg: #f9fafb80;
-  --clock-bg: #f0f4f8;
+  --clock-bg: #f0f4f885;
   --clock-text-color: #374151;
   --input-bg: #ffffff;
   --input-focus-bg: #f3f4f6;
@@ -88,7 +88,7 @@ body.theme-fancy {
   --danger-color: #f472b6;
   --danger-hover: #ec4899;
   --board-bg: #6e86588a;
-  --clock-bg: rgba(255, 255, 255, 0.95);
+  --clock-bg: rgba(255, 255, 255, 0.486);
   --clock-text-color: #92400e;
   --input-bg: rgba(255, 255, 255, 0.9);
   --input-focus-bg: rgba(254, 243, 199, 0.8);
@@ -123,7 +123,7 @@ body.theme-scifi {
   --danger-color: #ff0080;
   --danger-hover: #e6007a;
   --board-bg: #16213e75;
-  --clock-bg: #0e3460;
+  --clock-bg: #0e346086;
   --clock-text-color: #00ff88;
   --input-bg: #1a1a2e;
   --input-focus-bg: #16213e;
@@ -478,6 +478,7 @@ body {
 }
 
 .clock {
+    backdrop-filter: blur(5px);
     background-color: var(--clock-bg);
     border: 1px solid;
     color: var(--clock-text-color);
@@ -941,7 +942,7 @@ body {
     text-align: center;
     color: var(--text-color);
     width: 100%;
-    text-shadow: 0 0 5px var(--accent-color);
+    text-shadow: 0 0 2px var(--accent-color);
 }
 .instruction h2 {
     margin: 10px 0;
