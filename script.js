@@ -662,7 +662,7 @@ function instruction(){
   const instructionEl = document.querySelector('.instruction');
   const element = document.querySelector('.timer-section');
   if (element.querySelectorAll('.clock').length === 0) {
-    instructionEl.style.display = 'grid';
+    instructionEl.style.display = 'flex';
   }
   else {
     instructionEl.style.display = 'none';

@@ -1,203 +1,9 @@
-:root{
-  /* Semantic layout + text */
-  --background-color: #f7fbff;    /* extremely light, slightly-cool base */
-  --secondary-bg: #ffffff;
-  --text-color: #0f1724;          /* strong readable text */
-  --muted-text: #6b7280;
-
-  /* Accent (blue system) - use shades for states */
-  --accent-50:  #ebf4ff;
-  --accent-100: #dbeafe;
-  --accent-300: #93c5fd;
-  --accent-500: #2563eb; /* main accent (kept similar) */
-  --accent-600: #1e40af; /* stronger for hover/active */
-  --accent-700: #17307a;
-  --accent-color: var(--accent-500);
-
-  /* Actions */
-  --start-50:  #ecfdf5;
-  --start-300: #6ee7b7;
-  --start-color: #10b981;  /* main start (emerald) */
-  --start-700: #0f766e;
-
-  /* Danger / reset */
-  --reset-50:  #fff1f2;
-  --reset-300: #fca5a5;
-  --reset-color: #ef4444;    /* primary danger */
-  --reset-color-hover: #dc2626;
-  --danger-color: var(--reset-color);
-  --danger-hover: var(--reset-color-hover);
-
-  /* Success (subtle transparent) */
-  --success-color: #10b98180;
-
-  /* UI surfaces & chrome */
-  --board-bg: #eef6ff;       /* light blue wash for boards */
-  --clock-bg: #ffffff;       /* clock face */
-  --clock-text-color: var(--text-color);
-
-  --input-bg: #ffffff;
-  --input-focus-bg: #f3f6fb;
-  --input-focus-text: var(--text-color);
-
-  --border-color: #e6eef8;
-  --button-background-color: #ffffff;
-  --button-hover: #f3f6fb;
-  --button-text-color: var(--text-color);
-
-  /* progress */
-  --progress-bg: #eaf2ff;
-  --progress-bar: linear-gradient(90deg, var(--accent-300), var(--accent-500));
-  --progress-text: var(--text-color);
-
-  /* overlays / shadows */
-  --overlay-bg: rgba(2,6,23,0.6);
-  --layer-bg: rgba(2,6,23,0.92);
-  --shadow-color: 0 8px 22px rgba(2,6,23,0.12);
-  --darkred-shadow: #7f1d1d;
-
-  /* helpers */
-  --white-color: #ffffff;
-  --black-color: #000000;
-}
-
-
-body.theme-minimal {
-  --background-color: #ffffff;
-  --secondary-bg: #f8fafc;
-  --text-color: #334155;
-  --muted-text: #6b7280;
-
-  /* subtle neutral accent scale */
-  --accent-50:  #f6f7f9;
-  --accent-100: #eef2f6;
-  --accent-300: #c7cdd6;
-  --accent-500: #64748b; /* calm, neutral accent */
-  --accent-600: #475569;
-  --accent-color: var(--accent-500);
-
-  --start-color: #16a34a;  /* bright but used sparingly */
-  --reset-color: #ef4444;
-  --reset-color-hover: #dc2626;
-
-  --board-bg: #fbfdff;
-  --clock-bg: #ffffff;
-  --clock-text-color: var(--text-color);
-
-  --input-bg: #ffffff;
-  --input-focus-bg: #f8fafc;
-  --border-color: #eef2f6;
-  --button-hover: #f8fafc;
-
-  --progress-bg: #f1f5f9;
-  --progress-bar: linear-gradient(90deg, #c7cdd6, var(--accent-500));
-
-  --overlay-bg: rgba(2,6,23,0.60);
-  --shadow-color: 0 6px 20px rgba(2,6,23,0.06);
-}
-
-body.theme-fancy {
-  --background-color: linear-gradient(135deg,#fff7fd,#eef8ff);
-  --secondary-bg: #fffefe;
-  --text-color: #0f1724;
-  --muted-text: #6b7280;
-
-  /* lavender / pink pastel system */
-  --accent-50:  #f8f0ff;
-  --accent-100: #f1e6ff;
-  --accent-300: #c4b5fd;
-  --accent-500: #7c3aed; /* main fancy accent */
-  --accent-600: #5b21b6;
-  --accent-color: var(--accent-500);
-
-  --start-color: #34d399;  /* mint for confirm */
-  --reset-color: #fb7185;
-  --reset-color-hover: #f43f5e;
-
-  --board-bg: #fbfbff;
-  --clock-bg: #ffffff;
-  --input-focus-bg: #f7f3ff;
-  --border-color: #efe8ff;
-
-  --progress-bg: #f7f6ff;
-  --progress-bar: linear-gradient(90deg,#a78bfa,var(--accent-500));
-
-  --overlay-bg: rgba(15,23,42,0.75);
-  --shadow-color: 0 10px 30px rgba(124,58,237,0.10);
-}
-
-body.theme-scifi {
-  --background-color: #071029;  /* deep navy/near-black */
-  --secondary-bg: #07182b;
-  --text-color: #e6f7ff;
-  --muted-text: #9fb9c9;
-
-  /* neon cyan system */
-  --accent-50:  #e6fbff;
-  --accent-100: #cff8ff;
-  --accent-300: #7dd3fc;
-  --accent-500: #06b6d4;  /* neon-cyan base (slightly cooler than before) */
-  --accent-600: #0891b2;
-  --accent-color: var(--accent-500);
-
-  /* complementary neon */
-  --accent-2-500: #7c3aed; /* purple neon for emphasis */
-  --start-color: #06b6d4;
-  --reset-color: #fb7185;
-
-  --board-bg: #07182b;
-  --clock-bg: linear-gradient(180deg,#05202b,#08313f);
-  --input-bg: #0b2230;
-  --input-focus-bg: #06232e;
-  --border-color: rgba(6,182,212,0.12);
-
-  --progress-bg: #07202b;
-  --progress-bar: linear-gradient(90deg,var(--accent-300),var(--accent-500));
-  --progress-text: #e6f7ff;
-
-  --overlay-bg: rgba(2,6,23,0.92);
-  --shadow-color: 0 12px 30px rgba(6,182,212,0.14);
-}
-
-body.theme-custom {
-  --background-color: #ffffff;
-  --text-color: #2d3748;
-  --accent-color: #805ad5;
-  --secondary-bg: #f7fafc;
-  --reset-color: #e53e3e;
-  --reset-color-hover: #c53030;
-  --start-color: #38a169;
-  --confirm-color: #38a169;
-  --success-color: #38a16980;
-  --danger-color: #e53e3e;
-  --danger-hover: #c53030;
-  --board-bg: #e9d8fd;
-  --clock-bg: #ffffff;
-  --clock-text-color: #2d3748;
-  --input-bg: #ffffff;
-  --input-focus-bg: #e9d8fd;
-  --input-focus-text: #2d3748;
-  --header-hover: #9f7aea;
-  --overlay-bg: rgba(0, 0, 0, 0.7);
-  --shadow-color: rgba(0, 0, 0, 0.15);
-  --border-color: #d6bcfa;
-  --button-background-color: #ffffff;
-  --button-hover: #e9d8fd;
-  --button-text-color: #2d3748;
-  --progress-bg: #e2e8f0;
-  --progress-bar: #805ad5;
-  --progress-text: #2d3748;
-  --layer-bg: rgba(0, 0, 0, 0.9);
-  --darkred-shadow: #742a2a;
-  --white-color: #ffffff;
-  --black-color: #000000;
-}
 :root {
   /* Enhanced Default Theme - Clean Professional Blue */
-  --background-color: #f8fafc;
+  --background-color: #ffffff;
   --text-color: #1e293b;
-  --accent-color: #3b82f6;
-  --secondary-bg: #ffffff;
+  --accent-color: #4dd0e1;
+  --secondary-bg: #4ccfe1be;
   --reset-color: #ef4444;
   --reset-color-hover: #dc2626;
   --start-color: #10b981;
@@ -205,7 +11,7 @@ body.theme-custom {
   --success-color: #10b98180;
   --danger-color: #ef4444;
   --danger-hover: #dc2626;
-  --board-bg: #f1f5f9;
+  --board-bg: #f1f5f980;
   --clock-bg: #ffffff;
   --clock-text-color: #1e293b;
   --input-bg: #ffffff;
@@ -218,8 +24,8 @@ body.theme-custom {
   --button-background-color: #ffffff;
   --button-hover: #f1f5f9;
   --button-text-color: #1e293b;
-  --progress-bg: #e5e7eb;
-  --progress-bar: #3b82f6;
+  --progress-bg: #73a1b296;
+  --progress-bar: #26C6DA;
   --progress-text: #1e293b;
   --layer-bg: rgba(0, 0, 0, 0.9);
   --darkred-shadow: #7f1d1d;
@@ -229,10 +35,10 @@ body.theme-custom {
 
 body.theme-minimal {
   /* Enhanced Minimal Theme - Warm Monochrome */
-  --background-color: #fefefe;
+  --background-color: #f0f4f8;
   --text-color: #374151;
   --accent-color: #6b7280;
-  --secondary-bg: #ffffff;
+  --secondary-bg: #dde4e7;
   --reset-color: #f87171;
   --reset-color-hover: #ef4444;
   --start-color: #34d399;
@@ -240,8 +46,8 @@ body.theme-minimal {
   --success-color: #34d39980;
   --danger-color: #f87171;
   --danger-hover: #ef4444;
-  --board-bg: #f9fafb;
-  --clock-bg: #ffffff;
+  --board-bg: #f9fafb80;
+  --clock-bg: #f0f4f8;
   --clock-text-color: #374151;
   --input-bg: #ffffff;
   --input-focus-bg: #f3f4f6;
@@ -253,8 +59,8 @@ body.theme-minimal {
   --button-background-color: #ffffff;
   --button-hover: #f3f4f6;
   --button-text-color: #374151;
-  --progress-bg: #e5e7eb;
-  --progress-bar: #6b7280;
+  --progress-bg: #546e7a;
+  --progress-bar: #263238;
   --progress-text: #374151;
   --layer-bg: rgba(17, 24, 39, 0.85);
   --darkred-shadow: #991b1b;
@@ -262,11 +68,17 @@ body.theme-minimal {
   --black-color: #000000;
 }
 
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
 body.theme-fancy {
   /* Enhanced Fancy Theme - Sunset Gradient Paradise */
-  --background-color: linear-gradient(135deg, #fef3c7 0%, #fde68a 25%, #fed7aa 50%, #fecaca 75%, #fbb6ce 100%);
+  --background-color: #290907;
   --text-color: #92400e;
-  --accent-color: #f59e0b;
+  --accent-color: #efe9e1;
   --secondary-bg: rgba(255, 255, 255, 0.9);
   --reset-color: #f472b6;
   --reset-color-hover: #ec4899;
@@ -275,7 +87,7 @@ body.theme-fancy {
   --success-color: #34d39980;
   --danger-color: #f472b6;
   --danger-hover: #ec4899;
-  --board-bg: rgba(254, 243, 199, 0.95);
+  --board-bg: #6e86588a;
   --clock-bg: rgba(255, 255, 255, 0.95);
   --clock-text-color: #92400e;
   --input-bg: rgba(255, 255, 255, 0.9);
@@ -288,8 +100,8 @@ body.theme-fancy {
   --button-background-color: rgba(255, 255, 255, 0.9);
   --button-hover: rgba(254, 243, 199, 0.8);
   --button-text-color: #92400e;
-  --progress-bg: rgba(229, 231, 235, 0.8);
-  --progress-bar: #f59e0b;
+  --progress-bg: #92410e60;
+  --progress-bar: #57473a;
   --progress-text: #92400e;
   --layer-bg: rgba(146, 64, 14, 0.9);
   --darkred-shadow: #be185d;
@@ -310,7 +122,7 @@ body.theme-scifi {
   --success-color: #00ff8880;
   --danger-color: #ff0080;
   --danger-hover: #e6007a;
-  --board-bg: #16213e;
+  --board-bg: #16213e75;
   --clock-bg: #0e3460;
   --clock-text-color: #00ff88;
   --input-bg: #1a1a2e;
@@ -585,13 +397,13 @@ body {
     width: 100%;
     background-color: var(--secondary-bg);
     border-radius: 15px;
+    transition: 0.3s;
 }
 .timer-section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: auto;
     gap: 15px;
-    background-color: var(--secondary-bg);
     justify-content: start;
     position: relative;
     overflow-y: scroll;
@@ -647,6 +459,7 @@ body {
 }
 
 .current-time {
+    animation: pulse 2s infinite ease-in-out;
     position: absolute;
     right: 0;
     margin: 32px 10px;
@@ -692,6 +505,7 @@ body {
     width: 100%;
     height: 100%;
     background: var(--overlay-bg);
+    backdrop-filter: blur(2px);
     z-index: 1000;
     pointer-events: all;
 }
@@ -703,7 +517,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 350px;
-    background-color: var(--clock-bg);
+    background-color: var(--board-bg);
     gap: 10px;
     padding: 10px 25px;
     border-radius: 10px;
@@ -808,7 +622,6 @@ body {
 
 .timing {
     color: var(--clock-text-color);
-    background-color: var(--black-color);
     padding: 10px 20px;
 }
 
@@ -1180,6 +993,7 @@ body {
     justify-content: space-between;
     background: var(--secondary-bg);
     padding: 15px;
+    overflow: hidden;
 }
 .side-bar-list{
     display: flex;
@@ -1193,25 +1007,33 @@ body {
 .side-bar-list-item{
     width: 100%;
     text-align: start;
-    border: 5px solid transparent;
     border-radius: 5px;
-    border-bottom: 5px solid transparent;
     text-transform: capitalize;
     display: flex;
+    align-items: center;
     gap: 5px;
-    padding: 0;
+    padding: 12px 8px;
+    margin: 0 5px;
+    transition: 0.3s;
 }
 .side-bar-list-item-p{
     padding: 0;
     margin: 0;
 }
+.side-bar-list-item img{
+    background-color: var(--black-color);
+    border-radius: 5px;
+}
 .side-bar-list-item:hover{
-    background-color: var(--confirm-color);
+    background-color: var(--accent-color);
     cursor: pointer;
+    transform: translateX(5px);
+    transition: 0.3s;
 }
-.side-bar-list-item:active{
-    border-left: 5px solid var(--accent-color);
+.side-bar-list-item.active {
+  background-color: var(--progress-bg);
 }
+
 .toggle-menu{
     display: none;
 }
@@ -1295,15 +1117,11 @@ body {
 section {
     opacity: 0;
     transition: opacity 0.3s ease;
-    margin: 15px;
-    max-height: 85vh;
+    padding: 15px;
+    min-height: 85vh;
 }
 section.active {
     display: grid;
-    min-height: 85vh;
     opacity: 1;
-}
-.side-bar-list-item.active {
-  background-color: var(--accent-color);
-  border-left: 5px solid var(--confirm-color);
+    transform: 0.3s;
 }
