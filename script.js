@@ -633,6 +633,14 @@ document.querySelectorAll('#theme li').forEach(option => {
     localStorage.setItem('selectedTheme', option.id);
   });
 });
+document.querySelectorAll('#font li').forEach(option => {
+  option.addEventListener('click', () => {
+    document.body.style.fontFamily = `${option.id}`;
+    document.querySelectorAll('button').style.fontFamily = `${option.id}`;
+    localStorage.setItem('selectedFont', option.id);
+  });
+});
+
 
 function showSection(sectionId) {
   document.querySelectorAll('.sections section').forEach(section => {
@@ -701,6 +709,7 @@ window.addEventListener('DOMContentLoaded', () => {
   new sideBar();
 
   const saved = localStorage.getItem('selectedTheme');
+
   if (saved) {
     document.body.className = `theme-${saved}`;
   }

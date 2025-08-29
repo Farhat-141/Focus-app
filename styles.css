@@ -313,12 +313,6 @@ body.theme-scifi .clock:hover {
 }
 
 /* Enhanced gradient animation for fancy theme */
-body.theme-fancy {
-  background: linear-gradient(-45deg, #fef3c7, #fde68a, #fed7aa, #fecaca, #fbb6ce);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-}
-
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -378,6 +372,7 @@ body.theme-fancy {
 
 .theme li:hover {
   background-color: var(--progress-text);
+  color: var(--background-color);
 }
 
 body {
@@ -396,9 +391,9 @@ body {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   box-shadow: 0 0 15px var(--shadow-color);
   position: relative;
+  height: 98vh;
 }
 
 .logo {
@@ -874,7 +869,7 @@ body {
 
 .circle-label {
   fill: var(--clock-text-color);
-  font-size: 0.3em;
+  font-size: 0.25em;
   text-anchor: middle;
 }
 
@@ -1199,9 +1194,13 @@ section.active {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  background: linear-gradient(-90deg, var(--background-color), var(--board-bg));
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
 }
 .sections section {
   width: 100%;
+  border-radius: 15px;
   box-sizing: border-box;
 }
 .sections section audio {
