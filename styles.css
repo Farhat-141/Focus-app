@@ -716,7 +716,7 @@ body {
 }
 
 .add:hover, .confirm:hover {
-  background: var(--confirm-color);
+  background: var(--secondary-bg);
   box-shadow: 0 0 10px;
   transform: translateY(-2px);
 }

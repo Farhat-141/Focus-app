@@ -633,10 +633,10 @@ document.querySelectorAll('#theme li').forEach(option => {
     localStorage.setItem('selectedTheme', option.id);
   });
 });
+
 document.querySelectorAll('#font li').forEach(option => {
   option.addEventListener('click', () => {
     document.body.style.fontFamily = `${option.id}`;
-    document.querySelectorAll('button').style.fontFamily = `${option.id}`;
     localStorage.setItem('selectedFont', option.id);
   });
 });
@@ -708,10 +708,15 @@ window.addEventListener('DOMContentLoaded', () => {
   new TimerSelect('.clear','.timer-section');   
   new sideBar();
 
-  const saved = localStorage.getItem('selectedTheme');
+  const savedTheme = localStorage.getItem('selectedTheme');
+  const savedFont = localStorage.getItem('selectedFont')
 
-  if (saved) {
-    document.body.className = `theme-${saved}`;
+  if (savedTheme) {
+    document.body.className = `theme-${savedTheme}`;
+  }
+
+  if(savedFont){
+    document.body.style.fontFamily = `${savedFont}`;
   }
 
   const savedTimers = JSON.parse(localStorage.getItem('saved') || '[]');
