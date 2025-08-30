@@ -79,6 +79,7 @@ class Timer {
       </div>
       <div class="control">
         <button class="btn reset" style="display:none;">Reset</button>
+        <button class="btn complete" style="display:none;">complete</button>
         <button class="btn stop" style="display:none;">Stop</button>
         <button class="btn start">Start</button>
       </div>
@@ -92,6 +93,7 @@ class Timer {
     this.startBtn = this.el.querySelector('.start');
     this.stopBtn  = this.el.querySelector('.stop');
     this.resetBtn = this.el.querySelector('.reset');
+    this.completeBtn = this.el.querySelector('.complete')
     this.audio    = this.el.querySelector('.alarm');
     this.editBtn  = this.el.querySelector('.edit');
     this.fullBtn  = this.el.querySelector('.full');
@@ -102,6 +104,7 @@ class Timer {
     this.startBtn.addEventListener('click', () => this.start());
     this.stopBtn. addEventListener('click', () => this.stop());
     this.resetBtn.addEventListener('click', () => this.reset());
+    this.completeBtn.addEventListener('click', () => this.complete());
     this.editBtn. addEventListener('click',()=> this.edit());
     this.fullBtn. addEventListener('click',()=> this.full());
   }
@@ -117,28 +120,45 @@ class Timer {
   }
 
   start() {
-    if (this.interval) return;
-    this.startBtn.style.display = 'none';
-    this.stopBtn.style.display  = 'inline-block';
-    this.resetBtn.style.display = 'inline-block';
+  if (this.interval) return;
 
-    this.interval = setInterval(() => {
-      if (this.remaining <= 0) {
-        this.stopBtn.style.display  =  'none';
-        this.audio.play();
-        return;
-      }
-      this.remaining--;
-      this.total++;
-      document.getElementById('res').textContent = (this.total/60).toPrecision(2);
+  // Hide/show controls
+  this.startBtn.style.display = 'none';
+  this.stopBtn.style.display  = 'inline-block';
+
+  // Record the end time based on remaining seconds
+  this.endTime = Date.now() + this.remaining * 1000;
+
+  this.interval = setInterval(() => {
+    const now = Date.now();
+
+    // Calculate new remaining time
+    this.remaining = Math.max(0, Math.round((this.endTime - now) / 1000));
+
+    if (this.remaining <= 0) {
+      clearInterval(this.interval);
+      this.interval = null;
+      this.stopBtn.style.display  = 'none';
+      this.completeBtn.style.display = 'inline-block';
+      this.audio.play();
       this._updateDisplay();
-    }, 1000);
-  }
+      return;
+    }
+
+    // Update total minutes worked
+    this.total++;
+    document.getElementById('res').textContent = (this.total / 60).toPrecision(2);
+
+    this._updateDisplay();
+  }, 1000);
+}
+
 
   stop() {
     clearInterval(this.interval);
     this.interval = null;
     this.startBtn.textContent = 'Resume';
+    this.resetBtn.style.display = 'inline-block';
     this.startBtn.style.display = 'inline-block';
     this.stopBtn.style.display  = 'none';
   }
@@ -151,6 +171,36 @@ class Timer {
     this.audio.pause();
     this.audio.currentTime = 0;
     this._updateDisplay();
+  }
+
+  complete() {
+    this.reset();
+    this.completeBtn.style.display = 'none';
+
+    const rate = prompt('Rate the session out of 5');
+
+    const session = {
+      id: this.id,
+      name: this.name,
+      duration: this._parseDuration(this.originalDuration), 
+      rating: rate
+    };
+
+    // Load previous sessions safely
+    let savedSession = [];
+    try {
+      savedSession = JSON.parse(localStorage.getItem('savedSession')) || [];
+    } catch {
+      savedSession = [];
+    }
+
+    // Add new session
+    savedSession.push(session);
+
+    // Save back to localStorage
+    localStorage.setItem('savedSession', JSON.stringify(savedSession));
+
+    console.log(localStorage.getItem('savedSession'));
   }
 
   destroy() {
@@ -316,7 +366,7 @@ class TimerModal{
   }
 
   _bindAdd() {
-    this.addBtn.addEventListener('click', () => this.show());+
+    this.addBtn.addEventListener('click', () => this.show());
     document.body.addEventListener('keypress', (e) => {
       if (e.key === '+') {
         this.show(); 
@@ -485,9 +535,15 @@ class TimerSelect {
 
   // Global keydown event for 'Delete' key
   document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') {
+      showSection('setting');
+      setActiveItem('setting');
+    }
     if (e.key === 'Delete') {
       this._handleClear();
     }
+
+
   });
 }
 
