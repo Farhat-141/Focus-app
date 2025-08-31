@@ -158,7 +158,6 @@ class Timer {
     clearInterval(this.interval);
     this.interval = null;
     this.startBtn.textContent = 'Resume';
-    this.resetBtn.style.display = 'inline-block';
     this.startBtn.style.display = 'inline-block';
     this.stopBtn.style.display  = 'none';
   }
@@ -199,7 +198,7 @@ class Timer {
 
     // Save back to localStorage
     localStorage.setItem('savedSession', JSON.stringify(savedSession));
-
+    loadProgress(savedSession)
     console.log(localStorage.getItem('savedSession'));
   }
 
@@ -693,7 +692,7 @@ document.querySelectorAll('#theme li').forEach(option => {
 document.querySelectorAll('#font li').forEach(option => {
   option.addEventListener('click', () => {
     document.body.style.fontFamily = `${option.id}`;
-    localStorage.setItem('selectedFont', option.id);
+    localStorage.setItem('selectedFont', `${option.id}`);
   });
 });
 
@@ -706,6 +705,7 @@ function showSection(sectionId) {
       section.style.display = 'grid';
     }
     section.classList.toggle('active', section.id === sectionId);
+    localStorage.setItem('selectedSection',sectionId);
   });
 }
 
@@ -757,6 +757,17 @@ class sideBar{
   }
 }
 
+function loadProgress(finished){
+  const location = document.querySelector('.doneTimer');
+  location.innerHTML = '';
+  finished.forEach(element => {
+    const it = document.createElement('li');
+    it.innerHTML = `name: ${element.name} | duration ${element.duration} | rating ${element.rating}`;
+    location.append(it);
+  });
+}
+
+
 
 window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
@@ -764,15 +775,26 @@ window.addEventListener('DOMContentLoaded', () => {
   new TimerSelect('.clear','.timer-section');   
   new sideBar();
 
+
+  const finished = JSON.parse(localStorage.getItem('savedSession') || '[]');
   const savedTheme = localStorage.getItem('selectedTheme');
   const savedFont = localStorage.getItem('selectedFont')
+  const savedSection = localStorage.getItem('selectedSection')
+
+  loadProgress(finished)
 
   if (savedTheme) {
     document.body.className = `theme-${savedTheme}`;
   }
-
   if(savedFont){
     document.body.style.fontFamily = `${savedFont}`;
+  }
+  if(savedSection){
+    showSection(`${savedSection}`);
+    setActiveItem(`${savedSection}`)
+  }else{
+    showSection('timer');
+    setActiveItem('timer');
   }
 
   const savedTimers = JSON.parse(localStorage.getItem('saved') || '[]');
@@ -782,6 +804,4 @@ window.addEventListener('DOMContentLoaded', () => {
   instruction();
 
   // Set initial active section (default to timer)
-  showSection('timer');
-  setActiveItem('timer');
 });

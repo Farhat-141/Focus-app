@@ -991,7 +991,6 @@ body {
   align-items: center;
   gap: 5px;
   font-size: 18px;
-  margin: 5px 0;
 }
 
 .overlay {
@@ -1213,3 +1212,6 @@ section.active {
 }
 
 /*# sourceMappingURL=styles.css.map */
+* button, * input{
+  font-family: inherit;
+}
