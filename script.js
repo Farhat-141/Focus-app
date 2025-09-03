@@ -118,40 +118,47 @@ class Timer {
       this.progressBar.setAttribute('stroke-dasharray', `${percent}, 100`);
     }
   }
-
+  
   start() {
-  if (this.interval) return;
+    if (this.interval) return;
 
-  // Hide/show controls
-  this.startBtn.style.display = 'none';
-  this.stopBtn.style.display  = 'inline-block';
+    // Hide/show controls
+    this.startBtn.style.display = 'none';
+    this.stopBtn.style.display  = 'inline-block';
 
-  // Record the end time based on remaining seconds
-  this.endTime = Date.now() + this.remaining * 1000;
+    // Record the end time based on remaining seconds
+    this.endTime = Date.now() + this.remaining * 1000;
 
-  this.interval = setInterval(() => {
-    const now = Date.now();
-
-    // Calculate new remaining time
-    this.remaining = Math.max(0, Math.round((this.endTime - now) / 1000));
-
-    if (this.remaining <= 0) {
-      clearInterval(this.interval);
-      this.interval = null;
-      this.stopBtn.style.display  = 'none';
-      this.completeBtn.style.display = 'inline-block';
-      this.audio.play();
-      this._updateDisplay();
-      return;
-    }
-
-    // Update total minutes worked
-    this.total++;
-    document.getElementById('res').textContent = (this.total / 60).toPrecision(2);
-
+    // Update display immediately on start
     this._updateDisplay();
-  }, 1000);
-}
+
+    this.interval = setInterval(() => {
+      const now = Date.now();
+
+      // Calculate new remaining time
+      const newRemaining = Math.max(0, Math.round((this.endTime - now) / 1000));
+
+      if (newRemaining !== this.remaining) {
+        this.remaining = newRemaining;
+        this._updateDisplay();
+      }
+
+      if (this.remaining <= 0) {
+        clearInterval(this.interval);
+        this.interval = null;
+        this.stopBtn.style.display  = 'none';
+        this.completeBtn.style.display = 'inline-block';
+        this.audio.play();
+        return;
+      }
+
+      // Update total minutes worked (based on real elapsed time)
+      this.total++;
+      document.getElementById('res').textContent = (this.total / 60).toPrecision(2);
+
+    }, 1000);
+  }
+
 
 
   stop() {
