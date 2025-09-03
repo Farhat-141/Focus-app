@@ -766,10 +766,12 @@ class sideBar{
 
 function loadProgress(finished){
   const location = document.querySelector('.doneTimer');
-  location.innerHTML = '';
+  
   finished.forEach(element => {
     const it = document.createElement('li');
-    it.innerHTML = `name: ${element.name} | duration ${element.duration} | rating ${element.rating}`;
+    it.innerHTML = '';
+    it.className = 'progress-timer'
+    it.innerHTML = `name: ${element.name} | duration ${element.duration} | rating ${element.rating} <br> note: this a description fot the session`;
     location.append(it);
   });
 }
