@@ -766,12 +766,21 @@ class sideBar{
 
 function loadProgress(finished){
   const location = document.querySelector('.doneTimer');
-  
+  location.innerHTML = '';
   finished.forEach(element => {
     const it = document.createElement('li');
     it.innerHTML = '';
     it.className = 'progress-timer'
-    it.innerHTML = `name: ${element.name} | duration ${element.duration} | rating ${element.rating} <br> note: this a description fot the session`;
+    let str = ''
+    for(let i=0;i<element.rating;i++){
+      str+='* '
+    }
+    it.innerHTML = `
+        <p>name | ${element.name}</p>
+        <p>duration | ${element.duration}</p>
+        <p>rating | ${str}</p>
+        <p>note i need to be more patient and take things on </p>
+     `;
     location.append(it);
   });
 }

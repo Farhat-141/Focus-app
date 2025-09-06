@@ -1180,7 +1180,7 @@ section {
 }
 
 section.active {
-  display: grid;
+  display: inherit;
   opacity: 1;
   transform: 0.3s;
 }
@@ -1217,14 +1217,18 @@ section.active {
 }
 
 .progress{
+  display: grid;
+  grid-template-rows: 100px;
+  grid-template-columns: 1fr 1fr;
   max-height: 85vh;
   overflow: auto;
 }
 
 .doneTimer{
+  grid-column: 1/2;
   width: fit-content;
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
+  display: flex;
+  flex-direction: column;
   height: auto;
 }
 
@@ -1232,7 +1236,7 @@ section.active {
   list-style-type: none;
   border: 1px solid ;
   max-width: 400px;
-  height: 150px;
+  height: fit-content;
   padding: 10px 15px;
   border-radius: 25px;
   margin: 5px;
