@@ -1211,31 +1211,27 @@ section.active {
   transform: translate(-50%, -50%);
 }
 
-/*# sourceMappingURL=styles.css.map */
 * button, * input{
   font-family: inherit;
 }
-
 .progress{
   display: grid;
-  grid-template-rows: 100px;
-  grid-template-columns: 1fr 1fr;
   max-height: 85vh;
   overflow: auto;
 }
-
 .doneTimer{
-  grid-column: 1/2;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   height: auto;
 }
-
+.progress-wrap{
+  width: 100%;
+  margin: none auto;
+}
 .progress-timer{
   list-style-type: none;
   border: 1px solid ;
-  max-width: 400px;
   height: fit-content;
   padding: 10px 15px;
   border-radius: 25px;

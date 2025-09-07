@@ -179,11 +179,13 @@ class Timer {
     this._updateDisplay();
   }
 
+  //for rating
+  // add a feedback request - delibrate prcactive - 
   complete() {
     this.reset();
     this.completeBtn.style.display = 'none';
 
-    const rate = prompt('Rate the session out of 5');
+    const rate = prompt('Rate the session out of 10');
 
     const session = {
       id: this.id,
@@ -771,15 +773,13 @@ function loadProgress(finished){
     const it = document.createElement('li');
     it.innerHTML = '';
     it.className = 'progress-timer'
-    let str = ''
-    for(let i=0;i<element.rating;i++){
-      str+='* '
-    }
+    let str = (element.rating/10) * 100;
+
     it.innerHTML = `
         <p>name | ${element.name}</p>
         <p>duration | ${element.duration}</p>
-        <p>rating | ${str}</p>
-        <p>note i need to be more patient and take things on </p>
+        <p>rating | ${str}%</p>
+        <p>Feedback | i need to be more patient and take things on </p>
      `;
     location.append(it);
   });
