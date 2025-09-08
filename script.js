@@ -186,12 +186,14 @@ class Timer {
     this.completeBtn.style.display = 'none';
 
     const rate = prompt('Rate the session out of 10');
+    const note = prompt('feedback or a insight');
 
     const session = {
       id: this.id,
       name: this.name,
       duration: this._parseDuration(this.originalDuration), 
-      rating: rate
+      rating: rate,
+      feedback: note
     };
 
     // Load previous sessions safely
@@ -209,6 +211,11 @@ class Timer {
     localStorage.setItem('savedSession', JSON.stringify(savedSession));
     loadProgress(savedSession)
     console.log(localStorage.getItem('savedSession'));
+    this.feedback();
+  }
+
+  feedback(){
+    // here show a small suggeetion for a not 
   }
 
   destroy() {
@@ -779,7 +786,7 @@ function loadProgress(finished){
         <p>name | ${element.name}</p>
         <p>duration | ${element.duration}</p>
         <p>rating | ${str}%</p>
-        <p>Feedback | i need to be more patient and take things on </p>
+        <p>Feedback | ${element.feedback}</p>
      `;
     location.append(it);
   });

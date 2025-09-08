@@ -1189,13 +1189,12 @@ section.active {
   position: relative;
 }
 .sections .sound-section {
+  background: linear-gradient(-90deg, var(--background-color), var(--board-bg));
+  background-size: 400% 400%;  
   background-image: url("assesst/image.png");
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
-  background: linear-gradient(-90deg, var(--background-color), var(--board-bg));
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
 }
 .sections section {
   width: 100%;
@@ -1216,17 +1215,19 @@ section.active {
 }
 .progress{
   display: grid;
+  grid-template-columns: 1fr 1fr;
   max-height: 85vh;
   overflow: auto;
+  gap: 15px;
 }
 .doneTimer{
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   height: auto;
 }
 .progress-wrap{
-  width: 100%;
+  grid-column: 2/3;
   margin: none auto;
 }
 .progress-timer{
@@ -1238,4 +1239,11 @@ section.active {
   margin: 5px;
   background-color: var(--text-color);
   color: var(--secondary-bg);
+}
+.progress img{
+  grid-column: 1/2;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 0 15px var(--shadow-color); 
+  align-self: center;
 }
