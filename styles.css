@@ -1238,12 +1238,14 @@ section.active {
   border-radius: 25px;
   margin: 5px;
   background-color: var(--text-color);
-  color: var(--secondary-bg);
+  color: var(--background-color);
 }
-.progress img{
+.myChart{
   grid-column: 1/2;
   width: 100%;
   border-radius: 15px;
   box-shadow: 0 0 15px var(--shadow-color); 
-  align-self: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--text-color);
 }

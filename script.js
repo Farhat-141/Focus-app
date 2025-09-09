@@ -210,6 +210,7 @@ class Timer {
     // Save back to localStorage
     localStorage.setItem('savedSession', JSON.stringify(savedSession));
     loadProgress(savedSession)
+    loadGraph(savedSession)
     console.log(localStorage.getItem('savedSession'));
     this.feedback();
   }
@@ -792,7 +793,31 @@ function loadProgress(finished){
   });
 }
 
+/*
+  x y chart
+  x -> duration
+  y -> rating
+  Each point is a timer session
+*/
 
+function loadGraph(finished){
+  const xValues = finished.map(el => el.duration); // convert seconds to hours
+  const yValues = finished.map(el => el.rating);
+  const barColors = finished.map(el => el.rating < 5 ? "red" : "blue");
+
+  const myChart = new Chart("timerChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [{
+        label: 'Timer Sessions (Duration vs Rating)',
+        backgroundColor: barColors,
+        data: yValues
+      }]
+    },
+    options: {}
+  });
+}
 
 window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
@@ -806,7 +831,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const savedFont = localStorage.getItem('selectedFont')
   const savedSection = localStorage.getItem('selectedSection')
 
-  loadProgress(finished)
+  loadProgress(finished);
+  loadGraph(finished);
 
   if (savedTheme) {
     document.body.className = `theme-${savedTheme}`;
