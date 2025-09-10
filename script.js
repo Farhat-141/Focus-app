@@ -799,16 +799,20 @@ function loadProgress(finished){
   y -> rating
   Each point is a timer session
 */
-
+let myChart = null;
 function loadGraph(finished){
+  if(!document.querySelector('.myChart')){
+  const xValuesNames = finished.map(el => el.name);
   const xValues = finished.map(el => el.duration); // convert seconds to hours
   const yValues = finished.map(el => el.rating);
   const barColors = finished.map(el => el.rating < 5 ? "red" : "blue");
 
-  const myChart = new Chart("timerChart", {
-    type: "bar",
+  document.getElementById('timerChart').classList = ('myChart');
+
+   myChart = new Chart("timerChart", {
+    type: "line",
     data: {
-      labels: xValues,
+      labels: xValuesNames,
       datasets: [{
         label: 'Timer Sessions (Duration vs Rating)',
         backgroundColor: barColors,
@@ -817,6 +821,11 @@ function loadGraph(finished){
     },
     options: {}
   });
+  }
+  else{
+    myChart.destroy();
+    document.getElementById('timerChart').classList = '';
+  }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -832,7 +841,11 @@ window.addEventListener('DOMContentLoaded', () => {
   const savedSection = localStorage.getItem('selectedSection')
 
   loadProgress(finished);
-  loadGraph(finished);
+  //loadGraph(finished);
+
+  document.querySelector('.progress-btn').addEventListener('click',()=> {
+    loadGraph(finished)
+  });
 
   if (savedTheme) {
     document.body.className = `theme-${savedTheme}`;

@@ -1215,7 +1215,7 @@ section.active {
 }
 .progress{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   max-height: 85vh;
   overflow: auto;
   gap: 15px;
@@ -1227,7 +1227,8 @@ section.active {
   height: auto;
 }
 .progress-wrap{
-  grid-column: 2/3;
+  grid-column: 1/3;
+  grid-row: 2/3;
   margin: none auto;
 }
 .progress-timer{
@@ -1241,11 +1242,24 @@ section.active {
   color: var(--background-color);
 }
 .myChart{
-  grid-column: 1/2;
-  width: 100%;
+  grid-column: 1/3;
+  max-width: 100%;
   border-radius: 15px;
   box-shadow: 0 0 15px var(--shadow-color); 
   position: sticky;
   top: 0;
-  background-color: var(--text-color);
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+}
+.progress-control{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.progress-btn{
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 10px 20px;
 }
