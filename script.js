@@ -828,6 +828,11 @@ function loadGraph(finished){
   }
 }
 
+document.getElementById('clearData').addEventListener('click',()=>{
+  localStorage.clear();
+  location.reload();
+})
+
 window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
   new TimerModal('.add', '.timer-section'); 

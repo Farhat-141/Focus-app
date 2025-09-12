@@ -47,9 +47,8 @@
                 </ul>
                 <ul class="user-list">
                     <hr>
-                   
-                    <li class=" side side-bar-list-item">
-                        <img width="30px" src="assesst/music_note_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="setting icon">
+                    <li class=" side side-bar-list-item" id="guide">
+                        <img width="30px" src="assesst/developer_guide_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="setting icon">
                         <p class="side-bar-list-item-p">Guide</p>
                     </li>
                     <li class=" side side-bar-list-item" id="sound">
@@ -64,51 +63,55 @@
             </nav>
 
             <div class="sections">
-                <section id="timer" class="timer-section">
-                    <div class="instruction">
-                        <img class="instruction-img" src="clock-icon.jpg" alt="timer">
-                        <h2>You Don't Have any Timers.</h2>
-                        <p>select <img width="30px" src="add-icon.png" alt=""> below to add a new timer.</p>
-                    </div>
-                    <div class="functions"> <!--for adding-->
-                        <img class="add" id="add" src="add-icon.png" alt="">
-                        <hr>
-                        <img class="clear" id="clear" src="clear-icon.png" alt="">
-                    </div>
-                </section>
-
-                <section id="progress" class="progress">
-                    <canvas id="timerChart" height="0"></canvas>
-                    <div class="progress-wrap">
-                        <button class="progress-btn">Chart view</button>
-                        <div class="progress-control">
-                            <h1>Finished Timers</h1>
+                <section id="timer">
+                    <div class="timer-section">
+                        <div class="instruction">
+                            <img class="instruction-img" src="clock-icon.jpg" alt="timer">
+                            <h2>You Don't Have any Timers.</h2>
+                            <p>select <img width="30px" src="add-icon.png" alt=""> below to add a new timer.</p>
                         </div>
-                        <div class ="doneTimer">
-                            <li class="progress-timer">
-                                <p>name | oiuguio</p>
-                                <p>duration | 25:00:00</p>
-                                <p>rating | * * * * *</p>
-                                <p>note i need to be more patient and take things on </p>
-                            </li>
+                        <div class="functions"> <!--for adding-->
+                            <img class="add" id="add" src="add-icon.png" alt="">
+                            <hr>
+                            <img class="clear" id="clear" src="clear-icon.png" alt="">
                         </div>
                     </div>
                 </section>
 
-                <section id="check-list" class="check-list-section">
-                    <div>
+                <section id="progress">
+                    <div class="progress-section">
+                        <canvas id="timerChart" height="0"></canvas>
+                        <div class="progress-wrap">
+                            <button class="progress-btn">Chart view</button>
+                            <div class="progress-control">
+                                <h1>Finished Timers</h1>
+                            </div>
+                            <div class ="doneTimer">
+                                <li class="progress-timer">
+                                    <p>name | oiuguio</p>
+                                    <p>duration | 25:00:00</p>
+                                    <p>rating | * * * * *</p>
+                                    <p>note i need to be more patient and take things on </p>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="check-list">
+                    <div class="check-list-section">
                         <p>list</p>
                     </div>
                 </section>
 
-                <section id="note" class="note-section">
-                    <div>
+                <section id="note">
+                    <div class="note-section">
                         <textarea style="width: 350px; height: 500px; background-color: black; color: white;">for someone like myself in whom the refusel to uieled to emotopn and brain fantasy runs deep im wretchidly timed and forever pushed to find what is real and uncover what is true</textarea>
                     </div>
                 </section>
 
-                <section id="tracker" class="tracker-section">
-                    <div>
+                <section id="tracker">
+                    <div  class="tracker-section">
                         <input type="checkbox">
                         <input type="checkbox">
                         <input type="checkbox">
@@ -122,68 +125,77 @@
                     </div>
                 </section>
 
-                <section id="sound" class="sound-section">
-                    <audio src="Beethoven - Moonlight Sonata Full.mp3" controls></audio>
+                <section id="guide" >
+                    <div class="guide-section">
+                        <div id="content"></div>
+                    </div>
                 </section>
 
-                <section id="setting" class="setting-section">
-                    <div class="custom">
-                        <div class="theme-area" id="theme-area">
-                            <div class="theme-label" id="theme-label">Theme</div>
-                            <div class="theme" id="theme">
-                                <li class="themeChoice" id="default" class="active">Default</li>
-                                <li class="themeChoice" id="minimal">Minimal</li>
-                                <li class="themeChoice" id="fancy">Coffee</li>
-                                <li class="themeChoice" id="scifi">Sci-fi</li>
-                            </div>
+                <section id="sound" >
+                    <div class="sound-section">
+                        <audio src="Beethoven - Moonlight Sonata Full.mp3" controls></audio>
                     </div>
-                    <div class="theme-area" id="theme-area">
+                </section>
 
-
-                            <div class="theme-label" id="font-label">Font</div>
-                            <div class="theme" id="font">
-                                <li class="themeChoice" id="arial" class="active" style="font-family: Arial;">Arial</li>
-                                <li class="themeChoice" id="serif"  style="font-family: serif;">Serif</li>
-                                <li class="themeChoice" id="lobster"  style="font-family: Lobster;">Lobster</li>
-                                <li class="themeChoice" id="Limelight"  style="font-family: Limelight;">Art Deco</li>
-                                <li class="themeChoice" id="Sour Gummy"  style="font-family: Sour Gummy;">Sour Gummy</li>
-                                <li class="themeChoice" id="Pacifico"  style="font-family: Pacifico;">Pacifico</li>
-                                <li class="themeChoice" id="Roboto Mono"  style="font-family: Roboto Mono;">robot mono</li>
-                                <li class="themeChoice" id="Audiowide"  style="font-family: Audiowide;">Audiowide</li>
-                                <li class="themeChoice" id="Monoton"  style="font-family: Monoton;">Monoton</li>
+                <section id="setting">
+                    <div  class="setting-section">
+                        <div class="custom">
+                            <button class="data-clear-btn" id="clearData">clearn data</button>
+                            <div class="theme-area" id="theme-area">
+                                <div class="theme-label" id="theme-label">Theme</div>
+                                <div class="theme" id="theme">
+                                    <li class="themeChoice" id="default" class="active">Default</li>
+                                    <li class="themeChoice" id="minimal">Minimal</li>
+                                    <li class="themeChoice" id="fancy">Coffee</li>
+                                    <li class="themeChoice" id="scifi">Sci-fi</li>
+                                </div>
                             </div>
-                        </div>
-
-                    <div class="clock" style="margin: auto;">
-                        <div class="header">
-                            <p>Name</p>
-                            <div class="headerBtns">
-                                <button class="headerBtn edit">edit</button>
-                                <button class="headerBtn full">full</button>
+                            <div class="theme-area" id="theme-area">
+                                <div class="theme-label" id="font-label">Font</div>
+                                <div class="theme" id="font">
+                                    <li class="themeChoice" id="arial" class="active" style="font-family: Arial;">Arial</li>
+                                    <li class="themeChoice" id="serif"  style="font-family: serif;">Serif</li>
+                                    <li class="themeChoice" id="lobster"  style="font-family: Lobster;">Lobster</li>
+                                    <li class="themeChoice" id="Limelight"  style="font-family: Limelight;">Art Deco</li>
+                                    <li class="themeChoice" id="Sour Gummy"  style="font-family: Sour Gummy;">Sour Gummy</li>
+                                    <li class="themeChoice" id="Pacifico"  style="font-family: Pacifico;">Pacifico</li>
+                                    <li class="themeChoice" id="Roboto Mono"  style="font-family: Roboto Mono;">robot mono</li>
+                                    <li class="themeChoice" id="Audiowide"  style="font-family: Audiowide;">Audiowide</li>
+                                    <li class="themeChoice" id="Monoton"  style="font-family: Monoton;">Monoton</li>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timer">
-                            <svg class="progress-circle" viewBox="0 0 36 36">
-                            <path class="circle-bg"
-                                d="M18 2.0845
-                                a 15.9155 15.9155 0 0 1 0 31.831
-                                a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            <path class="circle-bar"
-                                stroke-dasharray="60, 100"
-                                d="M18 2.0845
-                                a 15.9155 15.9155 0 0 1 0 31.831
-                                a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            <text x="18" y="20.35" class="circle-label">00 : 01 : 23</text>
-                            </svg>
-                        </div>
-                        <div class="control">
-                            <button class="btn reset" style="display:none;">Reset</button>
-                            <button class="btn stop" style="display:none;">Stop</button>
-                            <button class="btn start">Start</button>
-                        </div>
-                        <audio class="alarm" loop>
-                            <source src="Sound1.mp3" type="audio/mp3">
-                        </audio>
+
+                            <div class="clock" style="margin: auto;">
+                                <div class="header">
+                                    <p>Name</p>
+                                    <div class="headerBtns">
+                                        <button class="headerBtn edit">edit</button>
+                                        <button class="headerBtn full">full</button>
+                                    </div>
+                                </div>
+                                <div class="timer">
+                                    <svg class="progress-circle" viewBox="0 0 36 36">
+                                    <path class="circle-bg"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <path class="circle-bar"
+                                        stroke-dasharray="60, 100"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <text x="18" y="20.35" class="circle-label">00 : 01 : 23</text>
+                                    </svg>
+                                </div>
+                                <div class="control">
+                                    <button class="btn reset" style="display:none;">Reset</button>
+                                    <button class="btn stop" style="display:none;">Stop</button>
+                                    <button class="btn start">Start</button>
+                                </div>
+                                <audio class="alarm" loop>
+                                    <source src="Sound1.mp3" type="audio/mp3">
+                                </audio>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -191,11 +203,16 @@
         </article>
     </div>
 
-
     <script src="script.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script>
+    fetch("text.md")
+    .then(res => res.text())
+    .then(md => {
+      document.getElementById("content").innerHTML = marked.parse(md);
+    });
+</script>
 </body>
 
 </html>
