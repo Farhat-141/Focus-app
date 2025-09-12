@@ -47,6 +47,11 @@
                 </ul>
                 <ul class="user-list">
                     <hr>
+                   
+                    <li class=" side side-bar-list-item">
+                        <img width="30px" src="assesst/music_note_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="setting icon">
+                        <p class="side-bar-list-item-p">Guide</p>
+                    </li>
                     <li class=" side side-bar-list-item" id="sound">
                         <img width="30px" src="assesst/music_note_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="setting icon">
                         <p class="side-bar-list-item-p">sound</p>
@@ -75,9 +80,9 @@
                 <section id="progress" class="progress">
                     <canvas id="timerChart" height="0"></canvas>
                     <div class="progress-wrap">
+                        <button class="progress-btn">Chart view</button>
                         <div class="progress-control">
                             <h1>Finished Timers</h1>
-                            <button class="progress-btn">Chart view</button>
                         </div>
                         <div class ="doneTimer">
                             <li class="progress-timer">
@@ -115,6 +120,10 @@
                         <input type="checkbox">
                         <input type="checkbox">
                     </div>
+                </section>
+
+                <section id="sound" class="sound-section">
+                    <audio src="Beethoven - Moonlight Sonata Full.mp3" controls></audio>
                 </section>
 
                 <section id="setting" class="setting-section">
@@ -177,12 +186,6 @@
                         </audio>
                         </div>
                     </div>
-                </section>
-
-                <section id="sound" class="sound-section">
-                    <audio src="Beethoven - Moonlight Sonata Full.mp3" controls>
-
-                    </audio>
                 </section>
             </div>
         </article>

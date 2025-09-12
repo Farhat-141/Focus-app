@@ -1251,6 +1251,7 @@ section.active {
   background-color: transparent;
   backdrop-filter: blur(10px);
 }
+
 .progress-control{
   display: flex;
   width: 100%;
@@ -1261,5 +1262,17 @@ section.active {
   position: absolute;
   right: 0;
   top: 0;
-  margin: 10px 20px;
+  margin:50px  20px;
+  padding: 5px 15px;
+  border-radius: 15px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: 1px solid;
+  transition: 0.3s;
+}
+.progress-btn:hover{
+  transition: 0.3s;
+  cursor: pointer;
+  color: var(--background-color);
+  background-color: var(--text-color);
 }
