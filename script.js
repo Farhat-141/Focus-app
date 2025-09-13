@@ -762,12 +762,12 @@ class sideBar{
       if(this.statue == false){
         this.statue = true;
         this.group.forEach(el=>{
-          el.style.display = 'block';
+          el.classList.toggle = 'active';
         })
       }else{
         this.statue = false;
         this.group.forEach(el=>{
-          el.style.display = 'none';
+          el.classList.toggle = 'none';
         })
       }
     });
@@ -810,7 +810,7 @@ function loadGraph(finished){
   document.getElementById('timerChart').classList = ('myChart');
 
    myChart = new Chart("timerChart", {
-    type: "line",
+    type: "bar",
     data: {
       labels: xValuesNames,
       datasets: [{
@@ -829,9 +829,16 @@ function loadGraph(finished){
 }
 
 document.getElementById('clearData').addEventListener('click',()=>{
-  localStorage.clear();
-  location.reload();
+  let answer = confirm('are you sure you want to clear all data');
+  if(answer){
+    localStorage.clear();
+    location.reload();
+  }
 })
+
+document.querySelector('.guide-icon').addEventListener('click', () => {
+  document.getElementById('content').classList.toggle('active');
+});
 
 window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
