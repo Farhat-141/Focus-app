@@ -847,7 +847,6 @@ window.addEventListener('DOMContentLoaded', () => {
   new TimerSelect('.clear','.timer-section');   
   new sideBar();
 
-
   const finished = JSON.parse(localStorage.getItem('savedSession') || '[]');
   const savedTheme = localStorage.getItem('selectedTheme');
   const savedFont = localStorage.getItem('selectedFont')
@@ -880,5 +879,4 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   instruction();
 
-  // Set initial active section (default to timer)
 });
