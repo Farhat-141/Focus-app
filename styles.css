@@ -512,6 +512,21 @@ body {
   width: auto;
   transition: 0.2s;
   z-index: 100;
+  animation: clockFadeIn 0.5s forwards;
+}
+section{
+    animation: clockFadeIn 0.5s forwards;
+}
+@keyframes clockFadeIn{
+  from{
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
 }
 
 .clock:hover {
@@ -766,13 +781,15 @@ body {
   height: 80%;
   z-index: 999;
   background-color: var(--background-color);
-  padding: 5px;
+  padding: 10px 20px;
   width: 75%;
-  border-radius: 10px;
+  border-radius: 20px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-transform: capitalize;
 }
 
 .board * {
@@ -1002,7 +1019,7 @@ body {
   z-index: 999;
 }
 
-.board {
+.board ,.fullscreen{
   padding: 2rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   opacity: 0;
@@ -1254,6 +1271,7 @@ section.active {
   margin: 5px;
   background-color: var(--text-color);
   color: var(--background-color);
+  max-width: 900px;
 }
 
 .myChart {
@@ -1294,7 +1312,7 @@ section.active {
   background-color: var(--text-color);
 }
 .guide-section{
-  padding: 5px 50px;
+  padding: 5px 10px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1307,7 +1325,7 @@ section.active {
   cursor: pointer;
 }
 .data-clear-btn:hover{
-  background-color: light;
+  background-color: lightgray;
 }
 .guide-icon{
   background-color: #000000;

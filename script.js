@@ -317,6 +317,7 @@ class Timer {
         const newName        = windowEl.querySelector('.boardInput').value || 'timer_name';
         this.remaining = this._parseDuration(newDuration);
         this.originalDuration = newDuration;
+        this.name = newName;
         this._updateDisplay();
         this.el.querySelector('.header p').textContent = newName;
         windowEl.remove();
@@ -324,13 +325,13 @@ class Timer {
         let saved = JSON.parse(localStorage.getItem('saved') || '[]');
         saved = saved.map(item => {
         if (item.id === this.id) {
-        // preserve id, update other fields
         return { id: this.id, name: this.name, duration: this.originalDuration };
       }
       return item;
     });
     localStorage.setItem('saved', JSON.stringify(saved));
-      });
+
+    });
 
       editCancelBtn.addEventListener('click',()=>{
         windowEl.remove();
@@ -785,7 +786,7 @@ function loadProgress(finished){
 
     it.innerHTML = `
         <p>name | ${element.name}</p>
-        <p>duration | ${element.duration}</p>
+        <p>duration | ${element.duration/3600}</p>
         <p>rating | ${str}%</p>
         <p>Feedback | ${element.feedback}</p>
      `;
