@@ -1179,7 +1179,9 @@ body {
   z-index: 2;
   pointer-events: all;
 }
-
+.App{
+  background-color: var(--secondary-bg);
+}
 .progress-h1 {
   margin: 25px;
   font-size: 60px;
