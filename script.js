@@ -385,7 +385,9 @@ class TimerModal{
   _bindAdd() {
     this.addBtn.addEventListener('click', () => this.show());
     document.body.addEventListener('keypress', (e) => {
-      if (e.key === '+') {
+      let cond = document.querySelector('.timer').style.display === 'grid';
+      console.log(cond)
+      if (e.key === '+' & cond) {
         this.show(); 
       }
     });
@@ -552,11 +554,48 @@ class TimerSelect {
 
   // Global keydown event for 'Delete' key
   document.addEventListener('keydown', (e) => {
+    let cond = document.querySelector('.timer').style.display === 'grid';
+    let cond2 = !document.querySelector('.board');
+
     if(e.key === 'Escape') {
       showSection('setting');
       setActiveItem('setting');
     }
-    if (e.key === 'Delete') {
+
+    if(cond2){
+    switch(e.key){
+      case '1':
+        showSection('timer');
+        setActiveItem('timer');
+        break;
+      case '2':
+        showSection('progress');
+        setActiveItem('progress');
+        break;
+      case '3':
+        showSection('check-list');
+        setActiveItem('check-list');
+        break;
+      case '4':
+        showSection('note');
+        setActiveItem('note');
+        break;
+      case '5':
+        showSection('tracker');
+        setActiveItem('tracker');
+        break;
+      case '6':
+        showSection('guide');
+        setActiveItem('guide');
+        break;
+      case '7':
+        showSection('sound');
+        setActiveItem('sound');
+        break;
+      }
+    }
+
+    if (e.key === 'Delete' && cond) {
       this._handleClear();
     }
 

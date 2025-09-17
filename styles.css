@@ -81,10 +81,10 @@ body.theme-minimal {
 }
 body.theme-fancy {
   /* Enhanced Fancy Theme - Sunset Gradient Paradise */
-  --background-color: #b16232;
-  --text-color: #b16232290907;
+  --background-color: #F0DCCA;
+  --text-color: #000000;
   --accent-color: #ffffff;
-  --secondary-bg: rgba(255, 255, 255, 0.9);
+  --secondary-bg: #F3E3D5;
   --reset-color: #f472b6;
   --reset-color-hover: #ec4899;
   --start-color: #34d399;
@@ -111,7 +111,7 @@ body.theme-fancy {
   --layer-bg: rgba(146, 64, 14, 0.9);
   --darkred-shadow: #be185d;
   --white-color: #ffffff;
-  --black-color: #92400e;
+  --black-color: #000000;
 }
 
 body.theme-scifi {
