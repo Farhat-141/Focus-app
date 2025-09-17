@@ -1200,6 +1200,9 @@ section {
   width: 100%;
 }
 
+.check-list{
+  padding: 0;
+}
 section.active {
   display: inherit;
   opacity: 1;

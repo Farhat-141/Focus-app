@@ -1,0 +1,109 @@
+body{
+  background-color: rgb(255, 255, 255);
+  color: darkslategrey;
+  font-family: math;
+  width: 100%;
+}
+.App {
+  margin:  auto;
+  background-color: rgb(255, 255, 255);
+  min-width: 350px;
+  padding: 20px;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-control{
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+  align-items: end;
+  min-width: 350px;
+}
+
+.addBtn {
+  background-color: rgba(47, 79, 79, 0.9);
+  color: white;
+  font-size: xx-large; /* can be removed if using only image */
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+  width: 40px; /* slightly bigger for padding */
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addBtn img {
+  width: 25px;
+  height: 25px; 
+}
+
+.addBtn:hover{
+  background-color: rgba(47, 79, 79, 0.699);
+  color: rgb(80, 143, 143);
+  cursor: pointer;
+}
+
+.taskName{
+  width: 100%;
+  padding: 10px 5px;
+  border: none;
+  border-bottom: 1px solid;
+  transition: 0.2s;
+}
+
+.taskName:focus{
+  outline: none;
+  transition: 0.2s;
+}
+
+.list{
+  min-width: 350px;
+  list-style: none;
+  padding: 0;
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+
+.item div{
+  display: flex;
+  gap: 0 10px;
+  height: fit-content;
+}
+
+.item div *{
+  margin: 0;
+} 
+
+.item{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid;
+  border-radius: 12px;
+}
+
+.delBtn:hover{
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: lightgray;
+}
+
+.doneList{
+  padding: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  display: none;
+  min-width: 350px;
+}
+
+.done{
+  cursor: pointer;
+  padding: 0;
+  width: fit-content;
+  background-color: lightgray;
+}

@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=Audiowide&family=Limelight&family=Lobster&family=Monoton&family=Orbitron:wght@400..900&family=Pacifico&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="assesst/target_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg">
 </head>
 
 <body>    
@@ -22,7 +23,7 @@
             <nav class="side-bar">
                 <ul class="side-bar-list">
                     <div class= "toggle-menu">
-                        <img class= "toggle-menu-icon" src="menu-icon.png" alt="toggle">
+                        <img class= "toggle-menu-icon" src="assesst/menu-icon.png" alt="toggle">
                     </div>
                     <li class="side-bar-list-item" id="timer">
                         <img width="30px" src="assesst/hourglass_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="">
@@ -56,7 +57,7 @@
                         <p class="side-bar-list-item-p">sound</p>
                     </li>
                     <li class="setting side side-bar-list-item" id="setting">
-                        <img width="30px" src="settings_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="setting icon">
+                        <img width="30px" src="assesst/settings_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="setting icon">
                         <p class="side-bar-list-item-p">setting</p>
                     </li>
                 </ul>
@@ -66,14 +67,14 @@
                 <section class="timer" id="timer">
                     <div class="timer-section">
                         <div class="instruction">
-                            <img class="instruction-img" src="clock-icon.jpg" alt="timer">
+                            <img class="instruction-img" src="assesst/clock-icon.jpg" alt="timer">
                             <h2>You Don't Have any Timers.</h2>
-                            <p>select <img width="30px" src="add-icon.png" alt=""> below to add a new timer.</p>
+                            <p>select <img width="30px" src="assesst/add-icon.png" alt="add-icon"> below to add a new timer.</p>
                         </div>
                         <div class="functions"> <!--for adding-->
-                            <img class="add" id="add" src="add-icon.png" alt="">
+                            <img class="add" id="add" src="assesst/add-icon.png" alt="">
                             <hr>
-                            <img class="clear" id="clear" src="clear-icon.png" alt="">
+                            <img class="clear" id="clear" src="assesst/clear-icon.png" alt="">
                         </div>
                     </div>
                 </section>
@@ -98,9 +99,9 @@
                     </div>
                 </section>
 
-                <section id="check-list">
+                <section id="check-list" class="check-list">
                     <div class="check-list-section">
-                        <p>list</p>
+                        <div id="root"></div>
                     </div>
                 </section>
 
@@ -162,7 +163,6 @@
                                     <li class="themeChoice" id="Pacifico"  style="font-family: Pacifico;">Pacifico</li>
                                     <li class="themeChoice" id="Roboto Mono"  style="font-family: Roboto Mono;">robot mono</li>
                                     <li class="themeChoice" id="Audiowide"  style="font-family: Audiowide;">Audiowide</li>
-                                    <li class="themeChoice" id="Monoton"  style="font-family: Monoton;">Monoton</li>
                                 </div>
                             </div>
 
@@ -207,6 +207,9 @@
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
+
+    
     <script>
     fetch("text.md")
     .then(res => res.text())
