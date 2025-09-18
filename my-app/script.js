@@ -561,7 +561,7 @@ class TimerSelect {
       showSection('setting');
       setActiveItem('setting');
     }
-    
+
     if (cond2 && e.altKey) {
   switch (e.key) {
     case '1':
@@ -641,7 +641,7 @@ _handleClear() {
 
   selecting() {
     const timerEls = this.group.querySelectorAll('.clock');
-    this.clearBtn.src = "check-icon.png";
+    this.clearBtn.src = "assesst/check-icon.png";
     this.clearBtn.className = "confirm"; 
     this.selectionActive = true;        
     const selectingOverlay = document.createElement('div');
@@ -671,7 +671,7 @@ _handleClear() {
       el.removeEventListener('click', this.handleDeleteClick);
     });
 
-    this.clearBtn.src = "clear-icon.png";
+    this.clearBtn.src = "assesst/clear-icon.png";
     this.clearBtn.className = "clear";
     this.selectionActive = false; 
     document.body.querySelector('.selectingOverlay').remove();
@@ -829,10 +829,10 @@ function loadProgress(finished){
     let str = (element.rating/10) * 100;
 
     it.innerHTML = `
-        <p>name | ${element.name}</p>
-        <p>duration | ${element.duration/3600}</p>
-        <p>rating | ${str}%</p>
-        <p>Feedback | ${element.feedback}</p>
+        <p>name : ${element.name}</p>
+        <p>duration : ${element.duration/3600}</p>
+        <p>rating : ${str}%</p>
+        <p>Feedback : ${element.feedback}</p>
      `;
     location.append(it);
   });

@@ -22,8 +22,10 @@ body{
   min-width: 350px;
 }
 
+@import url('/my-app/styles.css');
+
 .addBtn {
-  background-color: rgba(47, 79, 79, 0.9);
+  background-color: var(--text-color);
   color: white;
   font-size: xx-large; /* can be removed if using only image */
   border: none;
@@ -42,9 +44,8 @@ body{
 }
 
 .addBtn:hover{
-  background-color: rgba(47, 79, 79, 0.699);
-  color: rgb(80, 143, 143);
-  cursor: pointer;
+    opacity: 0.7;
+    cursor: pointer;
 }
 
 .taskName{
@@ -66,6 +67,13 @@ body{
   padding: 0;
   max-height: 60vh;
   overflow-y: scroll;
+  
+}
+
+.list {
+  /* Modern browsers */
+  scrollbar-width: thin;
+  scrollbar-color: var(--background-color) var(--secondary-bg);
 }
 
 .item div{
