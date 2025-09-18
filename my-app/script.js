@@ -557,6 +557,11 @@ class TimerSelect {
     let cond = document.querySelector('.timer').style.display === 'grid';
     let cond2 = !document.querySelector('.board');
 
+    if(e.key == 'Escape'){
+      showSection('setting');
+      setActiveItem('setting');
+    }
+    
     if (cond2 && e.altKey) {
   switch (e.key) {
     case '1':
