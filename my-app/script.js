@@ -557,43 +557,43 @@ class TimerSelect {
     let cond = document.querySelector('.timer').style.display === 'grid';
     let cond2 = !document.querySelector('.board');
 
-    if(e.key === 'Escape') {
+    if (cond2 && e.altKey) {
+  switch (e.key) {
+    case '1':
+      showSection('timer');
+      setActiveItem('timer');
+      break;
+    case '2':
+      showSection('progress');
+      setActiveItem('progress');
+      break;
+    case '3':
+      showSection('check-list');
+      setActiveItem('check-list');
+      break;
+    case '4':
+      showSection('note');
+      setActiveItem('note');
+      break;
+    case '5':
+      showSection('tracker');
+      setActiveItem('tracker');
+      break;
+    case '6':
+      showSection('guide');
+      setActiveItem('guide');
+      break;
+    case '7':
+      showSection('sound');
+      setActiveItem('sound');
+      break;
+    case '8':
       showSection('setting');
       setActiveItem('setting');
-    }
+      break;
+  }
+}
 
-    if(cond2){
-    switch(e.key){
-      case '1':
-        showSection('timer');
-        setActiveItem('timer');
-        break;
-      case '2':
-        showSection('progress');
-        setActiveItem('progress');
-        break;
-      case '3':
-        showSection('check-list');
-        setActiveItem('check-list');
-        break;
-      case '4':
-        showSection('note');
-        setActiveItem('note');
-        break;
-      case '5':
-        showSection('tracker');
-        setActiveItem('tracker');
-        break;
-      case '6':
-        showSection('guide');
-        setActiveItem('guide');
-        break;
-      case '7':
-        showSection('sound');
-        setActiveItem('sound');
-        break;
-      }
-    }
 
     if (e.key === 'Delete' && cond) {
       this._handleClear();

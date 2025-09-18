@@ -38,7 +38,7 @@ body.theme-minimal {
   --background-color: #ffffff;
   --text-color: #000000;
   --accent-color: #6b7280;
-  --secondary-bg: rgb(201, 201, 201);
+  --secondary-bg: lightgray;
   --reset-color: #f87171;
   --reset-color-hover: #ef4444;
   --start-color: #34d399;
@@ -79,7 +79,7 @@ body.theme-minimal {
     transform: scale(1);
   }
 }
-body.theme-fancy {
+body.theme-coffee {
   /* Enhanced Fancy Theme - Sunset Gradient Paradise */
   --background-color: #F0DCCA;
   --text-color: #000000;

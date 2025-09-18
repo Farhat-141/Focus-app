@@ -17,7 +17,7 @@ body{
   display: flex;
   justify-content: start;
   gap: 10px;
-  align-items: end;
+  align-items: center;
   background-color: transparent;
   min-width: 350px;
 }
@@ -51,8 +51,8 @@ body{
   width: 100%;
   padding: 10px 5px;
   border: none;
-  border-bottom: 1px solid;
   transition: 0.2s;
+  border-radius: 10px;
 }
 
 .taskName:focus{

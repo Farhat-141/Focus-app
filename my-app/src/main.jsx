@@ -1,10 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+import CheckList from './component/checkList.jsx'
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('check-list-section')).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <CheckList />
+  </StrictMode>
+)
+
+createRoot(document.getElementById('note-section')).render(
+  <StrictMode>
+    
+  </StrictMode>
 )

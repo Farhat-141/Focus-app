@@ -1,8 +1,8 @@
-import './App.css';
+import '../styles/checkList.css';
 import { useState, useEffect, useRef } from 'react';
 
-import addIcon from './add-icon.svg';
-import closeIcon from './closeIcon.svg';
+import addIcon from '../assets/add-icon.svg';
+import closeIcon from '../assets/closeIcon.svg';
 
 function AppControl({ value, setValue, addTask }) {
   const inputRef = useRef(null);
