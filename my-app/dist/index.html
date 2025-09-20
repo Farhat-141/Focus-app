@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus App </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=Audiowide&family=Limelight&family=Lobster&family=Monoton&family=Orbitron:wght@400..900&family=Pacifico&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="/assets/target_24dp_000000_FILL0_wght400_GRAD0_opsz24-FtmGcmAJ.svg">
+  <script type="module" crossorigin src="/assets/index-92h0IUn6.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Cu1Bx2iQ.css">
+</head>
+
+<body>    
+    <div class="container">
+        <div class= "current-time" id="current-time"></div>
+
+        <div class="logo">
+            <h1 class="title">Focus Pomodoro</h1>
+        </div>
+
+        <article class="main">
+            <nav class="side-bar">
+                <ul class="side-bar-list">
+                    <div class= "toggle-menu">
+                        <img class= "toggle-menu-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAaCAYAAACgoey0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACaSURBVEhL7dKxEUUREIXhvbcDRWhCAwIzmhEIBZrRhUADQnVQwHuZYIMdCRtcX3iSf2Z5xhg/YPDi4ZQbPoYt/FC/upQCIQQ8L3HOgTEGzxMZ3ont1Gxh8tS9d2it4XmJlBKEEHieyHCtFVJKeF5irQWlFJ4nMrwT2xuzhclT55whxojnJd570FrjeSLDO7Gd+oaPueFjvhf+Ay7PNu23UZ10AAAAAElFTkSuQmCC" alt="toggle">
+                    </div>
+                    <li class="side-bar-list-item" id="timer">
+                        <img width="30px" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23FFFFFF'%3e%3cpath%20d='M320-160h320v-120q0-66-47-113t-113-47q-66%200-113%2047t-47%20113v120Zm160-360q66%200%20113-47t47-113v-120H320v120q0%2066%2047%20113t113%2047ZM160-80v-80h80v-120q0-61%2028.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0%2061-28.5%20114.5T612-480q51%2032%2079.5%2085.5T720-280v120h80v80H160Zm320-80Zm0-640Z'/%3e%3c/svg%3e" alt="">
+                        <p class="side-bar-list-item-p" >timer</p>
+                    </li>
+                    <li class="side-bar-list-item" id="progress">
+                        <img width="30px" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23FFFFFF'%3e%3cpath%20d='M340-180q-125%200-212.5-87.5T40-480q0-125%2087.5-212.5T340-780q125%200%20212.5%2087.5T640-480q0%20125-87.5%20212.5T340-180Zm400%2020v-488l-44%2044-56-56%20140-140%20140%20140-57%2056-43-43v487h-80ZM340-260q92%200%20156-64t64-156q0-92-64-156t-156-64q-92%200-156%2064t-64%20156q0%2092%2064%20156t156%2064Zm80-80%2056-56-96-97v-147h-80v180l120%20120Zm-80-140Z'/%3e%3c/svg%3e" alt="">
+                        <p class="side-bar-list-item-p">progress</p>
+                    </li>
+                    <li class="side-bar-list-item" id="check-list">
+                        <img width="30px" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23FFFFFF'%3e%3cpath%20d='M222-200%2080-342l56-56%2085%2085%20170-170%2056%2057-225%20226Zm0-320L80-662l56-56%2085%2085%20170-170%2056%2057-225%20226Zm298%20240v-80h360v80H520Zm0-320v-80h360v80H520Z'/%3e%3c/svg%3e" alt="">
+                        <p class="side-bar-list-item-p">check List</p>
+                    </li>
+                    <li class="side-bar-list-item" id="note">
+                        <img width="30px" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23FFFFFF'%3e%3cpath%20d='M240-80q-33%200-56.5-23.5T160-160v-640q0-33%2023.5-56.5T240-880h320l240%20240v480q0%2033-23.5%2056.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200%20640-640Z'/%3e%3c/svg%3e" alt="">
+                        <p class="side-bar-list-item-p">note</p>
+                    </li>
+                    <li class="side-bar-list-item" id="tracker">
+                        <img width="30px" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23FFFFFF'%3e%3cpath%20d='M80-120v-80h800v80H80Zm40-120v-280h120v280H120Zm200%200v-480h120v480H320Zm200%200v-360h120v360H520Zm200%200v-600h120v600H720Z'/%3e%3c/svg%3e" alt="">
+                        <p class="side-bar-list-item-p">Streak Tracker</p>
+                    </li>
+                </ul>
+                <ul class="user-list">
+                    <hr>
+                    <li class=" side side-bar-list-item" id="guide">
+                        <img width="30px" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23FFFFFF'%3e%3cpath%20d='M200-120q-33%200-56.5-23.5T120-200v-560q0-33%2023.5-56.5T200-840h560q33%200%2056.5%2023.5T840-760v560q0%2033-23.5%2056.5T760-120H200Zm0-640v560h560v-560h-80v280l-100-60-100%2060v-280H200Zm0%20560v-560%20560Z'/%3e%3c/svg%3e" alt="setting icon">
+                        <p class="side-bar-list-item-p">Guide</p>
+                    </li>
+                    <li class=" side side-bar-list-item" id="sound">
+                        <img width="30px" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23FFFFFF'%3e%3cpath%20d='M400-120q-66%200-113-47t-47-113q0-66%2047-113t113-47q23%200%2042.5%205.5T480-418v-422h240v160H560v400q0%2066-47%20113t-113%2047Z'/%3e%3c/svg%3e" alt="setting icon">
+                        <p class="side-bar-list-item-p">sound</p>
+                    </li>
+                    <li class="setting side side-bar-list-item" id="setting">
+                        <img width="30px" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23FFFFFF'%3e%3cpath%20d='m370-80-16-128q-13-5-24.5-12T307-235l-119%2050L78-375l103-78q-1-7-1-13.5v-27q0-6.5%201-13.5L78-585l110-190%20119%2050q11-8%2023-15t24-12l16-128h220l16%20128q13%205%2024.5%2012t22.5%2015l119-50%20110%20190-103%2078q1%207%201%2013.5v27q0%206.5-2%2013.5l103%2078-110%20190-118-50q-11%208-23%2015t-24%2012L590-80H370Zm70-80h79l14-106q31-8%2057.5-23.5T639-327l99%2041%2039-68-86-65q5-14%207-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99%2042q-22-23-48.5-38.5T533-694l-13-106h-79l-14%20106q-31%208-57.5%2023.5T321-633l-99-41-39%2068%2086%2064q-5%2015-7%2030t-2%2032q0%2016%202%2031t7%2030l-86%2065%2039%2068%2099-42q22%2023%2048.5%2038.5T427-266l13%20106Zm42-180q58%200%2099-41t41-99q0-58-41-99t-99-41q-59%200-99.5%2041T342-480q0%2058%2040.5%2099t99.5%2041Zm-2-140Z'/%3e%3c/svg%3e" alt="setting icon">
+                        <p class="side-bar-list-item-p">setting</p>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sections">
+                <section class="timer" id="timer">
+                    <div class="timer-section">
+                        <div class="instruction">
+                            <img class="instruction-img" src="/assets/clock-icon-BrtuBFDR.jpg" alt="timer">
+                            <h2>You Don't Have any Timers.</h2>
+                            <p>select <img width="30px" src="/assets/add-icon-DrXIplPW.png" alt="add-icon"> below to add a new timer.</p>
+                        </div>
+                        <div class="functions"> <!--for adding-->
+                            <img class="add" id="add" src="/assets/add-icon-DrXIplPW.png" alt="">
+                            <hr>
+                            <img class="clear" id="clear" src="/assets/clear-icon-COXFmP6u.png" alt="">
+                        </div>
+                    </div>
+                </section>
+
+                <section id="progress">
+                    <div class="progress-section">
+                        <canvas id="timerChart" height="0"></canvas>
+                        <div class="progress-wrap">
+                            <button class="progress-btn">Chart view</button>
+                            <div class="progress-control">
+                                <h1>Finished Timers</h1>
+                            </div>
+                            <div class ="doneTimer">
+                                <li class="progress-timer">
+                                    <p>name | oiuguio</p>
+                                    <p>duration | 25:00:00</p>
+                                    <p>rating | * * * * *</p>
+                                    <p>note i need to be more patient and take things on </p>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!--Control from react  than make a production-->
+                <section id="check-list" class="check-list">
+                        <div id="check-list-section"></div>
+                </section>
+
+                <section id="note">
+                    <div class="note-section" id="note-section">
+                        <textarea style="width: 350px; height: 500px; background-color: black; color: white;"> </textarea>
+                    </div>
+                </section>
+
+                <section id="tracker">
+                    <div  class="tracker-section">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                    </div>
+                </section>
+
+                <section id="guide" >
+                    <div class="guide-section">
+                        <h1 class="guide-option">advise on deep work and learning <img class="guide-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23FFFFFF'%3e%3cpath%20d='M480-360%20280-560h400L480-360Z'/%3e%3c/svg%3e" alt=""> </h1>
+                        <div id="content"></div>
+                    </div>
+                </section>
+
+                <section id="sound" >
+                    <div class="sound-section">
+                        <audio src="/assets/Beethoven%20-%20Moonlight%20Sonata%20Full-KaIWVobr.mp3" controls></audio>
+                    </div>
+                </section>
+
+                <section id="setting">
+                    <div  class="setting-section">
+                        <div class="custom">
+                            <button class="data-clear-btn" id="clearData">clearn data</button>
+                            <div class="theme-area" id="theme-area">
+                                <div class="theme-label" id="theme-label">Theme</div>
+                                <div class="theme" id="theme">
+                                    <li class="themeChoice" id="default" class="active">Default</li>
+                                    <li class="themeChoice" id="minimal">Minimal</li>
+                                    <li class="themeChoice" id="coffee">Coffee</li>
+                                    <li class="themeChoice" id="scifi">Sci-fi</li>
+                                </div>
+                            </div>
+                            <div class="theme-area" id="theme-area">
+                                <div class="theme-label" id="font-label">Font</div>
+                                <div class="theme" id="font">
+                                    <li class="themeChoice" id="Math" class="active" style="font-family: Math;">Math</li>
+                                    <li class="themeChoice" id="arial" class="active" style="font-family: Arial;">Arial</li>
+                                    <li class="themeChoice" id="serif"  style="font-family: serif;">Serif</li>
+                                    <li class="themeChoice" id="lobster"  style="font-family: Lobster;">Lobster</li>
+                                    <li class="themeChoice" id="Limelight"  style="font-family: Limelight;">Art Deco</li>
+                                    <li class="themeChoice" id="Sour Gummy"  style="font-family: Sour Gummy;">Sour Gummy</li>
+                                    <li class="themeChoice" id="Pacifico"  style="font-family: Pacifico;">Pacifico</li>
+                                    <li class="themeChoice" id="Roboto Mono"  style="font-family: Roboto Mono;">robot mono</li>
+                                    <li class="themeChoice" id="Audiowide"  style="font-family: Audiowide;">Audiowide</li>
+                                    <li class="themeChoice" id="Monoton"  style="font-family: Monoton;">Monoton</li>
+                                </div>
+                            </div>
+
+                            <div class="clock" style="margin: auto;">
+                                <div class="header">
+                                    <p>Name</p>
+                                    <div class="headerBtns">
+                                        <button class="headerBtn edit">edit</button>
+                                        <button class="headerBtn full">full</button>
+                                    </div>
+                                </div>
+                                <div class="timer">
+                                    <svg class="progress-circle" viewBox="0 0 36 36">
+                                    <path class="circle-bg"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <path class="circle-bar"
+                                        stroke-dasharray="60, 100"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <text x="18" y="20.35" class="circle-label">00 : 01 : 23</text>
+                                    </svg>
+                                </div>
+                                <div class="control">
+                                    <button class="btn reset" style="display:none;">Reset</button>
+                                    <button class="btn stop" style="display:none;">Stop</button>
+                                    <button class="btn start">Start</button>
+                                </div>
+                                <audio class="alarm" loop>
+                                    <source src="/assets/Sound1-hqUb8W0H.mp3" type="audio/mp3">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    
+    <script>
+    fetch("text.md")
+    .then(res => res.text())
+    .then(md => {
+      document.getElementById("content").innerHTML = marked.parse(md);
+    });
+</script>
+</body>
+
+</html>
