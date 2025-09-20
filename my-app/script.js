@@ -209,8 +209,10 @@ class Timer {
 
     // Save back to localStorage
     localStorage.setItem('savedSession', JSON.stringify(savedSession));
+
     loadProgress(savedSession)
     loadGraph(savedSession)
+
     console.log(localStorage.getItem('savedSession'));
     this.feedback();
   }
@@ -556,13 +558,14 @@ class TimerSelect {
   document.addEventListener('keydown', (e) => {
     let cond = document.querySelector('.timer').style.display === 'grid';
     let cond2 = !document.querySelector('.board');
+    let cond3 = !document.querySelector('.fullscreen');
 
-    if(e.key == 'Escape'){
+    if(cond2 && cond3 && e.key == 'Escape'){
       showSection('setting');
       setActiveItem('setting');
     }
 
-    if (cond2 && e.altKey) {
+    if (cond2 &&cond3 && e.altKey) {
   switch (e.key) {
     case '1':
       showSection('timer');
@@ -744,6 +747,8 @@ if (window.innerWidth < 768) {
 window.addEventListener("resize", handleResize);
 handleResize();
 */
+
+
 document.querySelectorAll('#theme li').forEach(option => {
   option.addEventListener('click', () => {
     document.body.className = `theme-${option.id}`;
@@ -844,6 +849,7 @@ function loadProgress(finished){
   y -> rating
   Each point is a timer session
 */
+
 let myChart = null;
 function loadGraph(finished){
   if(!document.querySelector('.myChart')){
@@ -872,6 +878,8 @@ function loadGraph(finished){
     document.getElementById('timerChart').classList = '';
   }
 }
+
+
 
 document.getElementById('clearData').addEventListener('click',()=>{
   let answer = confirm('are you sure you want to clear all data');
