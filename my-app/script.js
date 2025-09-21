@@ -800,30 +800,6 @@ function instruction(){
   }
 }
 
-class sideBar{
-  constructor(){
-    this.toggle = document.querySelector('.toggle-menu');
-    this.group = document.querySelectorAll('.side-bar-list-item p');
-    this.statue = false;
-    this.trigger();
-  }
-  trigger(){
-    this.toggle.addEventListener('click',()=>{
-      if(this.statue == false){
-        this.statue = true;
-        this.group.forEach(el=>{
-          el.classList.toggle = 'active';
-        })
-      }else{
-        this.statue = false;
-        this.group.forEach(el=>{
-          el.classList.toggle = 'none';
-        })
-      }
-    });
-  }
-}
-
 function loadProgress(finished){
   const location = document.querySelector('.doneTimer');
   location.innerHTML = '';
@@ -879,8 +855,6 @@ function loadGraph(finished){
   }
 }
 
-
-
 document.getElementById('clearData').addEventListener('click',()=>{
   let answer = confirm('are you sure you want to clear all data');
   if(answer){
@@ -897,7 +871,6 @@ window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
   new TimerModal('.add', '.timer-section'); 
   new TimerSelect('.clear','.timer-section');   
-  new sideBar();
 
   const finished = JSON.parse(localStorage.getItem('savedSession') || '[]');
   const savedTheme = localStorage.getItem('selectedTheme');

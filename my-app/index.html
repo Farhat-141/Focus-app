@@ -22,13 +22,6 @@
         <article class="main">
             <nav class="side-bar">
                 <ul class="side-bar-list">
-                    <div class= "toggle-menu">
-                        <img class= "toggle-menu-icon" src="assesst/menu-icon.png" alt="toggle">
-                    </div>
-                    <li class="side-bar-list-item" id="check-list">
-                        <img width="30px" src="assesst/checklist_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                        <p class="side-bar-list-item-p">check List</p>
-                    </li>
                     <li class="side-bar-list-item" id="timer">
                         <img width="30px" src="assesst/hourglass_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="">
                         <p class="side-bar-list-item-p" >timer</p>
@@ -37,7 +30,14 @@
                         <img width="30px" src="assesst/clock_arrow_up_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="">
                         <p class="side-bar-list-item-p">progress</p>
                     </li>
-                    
+                    <li class="side-bar-list-item" id="chart">
+                        <img width="30px" src="assesst/bar_chart_4_bars_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                        <p class="side-bar-list-item-p">visual progress</p>
+                    </li>
+                    <li class="side-bar-list-item" id="to-do">
+                        <img width="30px" src="assesst/checklist_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                        <p class="side-bar-list-item-p">To-do </p>
+                    </li>
                 <!--
                     <li class="side-bar-list-item" id="note">
                         <img width="30px" src="assesst/draft_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="">
@@ -85,12 +85,8 @@
 
                 <section id="progress">
                     <div class="progress-section">
-                        <canvas id="timerChart" ></canvas>
                         <div class="progress-wrap">
-                            <button class="progress-btn">Chart view</button>
-                            <div class="progress-control">
-                                <h1>Finished Timers</h1>
-                            </div>
+                            <h1 id="totalSession">Finished Timers</h1>
                             <div class ="doneTimer">
                             </div>
                         </div>
@@ -98,10 +94,15 @@
                 </section>
 
                 <!--Control from react  than make a production-->
-                <section id="check-list" class="check-list">
-                        <div id="check-list-section"></div>
+                <section id="to-do" class="to-do-section">
+                        <div id="to-do"></div>
                 </section>
 
+                <section id="chart">
+                    <div class="chart-section">
+                        <canvas id="timerChart"></canvas>
+                    </div>
+                </section>
                 <!--
                 <section id="note">
                     <div class="note-section" id="note-section">

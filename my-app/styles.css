@@ -1112,16 +1112,8 @@ body {
   border-radius: 50%;
 }
 
-.toggle-menu-icon:hover {
-  background-color: var(--progress-bg);
-  transition: 0.25s;
-}
-
 @media (max-width: 768px) {
-  .toggle-menu {
-    display: block;
-    transition: 0.5s;
-  }
+
   .side-bar {
     align-items: center;
   }
@@ -1213,7 +1205,7 @@ section {
   scrollbar-color: var(--background-color) var(--secondary-bg);
 }
 
-.check-list {
+.to-do-list{
   padding: 0;
 }
 
@@ -1231,8 +1223,6 @@ section.active {
 }
 
 .sections .sound-section {
-  background: linear-gradient(-90deg, var(--background-color), var(--board-bg));
-  background-size: 400% 400%;
   background-image: url("assesst/image.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -1274,11 +1264,9 @@ section.active {
 }
 
 .progress-wrap {
-  grid-column: 1/3;
-  grid-row: 2/3;
+
   margin: none auto;
 }
-
 .progress-timer {
   list-style-type: none;
   border: 1px solid;
@@ -1290,11 +1278,16 @@ section.active {
   color: var(--background-color);
   max-width: 900px;
 }
+.progress-section{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 .myChart {
-  height: 100px;
+  height: 300px;
   border-radius: 15px;
   box-shadow: 0 0 15px var(--shadow-color);
-  position: sticky;
+  position: absolute;
   top: 0;
   background-color: transparent;
   backdrop-filter: blur(10px);

@@ -573,8 +573,8 @@ class TimerSelect {
       setActiveItem('progress');
       break;
     case '3':
-      showSection('check-list');
-      setActiveItem('check-list');
+      showSection('to-do-list');
+      setActiveItem('to-do-list');
       break;
     case '4':
       showSection('note');
@@ -679,71 +679,6 @@ _handleClear() {
   }
 }
 
-
-/*
-if (window.innerWidth < 768) {
-  const themeLabel = document.getElementById('theme-label');
-  const themePanel = document.getElementById('theme');
-  const themeArea = document.getElementById('theme-area');
-
-  themeLabel.addEventListener('mouseenter', () => {
-    themePanel.style.transform = 'translateX(0px)';
-    themeLabel.style.borderRadius = '0 0 12px 12px';
-    themeLabel.style.transition = '0.5s';
-  });
-
-  themeArea.addEventListener('mouseleave', () => {
-    themePanel.style.transform = 'translateX(-150px)';
-    themeLabel.style.borderRadius = '12px';
-    themeLabel.style.transition = '0.5s';
-  });
-}
-function handleResize() {  
-    const themeLabel = document.getElementById('theme-label');
-    const themePanel = document.getElementById('theme');
-    const themeArea = document.getElementById('theme-area');
-  
-if (window.innerWidth < 768) {
-  themeLabel.removeEventListener('click', themeToggle);
-  themeLabel.addEventListener('mouseenter', () => {
-    themePanel.style.transform = 'translateX(0px)';
-    themeLabel.style.borderRadius = '0 0 12px 12px';
-    themeLabel.style.transition = '0.5s';
-  });
-
-  themeArea.addEventListener('mouseleave', () => {
-    themePanel.style.transform = 'translateX(-150px)';
-    themeLabel.style.borderRadius = '12px';
-    themeLabel.style.transition = '0.5s';
-  });
-}
- if (window.innerWidth > 768) {
-    themePanel.style.transform = 'translateX(0px)';
-    themeLabel.style.borderRadius = '12px 0 0 12px';
-    themeLabel.style.transition = '0.5s';
-    themeArea.addEventListener('mouseleave', () => {
-      themePanel.style.transform = 'translateX(0px)';
-      themeLabel.style.borderRadius = '12px 0 0 12px';
-    });
-    let opened = true;
-
-    themeLabel.addEventListener('click',themeToggle);
-
-    function themeToggle(){
-      if (opened) {
-      themePanel.style.display = 'none';
-      opened = false;
-      themeLabel.style.borderRadius = '12px';
-    }else{
-      themePanel.style.display = 'flex';
-      opened = true;
-    }
-    }
-  }
-}
-window.addEventListener("resize", handleResize);
-handleResize();
-*/
 document.querySelectorAll('#theme li').forEach(option => {
   option.addEventListener('click', () => {
     document.body.className = `theme-${option.id}`;
@@ -764,7 +699,7 @@ function showSection(sectionId) {
     if(section.id !== sectionId){
       section.style.display = 'none';
     }else{
-      section.style.display = 'grid';
+      section.style.display = 'block';
     }
     section.classList.toggle('active', section.id === sectionId);
     localStorage.setItem('selectedSection',sectionId);
@@ -795,32 +730,10 @@ function instruction(){
   }
 }
 
-class sideBar{
-  constructor(){
-    this.toggle = document.querySelector('.toggle-menu');
-    this.group = document.querySelectorAll('.side-bar-list-item p');
-    this.statue = false;
-    this.trigger();
-  }
-  trigger(){
-    this.toggle.addEventListener('click',()=>{
-      if(this.statue == false){
-        this.statue = true;
-        this.group.forEach(el=>{
-          el.classList.toggle = 'active';
-        })
-      }else{
-        this.statue = false;
-        this.group.forEach(el=>{
-          el.classList.toggle = 'none';
-        })
-      }
-    });
-  }
-}
-
 function loadProgress(finished){
   const location = document.querySelector('.doneTimer');
+  const totalHours = finished.reduce((sum, el) => sum + el.duration, 0) / 3600;
+  document.getElementById('totalSession').textContent = `Finished Timers '${finished.length}' ==> '${totalHours.toFixed(2)} hours'`;
   location.innerHTML = '';
   finished.forEach(element => {
     const it = document.createElement('li');
@@ -844,33 +757,33 @@ function loadProgress(finished){
   y -> rating
   Each point is a timer session
 */
-let myChart = null;
-function loadGraph(finished){
-  if(!document.querySelector('.myChart')){
-  const xValuesNames = finished.map(el => el.name);
-  const xValues = finished.map(el => el.duration); // convert seconds to hours
-  const yValues = finished.map(el => el.rating);
+function loadGraph(finished) {
+  // x-axis: names, y-axis: ratings
+  const xValues = finished.map(el => el.name);
+  const yValues = finished.map(el => Number(el.rating));
   const barColors = finished.map(el => el.rating < 5 ? "red" : "blue");
 
-  document.getElementById('timerChart').classList = ('myChart');
+  document.getElementById('timerChart').className = 'myChart';
 
-   myChart = new Chart("timerChart", {
+  new Chart("timerChart", {
     type: "bar",
     data: {
-      labels: xValuesNames,
+      labels: xValues,
       datasets: [{
-        label: 'Timer Sessions (Duration vs Rating)',
+        label: 'Rating',
         backgroundColor: barColors,
         data: yValues
       }]
     },
-    options: {}
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 10
+        }
+      }
+    }
   });
-  }
-  else{
-    myChart.destroy();
-    document.getElementById('timerChart').classList = '';
-  }
 }
 
 document.getElementById('clearData').addEventListener('click',()=>{
@@ -889,7 +802,6 @@ window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
   new TimerModal('.add', '.timer-section'); 
   new TimerSelect('.clear','.timer-section');   
-  new sideBar();
 
   const finished = JSON.parse(localStorage.getItem('savedSession') || '[]');
   const savedTheme = localStorage.getItem('selectedTheme');
@@ -899,9 +811,7 @@ window.addEventListener('DOMContentLoaded', () => {
   loadProgress(finished);
   //loadGraph(finished);
 
-  document.querySelector('.progress-btn').addEventListener('click',()=> {
-    loadGraph(finished)
-  });
+  loadGraph(finished)
 
   if (savedTheme) {
     document.body.className = `theme-${savedTheme}`;
