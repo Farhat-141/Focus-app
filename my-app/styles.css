@@ -437,10 +437,11 @@ body {
 }
 
 .title {
-  text-align: center;
-  width: fit-content;
+  text-align: left;
+  width: 100%;
   color: var(--text-color);
   text-shadow: 0 0 2px;
+  margin: 10px;
 }
 
 .time {

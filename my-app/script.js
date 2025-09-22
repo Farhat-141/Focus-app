@@ -812,8 +812,7 @@ function loadProgress(finished){
   let sum = 0;
   finished.forEach(el =>{
     sum += el.duration; 
-  }
-) 
+  }) 
 
   document.getElementById('totalSession').textContent = `Finished Timers - ${finished.length} = ${(sum/3600).toPrecision(2)} hrs`;
 
@@ -826,7 +825,7 @@ function loadProgress(finished){
 
     it.innerHTML = `
         <p>name : ${element.name}</p>
-        <p>duration : ${element.duration/3600}</p>
+        <p>duration : ${(element.duration/3600).toPrecision(2)}</p>
         <p>rating : ${str}%</p>
         <p>Feedback : ${element.feedback}</p>
      `;
@@ -881,17 +880,21 @@ document.getElementById('clearData').addEventListener('click',()=>{
 document.querySelector('.guide-icon').addEventListener('click', () => {
   document.getElementById('content').classList.toggle('active');
 });
+
 function inputSuggestion() {
   const inputEl = document.querySelector('.boardInput');
   if (!inputEl) return;
 
-  const tasksRaw = JSON.parse(localStorage.getItem('tasks')).filter(task => task.checked === false);
-  let suggestions;
-  try {
-    suggestions = tasksRaw ? JSON.parse(tasksRaw).map(task => task.name) : ['work', 'study','read'];
-  } catch {
-    suggestions = ['work', 'study', 'read'];
+  let tasksRaw = [];
+  const tasksData = JSON.parse(localStorage.getItem('tasks') || '[]');
+
+  if (tasksData) {
+    tasksRaw = tasksData.filter(task => task.checked === false);
   }
+
+  let suggestions = tasksRaw.length ? tasksRaw.map(task => task.name) : ['work', 'study','read'];
+  
+  
   let dropdown = document.createElement('ul');
 
   dropdown.className = 'suggestion-dropdown';
