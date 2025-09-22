@@ -57,7 +57,7 @@ class Timer {
     this.el.dataset.id = this.id;
     this.el.innerHTML = `
       <div class="header">
-        <p>${this.name}</p>
+        <p title='${this.name}'>${this.name}</p>
         <div class="headerBtns">
           <button class="headerBtn edit">edit</button>
           <button class="headerBtn full">full</button>
@@ -111,7 +111,10 @@ class Timer {
 
   _updateDisplay() {
     const formatted = this._formatTime(this.remaining);
-    this.timeEl.textContent = formatted;    
+    this.timeEl.textContent = formatted; 
+
+    document.title = `(${formatted}) ${this.name} - Full Focus`; 
+
 
     if (this.progressBar) {
       const percent = 100 * (this.remaining / this._parseDuration(this.originalDuration));
@@ -124,6 +127,7 @@ class Timer {
 
     // Hide/show controls
     this.startBtn.style.display = 'none';
+    this.resetBtn.style.display  = 'none';
     this.stopBtn.style.display  = 'inline-block';
 
     // Record the end time based on remaining seconds
@@ -159,14 +163,14 @@ class Timer {
     }, 1000);
   }
 
-
-
   stop() {
     clearInterval(this.interval);
     this.interval = null;
     this.startBtn.textContent = 'Resume';
     this.startBtn.style.display = 'inline-block';
     this.stopBtn.style.display  = 'none';
+    this.resetBtn.style.display  = 'inline-block';
+
   }
 
   reset() {
@@ -254,7 +258,7 @@ class Timer {
           <span class="time-part" contenteditable="true">${mm}</span>:
           <span class="time-part" contenteditable="true">${ss}</span>
         </div>
-        <input class="boardInput" type="text" placeholder="timer_name" maxlength="15" minlength="1" value="${this.name}">
+        <input class="boardInput" type="text" placeholder="timer_name" minlength="1" value="${this.name}">
         <div class="boardBtns">
             <button class="boardBtn saveBtn">Save</button>
             <button class="boardBtn cancelBtn">Cancel</button>
@@ -404,7 +408,9 @@ class TimerModal{
         <span class="time-part" contenteditable="true">00</span>:
         <span class="time-part" contenteditable="true">00</span>
       </div>
-      <input class="boardInput" placeholder="timer_name" maxlength="15">
+      <div class="boardInputSection">
+        <input class="boardInput" placeholder="timer_name">
+      </div>
       <div class="board-section">
         <button class="boardBtn ready-option">ready</button>
         <button class="boardBtn custom-option">custom</button>
@@ -424,7 +430,8 @@ class TimerModal{
         <button class="boardBtn cancelBtn">Cancel</button>
       </div>`;
     document.body.append(this.overlayEl, this.windowEl);
-    
+    document.querySelector('.boardInput').addEventListener('focus', inputSuggestion());
+
     
 const timeParts = this.windowEl.querySelectorAll('.time-part');
 
@@ -802,6 +809,14 @@ function instruction(){
 
 function loadProgress(finished){
   const location = document.querySelector('.doneTimer');
+  let sum = 0;
+  finished.forEach(el =>{
+    sum += el.duration; 
+  }
+) 
+
+  document.getElementById('totalSession').textContent = `Finished Timers - ${finished.length} = ${(sum/3600).toPrecision(2)} hrs`;
+
   location.innerHTML = '';
   finished.forEach(element => {
     const it = document.createElement('li');
@@ -866,6 +881,102 @@ document.getElementById('clearData').addEventListener('click',()=>{
 document.querySelector('.guide-icon').addEventListener('click', () => {
   document.getElementById('content').classList.toggle('active');
 });
+function inputSuggestion() {
+  const inputEl = document.querySelector('.boardInput');
+  if (!inputEl) return;
+
+  const tasksRaw = JSON.parse(localStorage.getItem('tasks')).filter(task => task.checked === false);
+  let suggestions;
+  try {
+    suggestions = tasksRaw ? JSON.parse(tasksRaw).map(task => task.name) : ['work', 'study','read'];
+  } catch {
+    suggestions = ['work', 'study', 'read'];
+  }
+  let dropdown = document.createElement('ul');
+
+  dropdown.className = 'suggestion-dropdown';
+  dropdown.style.zIndex = '1000';
+  dropdown.style.background = '#fff';
+  dropdown.style.border = '1px solid #ccc';
+  dropdown.style.listStyle = 'none';
+  dropdown.style.padding = '0';
+  dropdown.style.margin = '0 20px';
+  dropdown.style.width = inputEl.offsetWidth + 'px';
+  dropdown.style.display = 'none';
+
+  inputEl.parentNode.appendChild(dropdown);
+
+  function showSuggestions(filtered) {
+    dropdown.innerHTML = '';
+    if (filtered.length === 0) {
+      dropdown.style.display = 'none';
+      return;
+    }
+    filtered.forEach((text, idx) => {
+      const li = document.createElement('li');
+      li.className = 'suggestion-item';
+      li.textContent = text;
+      li.style.padding = '6px';
+      li.style.cursor = 'pointer';
+      li.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        inputEl.value = text;
+        dropdown.style.display = 'none';
+      });
+      dropdown.appendChild(li);
+    });
+    dropdown.style.display = 'block';
+  }
+
+  inputEl.addEventListener('input', () => {
+    const val = inputEl.value.toLowerCase();
+    const filtered = suggestions.filter(s => s.toLowerCase().startsWith(val) && s.toLowerCase() !== val);
+    showSuggestions(filtered);
+  });
+
+  inputEl.addEventListener('focus', () => {
+    const val = inputEl.value.toLowerCase();
+    const filtered = suggestions.filter(s => s.toLowerCase().startsWith(val) && s.toLowerCase() !== val);
+    showSuggestions(filtered);
+  });
+
+  inputEl.addEventListener('blur', () => {
+    setTimeout(() => dropdown.style.display = 'none', 100);
+  });
+
+  inputEl.addEventListener('keydown', (e) => {
+    const items = dropdown.querySelectorAll('li');
+    let active = dropdown.querySelector('li.active');
+    let idx = Array.from(items).indexOf(active);
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (items.length) {
+        if (idx < items.length - 1) idx++;
+        else idx = 0;
+        items.forEach(li => li.classList.remove('active'));
+        items[idx].classList.add('active');
+        inputEl.value = items[idx].textContent;
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (items.length) {
+        if (idx > 0) idx--;
+        else idx = items.length - 1;
+        items.forEach(li => li.classList.remove('active'));
+        items[idx].classList.add('active');
+        inputEl.value = items[idx].textContent;
+      }
+    } else if (e.key === 'Enter') {
+      if (active) {
+        inputEl.value = active.textContent;
+        dropdown.style.display = 'none';
+        e.preventDefault();
+      }
+    }
+  });
+}
+
 
 window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
@@ -878,11 +989,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const savedSection = localStorage.getItem('selectedSection')
 
   loadProgress(finished);
-  //loadGraph(finished);
+  loadGraph(finished);
 
-  document.querySelector('.progress-btn').addEventListener('click',()=> {
-    loadGraph(finished)
-  });
 
   if (savedTheme) {
     document.body.className = `theme-${savedTheme}`;
@@ -903,5 +1011,4 @@ window.addEventListener('DOMContentLoaded', () => {
     new Timer(el.name,el.duration,document.querySelector('.timer-section'),el.id)
   });
   instruction();
-
 });

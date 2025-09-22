@@ -1,4 +1,4 @@
-@import url("./src/styles/checkList.css");
+@import url("./src/styles/toDoList.css");
 
 html{
   scrollbar-width: thin;
@@ -567,7 +567,30 @@ body {
   z-index: 9999;
   font-size: x-large;
 }
-
+.boardInputSection{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.suggestion-dropdown{
+  font-size: 0.95rem;
+  position: absolute;
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  top: 45px;
+}
+.suggestion-item{
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.suggestion-item:hover ,.suggestion-item.active{
+  background-color: var(--button-hover);
+}
 .window {
   background-color: var(--button-bg);
   position: fixed;
@@ -650,6 +673,10 @@ body {
 
 .header p {
   font-weight: bold;
+  width: 15ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .boardBtn, .ready-option, .custom-option {
@@ -815,8 +842,7 @@ body {
 }
 
 .selectionAffect {
-  transform: scale(0.95);
-  opacity: 0.75;
+  scale: 0.9;
   position: relative;
 }
 
@@ -829,9 +855,10 @@ body {
 }
 
 .selectionAffect:hover {
-  transform: scale(0.975);
+  scale: 0.95;
   cursor: pointer;
-  background-color: var(--selection-hover);
+  background-color: transparent;
+  backdrop-filter: blur(10px);
 }
 
 .ClockSelect input[type=checkbox] {
@@ -1379,3 +1406,4 @@ section.active {
 }
 
 /*# sourceMappingURL=styles.css.map */
+

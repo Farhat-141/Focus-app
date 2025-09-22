@@ -1,4 +1,4 @@
-import '../styles/checkList.css';
+import '../styles/toDoList.css';
 import { useState, useEffect, useRef } from 'react';
 
 import addIcon from '../assets/add-icon.svg';
@@ -52,7 +52,6 @@ function AppControl({ value, setValue, addTask }) {
 
 export default function App() {
   const [value, setValue] = useState('');
-
   const [tasks, setTasks] = useState(() => {
     const saved = localStorage.getItem('tasks');
     return saved ? JSON.parse(saved) : [];
