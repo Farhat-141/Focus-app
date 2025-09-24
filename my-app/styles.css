@@ -413,6 +413,7 @@ body {
 }
 
 .main {
+  width: 100%;
   display: flex;
   gap: 5px;
 }
@@ -1129,27 +1130,13 @@ body {
   background-color: var(--progress-bg);
 }
 
-.toggle-menu {
-  display: none;
-}
-
-.toggle-menu-icon {
-  width: 30px;
-  cursor: pointer;
-  transition: 0.25s;
-  border-radius: 50%;
-}
-
-@media (max-width: 768px) {
-
-  .side-bar {
-    align-items: center;
+@media (max-width:1024px) {
+  .headerBtns{
+    display: flex;
+    flex-direction: row;
   }
-  .side-bar-list-item-p {
+  .side-bar p {
     display: none;
-  }
-  .side-bar-list-item img {
-    display: block;
   }
   .side-bar {
     width: fit-content;
@@ -1157,6 +1144,18 @@ body {
   }
   .side-bar-list-item {
     width: fit-content;
+  }
+}
+
+@media (max-width: 768px) {
+  .side-bar {
+    align-items: center;
+    width: fit-content;
+    min-width: 40px;
+  }
+  .headerBtn{
+    padding: 5px 8px;
+
   }
 }
 .user-list {
@@ -1178,7 +1177,7 @@ body {
 }
 
 .setting-section .clock {
-  max-width: 350px;
+  max-width: 300px;
 }
 
 .empty {
@@ -1233,6 +1232,7 @@ section {
   scrollbar-color: var(--background-color) var(--secondary-bg);
 }
 
+
 .to-do-list{
   padding: 0;
 }
@@ -1251,10 +1251,12 @@ section.active {
 }
 
 .sections .sound-section {
-  background-image: url("assesst/image.png");
-  background-size: contain;
+  background-image: url("assesst/rain.png");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  padding: 0;
+  background-color: #111b3e;
 }
 
 .sections section {

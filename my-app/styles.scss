@@ -1221,15 +1221,6 @@ section.active {
   position: relative;
 }
 
-.sections .sound-section {
-  background: linear-gradient(-90deg, var(--background-color), var(--board-bg));
-  background-size: 400% 400%;
-  background-image: url("assesst/image.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 .sections section {
   width: 100%;
   border-radius: 15px;
