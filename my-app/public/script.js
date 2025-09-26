@@ -112,9 +112,7 @@ class Timer {
   _updateDisplay() {
     const formatted = this._formatTime(this.remaining);
     this.timeEl.textContent = formatted; 
-
-    document.title = `(${formatted}) ${this.name} - Full Focus`; 
-
+    updateDocumentTitle(formatted, this.name);
 
     if (this.progressBar) {
       const percent = 100 * (this.remaining / this._parseDuration(this.originalDuration));
@@ -171,6 +169,8 @@ class Timer {
     this.stopBtn.style.display  = 'none';
     this.resetBtn.style.display  = 'inline-block';
 
+    updateDocumentTitle(0,0);
+
   }
 
   reset() {
@@ -181,6 +181,8 @@ class Timer {
     this.audio.pause();
     this.audio.currentTime = 0;
     this._updateDisplay();
+    updateDocumentTitle(0,0);
+
   }
 
   //for rating
@@ -188,7 +190,8 @@ class Timer {
   complete() {
     this.reset();
     this.completeBtn.style.display = 'none';
-
+    updateDocumentTitle(0,0);
+    this.audio.pause();
     const rate = prompt('Rate the session out of 10');
     const note = prompt('feedback or a insight');
 
@@ -227,6 +230,7 @@ class Timer {
 
   destroy() {
     this.stop();
+    updateDocumentTitle(0,0);
     if (this.audio) {
       this.audio.pause();
       this.audio.currentTime = 0;
@@ -980,6 +984,9 @@ function inputSuggestion() {
   });
 }
 
+function updateDocumentTitle(formatted, name) {
+  document.title = formatted ? `(${formatted}) - Full Focus` : 'Focus app';
+}
 
 window.addEventListener('DOMContentLoaded', () => {
   new ClockDisplay('#current-time'); 
